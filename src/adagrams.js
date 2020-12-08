@@ -35,6 +35,20 @@ const Adagrams = {
   getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
   },
+  usesAvailableLetters(input, lettersInHand) {
+    const frequencies = {};
+    for(let i of lettersInHand) {
+    (frequencies[i]) ? frequencies[i] ++ : frequencies[i] = 1;
+    }
+    for(let i = 0; i < input.length; i++) {
+      if(frequencies[input[i]]) {
+        frequencies[input[i]] --;
+      } else {
+        return false
+      }
+    }
+    return true
+  },
 };
 
 // Do not remove this line or your tests will break!
