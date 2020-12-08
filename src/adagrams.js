@@ -1,6 +1,6 @@
 const Adagrams = {
   drawLetters() {
-    this.letterPool = []
+    this.letterPool = [];
     this.genLetterPool();
     const hand = []
     for(let i=0; i < 10; i++) {
@@ -27,11 +27,9 @@ const Adagrams = {
   },
   letterPool: [],
   genLetterPool() {
-    console.log('starting loop')
     for(const key in this.letterDistribution) {
-      for(let i = 0; i < this.letterDistribution[key]; i++) {
-        this.letterPool.push(key)
-      }
+      const letters = Array(this.letterDistribution[key]).fill(key);
+      this.letterPool.push(...letters);
     }
   },
   getRandomInt(min, max) {
