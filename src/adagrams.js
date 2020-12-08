@@ -17,6 +17,15 @@ const Adagrams = {
     L : 4,	Y : 2,
     M : 2,	Z : 1,
   },
+  letterPool: [],
+  genLetterPool() {
+    console.log('starting loop')
+    for(const key in this.letterDistribution) {
+      for(let i = 0; i < this.letterDistribution[key]; i++) {
+        this.letterPool.push(key)
+      }
+    }
+  },
 };
 
 // Do not remove this line or your tests will break!
