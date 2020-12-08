@@ -26,6 +26,9 @@ const Adagrams = {
       }
     }
   },
+  getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
+  },
 };
 
 // Do not remove this line or your tests will break!
