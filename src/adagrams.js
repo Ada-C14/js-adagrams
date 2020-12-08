@@ -1,6 +1,14 @@
 const Adagrams = {
   drawLetters() {
-    // Implement this method for wave 1
+    this.letterPool = []
+    this.genLetterPool();
+    const hand = []
+    for(let i=0; i < 10; i++) {
+      const num = this.getRandomInt(0, this.letterPool.length)
+      hand.push(this.letterPool[num])
+      this.letterPool.splice(num, 1)
+    }
+    return hand
   },
   letterDistribution: {
     A : 9,	N : 6,
