@@ -77,7 +77,31 @@ const Adagrams = {
   },
 
   highestScoreFrom(words) {
+    let maxWord = {word: '', score: 0}; // eventually will store max word
+    let maxWords = [];
 
+    // iterate through each word
+    for (const word of words) {
+      let score = Adagrams.scoreWord(word);
+
+      // check for new max
+      if (score > maxWord.score) {
+        maxWord.word = word;
+        maxWord.score = score;
+
+      // check if scores are same  
+      } else if (score === maxWord.score) {
+
+        // if maxWord is already length 10, don't replace it 
+        // otherwise, replace only if current word has fewer or 10 letters
+        if(maxWord.word.length < 10 && (word.length === 10 || word.length < maxWord.word.length)) {
+          maxWord.word = word;
+          maxWord.score = score;
+        }
+      }
+    }
+
+    return maxWord;
   }
 };
 
