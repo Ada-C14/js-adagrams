@@ -56,6 +56,17 @@ const Adagrams = {
   },
 
   scoreWord(word) {
+    // key/values pairs of scores to letters assoc. with score
+    const scoreHash = { 1: ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'],
+                        2: ['D', 'G'],
+                        3: ['B', 'C', 'M', 'P'], 
+                        4: ['F', 'H', 'V', 'W', 'Y'], 
+                        5: ['K'],
+                        8: ['J', 'X'],
+                        10: ['Q', 'Z'] }
+    // starting score 8 pts if word is at least 7 letters long
+    let score = word.length > 6 ? 8 : 0;
+
 
   },
 
