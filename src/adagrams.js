@@ -1,22 +1,23 @@
-const Adagrams = {
+// hash to store frequencies of letters (values) and weights (keys)
+// probably could have just made one big array, but this felt more readable? 
+const LETTERFREQ = {1: ['J', 'K', 'Q', 'X', 'Z'], 
+                    2: ['B', 'C', 'F', 'H', 'M', 'P', 'V', 'W', 'Y'], 
+                    3: ['G'], 
+                    4: ['D', 'L', 'S', 'U'],
+                    6: ['N', 'R', 'T'], 
+                    8: ['O'],
+                    9: ['A', 'I'],
+                    12: ['E']};
+
+
+class Adagrams {
   
-  drawLetters() {
-    // hash to store frequencies of letters (values) and weights (keys)
-    // probably could have just made one big array, but this felt more readable? 
-    const letterFreq = {1: ['J', 'K', 'Q', 'X', 'Z'], 
-                        2: ['B', 'C', 'F', 'H', 'M', 'P', 'V', 'W', 'Y'], 
-                        3: ['G'], 
-                        4: ['D', 'L', 'S', 'U'],
-                        6: ['N', 'R', 'T'], 
-                        8: ['O'],
-                        9: ['A', 'I'],
-                        12: ['E']};
-    
+  static drawLetters() {
     // create array with "weighted" letters
     let letArray = [];
 
     // for each key/value pair
-    for(const [key, value] of Object.entries(letterFreq)){
+    for(const [key, value] of Object.entries(LETTERFREQ)){
       // shovel array to letArray with key times of each letter. 
       value.forEach(letter => letArray = letArray.concat(Array(Number(key)).fill(letter)));
     }
@@ -29,9 +30,9 @@ const Adagrams = {
     }
 
     return letArray;
-  },
+  }
 
-  usesAvailableLetters(input, lettersInHand) {
+  static usesAvailableLetters(input, lettersInHand) {
     let handCopy = lettersInHand; // make copy of lettersInHand
     
     // iterate for every char in string
@@ -53,9 +54,9 @@ const Adagrams = {
 
     // if leaves loop, all input letters valid
     return true;
-  },
+  }
 
-  scoreWord(word) {
+  static scoreWord(word) {
     // key/values pairs of letters to score score
     const scoreHash = { A: 1, E: 1, I: 1, O: 1, U: 1, L: 1, N: 1, R: 1, S: 1, T: 1,
                         D: 2, G: 2,
@@ -74,14 +75,14 @@ const Adagrams = {
     }
 
     return score; 
-  },
+  }
 
-  highestScoreFrom(words) {
+  static highestScoreFrom(words) {
     let maxWord = {word: '', score: 0}; // eventually will store max word
 
     // iterate through each word
     for (const word of words) {
-      let score = Adagrams.scoreWord(word);
+      let score = this.scoreWord(word);
 
       // check for new max
       if (score > maxWord.score) {
