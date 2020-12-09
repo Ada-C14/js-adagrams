@@ -31,7 +31,7 @@ class Adagrams {
     }
     
     // delete random elements from letArray until only 10 left
-    while( letArray.length > 10) 
+    while(letArray.length > 10) 
     {
       let deleteIndex = Math.floor(Math.random() * letArray.length);
       letArray.splice(deleteIndex, 1);
@@ -81,22 +81,18 @@ class Adagrams {
 
     // iterate through each word
     for (const word of words) {
+      // score word
       let score = this.scoreWord(word);
+
+      // boolean that returns true if: 
+      // - word has higher score
+      // - word has same score AND is shorter than current maxWord.word (unless maxWord.word is length 10)
+      // - word has same score AND has length 10 (but maxWord.word doesn't)
+      let isNewMax = (score > maxWord.score) || (score === maxWord.score) && (maxWord.word.length < 10 && (word.length === 10 || word.length < maxWord.word.length));
       
-      // check for new max
-      if (score > maxWord.score) {
+      if (isNewMax) {
         maxWord.word = word;
         maxWord.score = score;
-
-      // check if scores are same  
-      } else if (score === maxWord.score) {
-
-        // if maxWord is already length 10, don't replace it 
-        // otherwise, replace only if current word has fewer or 10 letters
-        if(maxWord.word.length < 10 && (word.length === 10 || word.length < maxWord.word.length)) {
-          maxWord.word = word;
-          maxWord.score = score;
-        }
       }
     }
 
