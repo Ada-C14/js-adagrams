@@ -80,7 +80,7 @@ const Adagrams = {
   scoreWord(word) {
     let score = 0;
     for(let i = 0; i < word.length; i++) {
-      score += this.letterScores[word[i]]
+      score += this.letterScores[word[i].toUpperCase()]
     }
     if(word.length > 6) {
       return score + 8
