@@ -9,6 +9,14 @@ const LETTERFREQ = {1: ['J', 'K', 'Q', 'X', 'Z'],
                     9: ['A', 'I'],
                     12: ['E']};
 
+                        // key/values pairs of letters to score score
+const SCOREHASH = { A: 1, E: 1, I: 1, O: 1, U: 1, L: 1, N: 1, R: 1, S: 1, T: 1,
+                    D: 2, G: 2,
+                    B: 3, C: 3, M: 3, P: 3,
+                    F: 4, H: 4, V: 4, W: 4, Y: 4,
+                    K: 5,
+                    J: 8, X: 8,
+                    Q: 10, Z: 10}
 
 class Adagrams {
   
@@ -57,21 +65,12 @@ class Adagrams {
   }
 
   static scoreWord(word) {
-    // key/values pairs of letters to score score
-    const scoreHash = { A: 1, E: 1, I: 1, O: 1, U: 1, L: 1, N: 1, R: 1, S: 1, T: 1,
-                        D: 2, G: 2,
-                        B: 3, C: 3, M: 3, P: 3,
-                        F: 4, H: 4, V: 4, W: 4, Y: 4,
-                        K: 5,
-                        J: 8, X: 8,
-                        Q: 10, Z: 10}
-
     // starting score 8 pts if word is at least 7 letters long
     let score = word.length > 6 ? 8 : 0;
 
     // iterate through each letter of word
     for(const letter of word) {
-      score += scoreHash[letter.toUpperCase()];
+      score += SCOREHASH[letter.toUpperCase()];
     }
 
     return score; 
@@ -83,7 +82,7 @@ class Adagrams {
     // iterate through each word
     for (const word of words) {
       let score = this.scoreWord(word);
-
+      
       // check for new max
       if (score > maxWord.score) {
         maxWord.word = word;
