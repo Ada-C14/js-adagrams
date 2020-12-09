@@ -32,7 +32,7 @@ class Adagrams {
   constructor() {
   }
 
-  drawLetters() {
+  static drawLetters() {
     const drawnLetters = [];
 
     //create letter pool
@@ -54,7 +54,7 @@ class Adagrams {
     return drawnLetters.flat();
   }
 
-  usesAvailableLetters(input, lettersInHand) {
+  static usesAvailableLetters(input, lettersInHand) {
     input = input.split('');
     for(const letter of input) {
       const index = lettersInHand.indexOf(letter)
@@ -67,7 +67,7 @@ class Adagrams {
     return true;
   }
 
-  scoreWord(word) {
+  static scoreWord(word) {
     word = word.toUpperCase().split('');
     let score = 0;
     if (word.length >= 7) {
@@ -79,7 +79,7 @@ class Adagrams {
     return score;
   }
 
-  highestScoreFrom(words) {
+  static highestScoreFrom(words) {
     let highScore = {word: "", score: 0};
     words.forEach((word) => {
       const score = this.scoreWord(word);
@@ -93,7 +93,7 @@ class Adagrams {
     return highScore;
   }
 
-  tieBreak(encumbentHighScoreHash, newScoreHash) {
+  static tieBreak(encumbentHighScoreHash, newScoreHash) {
     if (encumbentHighScoreHash['word'].length < 10) {
       if (newScoreHash['word'].length == 10) {
         return newScoreHash;
