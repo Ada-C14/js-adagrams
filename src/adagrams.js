@@ -29,24 +29,20 @@ const LETTERS = {
 
 const Adagrams = {
   drawLetters() {
-    let drawnLetters = [];
+    const drawnLetters = [];
 
     //create letter pool
-    let allLetters = [];
+    const allLetters = [];
     for(const letter in LETTERS) {
       const count = LETTERS[letter]['count'];
-      // console.log(`${letter}: count: ${count}`);
       for(let i = 0; i < count; i++) {
         allLetters.push(letter);
       }
     }
-    
-    // console.log(`allLetters: ${allLetters}`);
 
     //draw ten letters
     for(let i = 0; i < 10; i++) {
       const index = Math.floor((Math.random() * (allLetters.length - 1)));
-      
       drawnLetters.push(allLetters.splice(index, 1));
     }
 
