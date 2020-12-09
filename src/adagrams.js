@@ -40,17 +40,17 @@ const LETTERSCORES = {
   X: 8,
   Q: 10,
   Z: 10
-}
+};
 
 class Adagrams {
   
   static genLetterPool() {
-    const letterPool = []
+    const letterPool = [];
     for (const key in LETTERDISTRIBUTION) {
-      const letters = Array(LETTERDISTRIBUTION[key]).fill(key)
-      letterPool.push(...letters)
+      const letters = Array(LETTERDISTRIBUTION[key]).fill(key);
+      letterPool.push(...letters);
     }
-    return letterPool
+    return letterPool;
   }
 
   static getRandomInt(min, max) {
@@ -61,11 +61,11 @@ class Adagrams {
     let pool = Adagrams.genLetterPool();
     const hand = []
     for(let i=0; i < 10; i++) {
-      const num = Adagrams.getRandomInt(0, pool.length)
-      hand.push(pool[num])
-      pool.splice(num, 1)
+      const num = Adagrams.getRandomInt(0, pool.length);
+      hand.push(pool[num]);
+      pool.splice(num, 1);
     }
-    return hand
+    return hand;
   }
   static usesAvailableLetters(input, lettersInHand) {
     const frequencies = {};
@@ -76,24 +76,24 @@ class Adagrams {
       if(frequencies[input[i]]) {
         frequencies[input[i]] --;
       } else {
-        return false
+        return false;
       }
     }
-    return true
+    return true;
   }
   static scoreWord(word) {
     let score = 0;
     for(let i = 0; i < word.length; i++) {
-      score += LETTERSCORES[word[i].toUpperCase()]
+      score += LETTERSCORES[word[i].toUpperCase()];
     }
     if(word.length > 6) {
-      return score + 8
+      return score + 8;
     } else {
-      return score
+      return score;
     }
   }
   static highestScoreFrom(words) {
-    const score = {word: "", score: 0}
+    const score = {word: "", score: 0};
     for(let word of words) {
       const wordScore = this.scoreWord(word);
       if((score.score < wordScore) || (score.score === wordScore && word.length < score.word.length && score.word.length != 10) || (word.length === 10 && score.score === wordScore && score.word.length < 10)) {
@@ -101,7 +101,7 @@ class Adagrams {
         score.score = wordScore;
       }
     }
-    return score
+    return score;
   }
 }
 // Do not remove this line or your tests will break!
