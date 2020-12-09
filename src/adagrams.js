@@ -71,9 +71,36 @@ const Adagrams = {
     }
     word.forEach((letter) => {
       score += LETTERS[letter]['score'];
-    })
+    });
     return score;
   },
+
+  highestScoreFrom(words) {
+    let highScore = {word: "", score: 0};
+    words.forEach((word) => {
+      const score = this.scoreWord(word);
+      if (score > highScore['score']) {
+        highScore.score = score;
+        highScore.word = word;
+      } else if (score == highScore['score']) {
+        highScore = this.tieBreak(highScore, {word: word, score: score});
+      }
+    });
+    return highScore;
+  },
+
+  tieBreak(encumbentHighScoreHash, newScoreHash) {
+    if (encumbentHighScoreHash['word'].length < 10) {
+      if (newScoreHash['word'].length == 10) {
+        return newScoreHash;
+      } else {
+        if (newScoreHash['word'].length < encumbentHighScoreHash['word'].length) {
+          return newScoreHash;
+        }
+      } 
+    } 
+    return encumbentHighScoreHash;
+  }
 
 };
 
