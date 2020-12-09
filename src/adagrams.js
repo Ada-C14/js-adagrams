@@ -27,7 +27,11 @@ const LETTERS = {
   Z: {count:1, score:10},
 };
 
-const Adagrams = {
+class Adagrams {
+  //what to put in the constructor? Player count? Game high score? Player hands...?
+  constructor() {
+  }
+
   drawLetters() {
     const drawnLetters = [];
 
@@ -48,7 +52,7 @@ const Adagrams = {
     }
 
     return drawnLetters.flat();
-  },
+  }
 
   usesAvailableLetters(input, lettersInHand) {
     input = input.split('');
@@ -61,7 +65,7 @@ const Adagrams = {
       }
     }
     return true;
-  },
+  }
 
   scoreWord(word) {
     word = word.toUpperCase().split('');
@@ -73,7 +77,7 @@ const Adagrams = {
       score += LETTERS[letter]['score'];
     });
     return score;
-  },
+  }
 
   highestScoreFrom(words) {
     let highScore = {word: "", score: 0};
@@ -87,7 +91,7 @@ const Adagrams = {
       }
     });
     return highScore;
-  },
+  }
 
   tieBreak(encumbentHighScoreHash, newScoreHash) {
     if (encumbentHighScoreHash['word'].length < 10) {
