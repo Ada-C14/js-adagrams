@@ -30,6 +30,18 @@ const Adagrams = {
 
     return letArray;
   },
+
+  usesAvailableLetters(input, lettersInHand) {
+
+  },
+
+  scoreWord(word) {
+
+  },
+
+  highestScoreFrom(words) {
+
+  }
 };
 
 Adagrams.drawLetters;
