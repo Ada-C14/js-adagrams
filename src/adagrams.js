@@ -42,13 +42,26 @@ const Adagrams = {
 
     //draw ten letters
     for(let i = 0; i < 10; i++) {
-      const index = Math.floor((Math.random() * (allLetters.length - 1)));
+      //Math.floor(Math.random() * (max - min)) where max = array.length - 1 and min = 0
+      const index = Math.floor(Math.random() * (allLetters.length - 1));
       drawnLetters.push(allLetters.splice(index, 1));
     }
 
     return drawnLetters.flat();
   },
 
+  usesAvailableLetters(input, lettersInHand) {
+    input = input.split('');
+    for(const letter of input) {
+      const index = lettersInHand.indexOf(letter)
+      if (index == -1) {
+        return false;
+      } else {
+        lettersInHand.splice(index, 1);
+      }
+    }
+    return true;
+  },
 
 };
 
