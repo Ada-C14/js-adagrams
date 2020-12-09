@@ -83,7 +83,7 @@ const Adagrams = {
         highScore.score = score;
         highScore.word = word;
       } else if (score == highScore['score']) {
-        highScore = this.tieBreak(highScore, {word: word, score: score});
+        highScore = this.tieBreak(highScore, {word, score}); // trying out the shorthand of {word: word, score: score} == {word, score}
       }
     });
     return highScore;
