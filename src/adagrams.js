@@ -78,7 +78,6 @@ const Adagrams = {
 
   highestScoreFrom(words) {
     let maxWord = {word: '', score: 0}; // eventually will store max word
-    let maxWords = [];
 
     // iterate through each word
     for (const word of words) {
