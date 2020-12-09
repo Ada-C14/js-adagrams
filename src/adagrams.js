@@ -32,7 +32,27 @@ const Adagrams = {
   },
 
   usesAvailableLetters(input, lettersInHand) {
+    let handCopy = lettersInHand; // make copy of lettersInHand
+    
+    // iterate for every char in string
+    for (let i = 0; i < input.length; i++) {
 
+      // if found in handCopy, delete from handCopy
+      // convert input to uppercase assuming lettersInHand has uppercase letters
+      if(handCopy.includes(input[i].toUpperCase())) {
+
+        let deleteIndex = lettersInHand.indexOf(input[i].toUpperCase());
+        handCopy.splice(deleteIndex, 1);
+
+      } else { // else, not found, therefore returns false
+
+        return false;
+
+      }
+    }
+
+    // if leaves loop, all input letters valid
+    return true;
   },
 
   scoreWord(word) {
