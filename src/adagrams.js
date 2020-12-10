@@ -45,6 +45,32 @@ const Adagrams = {
 
     return drawnLetters;
   },
+
+  usesAvailableLetters(input, lettersInHand) {
+    let lettersPlayed = input.toUpperCase().split('');
+
+    let lettersInHandHash = {};
+
+    for (let letter of lettersInHand) {
+      if (lettersInHandHash[letter]) {
+        lettersInHandHash[letter] += 1;
+      } 
+      else {
+        lettersInHandHash[letter] = 1;
+      }
+    }
+
+    for (let letter of lettersPlayed) {
+      if (lettersInHandHash[letter]) {
+        lettersInHandHash[letter] -= 1; 
+      }
+      else if (!lettersInHand.includes(letter) || lettersInHandHash[letter] <= 0) {
+        return false;
+      }
+    }
+
+    return true; 
+  } 
 };
 
 // Do not remove this line or your tests will break!
