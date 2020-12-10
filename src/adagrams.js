@@ -85,10 +85,28 @@ const Adagrams = {
     }
 
     if (word.length > 6 && word.length < 11) {
-      score += 8
+      score += 8;
     }
 
     return score;
+  },
+  highestScoreFrom(words) {
+    const winner = { 
+      word: '',
+      score: 0
+    };
+
+    words.forEach( word => {
+      const score = this.scoreWord(word)
+
+      if ((score > winner.score) ||
+      (score === winner.score && score.length === 10) || 
+      (score === winner.score && score.length < winner.score.length && winner.word.length != 10)) {
+        winner.score = score
+        winner.word = word
+      }
+    });
+    return winner;
   }
 };
 
@@ -98,5 +116,5 @@ const Adagrams = {
 // const lettersInHand = Adagrams.drawLetters();
 // console.log(lettersInHand)
 // console.log(Adagrams.usesAvailableLetters("A", 'abcd'))
-console.log(Adagrams.scoreWord('aeioulnrst'))
+console.log(Adagrams.highestScoreFrom(['x','j']))
 
