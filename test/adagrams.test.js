@@ -1,3 +1,4 @@
+
 import Adagrams from 'adagrams';
 
 describe('Adagrams', () => {
