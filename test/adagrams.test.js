@@ -18,7 +18,7 @@ describe('Adagrams', () => {
     });
   });
 
-  describe('usesAvailableLetters', () => {
+  describe.skip('usesAvailableLetters', () => {
     it('returns true if the submitted letters are valid against the drawn letters', () => {
       const drawn = ['D', 'O', 'G', 'X', 'X', 'X', 'X', 'X', 'X', 'X'];
       const word = 'DOG';
@@ -45,7 +45,7 @@ describe('Adagrams', () => {
     });
   });
 
-  describe('scoreWord', () => {
+  describe.skip('scoreWord', () => {
     const expectScores = (wordScores) => {
       Object.entries(wordScores).forEach(([word, score]) => {
         expect(Adagrams.scoreWord(word)).toBe(score);
@@ -99,7 +99,7 @@ describe('Adagrams', () => {
       expect(Adagrams.highestScoreFrom(words)).toEqual(correct);
     });
 
-    describe('in case of tied score', () => {
+    describe.skip('in case of tied score', () => {
       const expectTie = (words) => {
         const scores = words.map(word => Adagrams.scoreWord(word));
         const highScore = scores.reduce((h, s) => h < s ? s : h, 0);
