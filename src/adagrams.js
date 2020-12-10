@@ -52,10 +52,31 @@ const Adagrams = {
     }
 
     return currentHand;
+  },
+  usesAvailableLetters(input, letterInHand) {
+    let letterArr = input.toUpperCase().split('');
+  
+    let handHash = {};
+    for (let letter of letterInHand) {
+      handHash[letter] ? handHash[letter] += 1 : handHash[letter] = 1;
+    }
 
+    for (let letter of letterArr) {
+      if (handHash[letter]) {
+        handHash[letter] -= 1;
+      } else {
+        return false
+      }
+    }
 
+    const hashValues = Object.values(handHash);
+    return hashValues.every(value => value >= 0);
+    
   }
 };
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
+
+// Adagrams.usesAvailableLetters("tram", ["T", "R", "A", "M", "B"])
+
