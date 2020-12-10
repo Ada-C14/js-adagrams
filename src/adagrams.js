@@ -39,18 +39,38 @@ const Adagrams = {
     })();
 
     const hand = [];    
-
     for(let i = 0; i < 10; i += 1 ) {
       const rand_index = Math.floor(Math.random() * letterPool.length);
       hand.push(letterPool[rand_index]);
     }
-
-    return hand
+    return hand;
   },
-  
+  usesAvailableLetters(input, lettersInHand) {
+    lettersToUse = {};
+    for(const letter of lettersInHand) {
+      if (lettersToUse[letter]) {
+        lettersToUse[letter] += 1;
+      } else {
+        lettersToUse[letter] = 1;
+      }
+    }
+    console.log(lettersToUse)
+
+    for(const letter of input) {
+      if (lettersToUse[letter]) {
+        lettersToUse[letter] -= 1;
+      } else {
+        return false;
+      }
+    }
+
+    return true;
+  }
 };
 
 // Do not remove this line or your tests will break!
 // export default Adagrams;
 
-console.log(Adagrams.drawLetters());
+// const lettersInHand = Adagrams.drawLetters();
+// console.log(lettersInHand)
+// console.log(Adagrams.usesAvailableLetters("aba", 'abcd'))
