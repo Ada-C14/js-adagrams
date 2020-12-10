@@ -44,6 +44,19 @@ const Adagrams = {
     }
     return playersLetters;
   },
+  usesAvailableLetters(input, lettersInHand){
+    if (input.length > lettersInHand.length){
+      return false;
+    }
+    for (const char of input){
+      if (!lettersInHand.includes(char)) {
+        // console.log(char)
+        return false;
+      }
+      lettersInHand.splice(lettersInHand.indexOf(char), 1);
+    }
+    return true;
+  },
 };
 
 // Do not remove this line or your tests will break!
