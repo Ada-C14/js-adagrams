@@ -35,15 +35,30 @@ const Adagrams = {
   let handOfLetters = [];
 
 // draw 10 random letters 
-while (handOfLetters.length < 10) {
-  let randomLetter = letters[Math.floor(Math.random() * letters.length)];
-    if (letterPool[randomLetter] > 0) {
-        letterPool[randomLetter] -= 1;
-        handOfLetters.push(randomLetter);
+  while (handOfLetters.length < 10) {
+    let randomLetter = letters[Math.floor(Math.random() * letters.length)];
+      if (letterPool[randomLetter] > 0) {
+          letterPool[randomLetter] -= 1;
+          handOfLetters.push(randomLetter);
+        }
+      }
+      return handOfLetters; 
+    },
+
+  // WAVE 2
+  usesAvailableLetters(input, lettersInHand) {
+    let inputArr = input.toUpperCase().split('');
+
+    for(let char of inputArr){
+      if (lettersInHand.includes(char)) {
+        let index = lettersInHand.indexOf(char);
+        lettersInHand.splice(index, 1);
+      } else {
+        return false; 
       }
     }
-    return handOfLetters; 
-  },
+    return true;
+  }
 };
 
 // Do not remove this line or your tests will break!
