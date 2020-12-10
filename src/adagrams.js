@@ -47,11 +47,11 @@ class Adagrams {
   }
 
   static usesAvailableLetters(input, lettersInHand) {
-    let lettersPlayed = input.toUpperCase().split('');
+    const lettersPlayed = input.toUpperCase().split('');
 
     let lettersInHandHash = {};
 
-    for (let letter of lettersInHand) {
+    for (const letter of lettersInHand) {
       if (lettersInHandHash[letter]) {
         lettersInHandHash[letter] += 1;
       } 
@@ -60,7 +60,7 @@ class Adagrams {
       }
     }
 
-    for (let letter of lettersPlayed) {
+    for (const letter of lettersPlayed) {
       if (lettersInHandHash[letter]) {
         lettersInHandHash[letter] -= 1; 
       }
@@ -102,10 +102,10 @@ class Adagrams {
       Z: 10
   }
 
-  let characters = word.toUpperCase().split('');
+  const characters = word.toUpperCase().split('');
   let score = 0;
 
-  for (let character of characters) {
+  for (const character of characters) {
       score += scores[character];
     }
 
@@ -117,27 +117,27 @@ class Adagrams {
   }
 
   static highestScoreFrom(words) {
-    let winningWord = { word: words[0], score: this.scoreWord(words[0])}
-    let winningScore = this.scoreWord(words[0])
+    let winningWord = { word: words[0], score: this.scoreWord(words[0]) };
+    let winningScore = this.scoreWord(words[0]);
 
-    for (let word of words) {
+    for (const word of words) {
       if (this.scoreWord(word) > winningScore) {
-        winningScore = this.scoreWord(word)
-        winningWord = { word: word, score: this.scoreWord(word)}
+        winningScore = this.scoreWord(word);
+        winningWord = { word: word, score: this.scoreWord(word) };
       }
       else if (this.scoreWord(word) === winningScore) {
         if (winningWord['word'].length === 10) {
-          winningWord = winningWord
+          winningWord = winningWord;
         }
         else if (word.length === 10) {
-          winningWord = {word: word, score: this.scoreWord(word)}
+          winningWord = { word: word, score: this.scoreWord(word) };
         }
         else if (word.length < winningWord['word'].length) {
-          winningWord = { word: word, score: this.scoreWord(word)}
+          winningWord = { word: word, score: this.scoreWord(word) };
         }  
       }
     }
-    return winningWord
+    return winningWord;
   }
 };
 
