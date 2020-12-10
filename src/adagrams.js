@@ -71,8 +71,21 @@ const Adagrams = {
 
     const hashValues = Object.values(handHash);
     return hashValues.every(value => value >= 0);
+
+  },
+  scoreWord(word) {
+    const wordValue = {
+      1: ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
+      2: ["D", "G"],
+      3: ["B", "C", "M", "P"],
+      4: ["F", "H", "V", "W", "Y"],
+      5: ["K"],
+      6: ["J", "X"],
+      7: ["Q", "Z"]
+    };
+
     
-  }
+  },
 };
 
 // Do not remove this line or your tests will break!
