@@ -79,12 +79,16 @@ const Adagrams = {
       Object.assign(letterPointValues, Object.fromEntries(letterValuePairs));
     }
 
-    let score = 0
-    for(const letter of word.toUpperCase()){
-      score += letterPointValues[letter]
+    let score = 0;
+    for(const letter of word.toUpperCase()) {
+      score += letterPointValues[letter];
     }
 
-    return score
+    if (word.length > 6 && word.length < 11) {
+      score += 8
+    }
+
+    return score;
   }
 };
 
@@ -94,5 +98,5 @@ const Adagrams = {
 // const lettersInHand = Adagrams.drawLetters();
 // console.log(lettersInHand)
 // console.log(Adagrams.usesAvailableLetters("A", 'abcd'))
-console.log(Adagrams.scoreWord('sad'))
+console.log(Adagrams.scoreWord('aeioulnrst'))
 
