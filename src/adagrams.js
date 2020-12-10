@@ -30,13 +30,10 @@ const Adagrams = {
     Z: 1,
   },
   drawLetters() {
-    const letterPool = ( () => {
-      let pool = [];
-      for(const [letter, count] of Object.entries(this.letterDistribution)) {
-        pool = pool.concat(Array.from(letter.repeat(count)));
-      }
-      return pool;
-    })();
+    let letterPool = [];
+    for(const [letter, count] of Object.entries(this.letterDistribution)) {
+      letterPool = letterPool.concat(Array.from(letter.repeat(count)));
+    }
 
     const hand = [];    
     for(let i = 0; i < 10; i += 1 ) {
@@ -54,7 +51,6 @@ const Adagrams = {
         lettersToUse[letter] = 1;
       }
     }
-    console.log(lettersToUse)
 
     for(const letter of input) {
       if (lettersToUse[letter]) {
@@ -65,6 +61,30 @@ const Adagrams = {
     }
 
     return true;
+  },
+  scoreDistribution: {
+    1: ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'],
+    2: ['D', 'G'],
+    3: ['B', 'C', 'M', 'P'],
+    4: ['F', 'H', 'V', 'W', 'Y'],
+    5: ['K'],
+    8: ['J', 'X'],
+    10: ['Q', 'Z'],
+  },
+  scoreWord(word) {
+    const letterPointValues = {};
+
+    for(const [value, letters] of Object.entries(this.scoreDistribution)) {
+      const letterValuePairs = letters.map( letter => [letter, Number(value)]);
+      Object.assign(letterPointValues, Object.fromEntries(letterValuePairs));
+    }
+
+    let score = 0
+    for(const letter of word.toUpperCase()){
+      score += letterPointValues[letter]
+    }
+
+    return score
   }
 };
 
@@ -73,4 +93,6 @@ const Adagrams = {
 
 // const lettersInHand = Adagrams.drawLetters();
 // console.log(lettersInHand)
-// console.log(Adagrams.usesAvailableLetters("aba", 'abcd'))
+// console.log(Adagrams.usesAvailableLetters("A", 'abcd'))
+console.log(Adagrams.scoreWord('sad'))
+
