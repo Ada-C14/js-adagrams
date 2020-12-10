@@ -85,8 +85,30 @@ const Adagrams = {
       score += 8;
     }
     return score;
+  },
+  // WAVE 4
+  highestScoreFrom(words){
+    let winningWordHash = { word: null, score: 0 }; 
+
+    for(let word of words){
+      if(this.scoreWord(word) > winningWordHash.score){
+        winningWordHash['word'] = word;
+        winningWordHash['score'] = this.scoreWord(word);
+      } else if (this.scoreWord(word) === winningWordHash.score) {
+
+        if (word.length === 10 && winningWordHash['word'].length !== 10) {
+          winningWordHash['word'] = word;
+          winningWordHash['score'] = this.scoreWord(word); 
+        } else if (word.length < winningWordHash['word'].length && winningWordHash['word'].length !== 10){
+          winningWordHash['word'] = word;
+          winningWordHash['score'] = this.scoreWord(word);
+        } 
+      }
+    }
+    return winningWordHash;
   }
 };
+
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
