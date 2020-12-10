@@ -1,7 +1,6 @@
 const Adagrams = {
 // WAVE 1
   drawLetters() {
-
     const letterPool = {
       A: 9,
       B: 2,
@@ -58,6 +57,34 @@ const Adagrams = {
       }
     }
     return true;
+  }, 
+
+  // WAVE 3
+  scoreWord(word) {
+    const scoreChart = {
+      1: ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'],
+      2: ['D', 'G'],
+      3: ['B', 'C', 'M', 'P'],
+      4: ['F', 'H', 'V', 'W', 'Y'],
+      5: ['K'],
+      8: ['J', 'X'],
+      10: ['Q', 'Z']
+    }
+
+    let score = 0;
+    let wordArr = word.toUpperCase().split('');
+
+    for(let char of wordArr) {
+      for (const [scoreNum, value] of Object.entries(scoreChart)) {
+        if(value.includes(char)){
+          score += Number(scoreNum);
+        }
+      }
+    }
+    if(wordArr.length >= 7) {
+      score += 8;
+    }
+    return score;
   }
 };
 
