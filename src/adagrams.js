@@ -1,5 +1,5 @@
-const Adagrams = {
-  drawLetters() {
+class Adagrams {
+  static drawLetters() {
     const letters = {
       A: 9,
       B: 2,
@@ -44,9 +44,9 @@ const Adagrams = {
     }
 
     return drawnLetters;
-  },
+  }
 
-  usesAvailableLetters(input, lettersInHand) {
+  static usesAvailableLetters(input, lettersInHand) {
     let lettersPlayed = input.toUpperCase().split('');
 
     let lettersInHandHash = {};
@@ -70,9 +70,9 @@ const Adagrams = {
     }
 
     return true; 
-  }, 
+  } 
 
-  scoreWord(word) {
+  static scoreWord(word) {
     const scores = {
       A: 1,
       B: 3,
@@ -114,9 +114,9 @@ const Adagrams = {
   }
 
   return score;
-  },
+  }
 
-  highestScoreFrom(words) {
+  static highestScoreFrom(words) {
     let winningWord = { word: words[0], score: this.scoreWord(words[0])}
     let winningScore = this.scoreWord(words[0])
 
