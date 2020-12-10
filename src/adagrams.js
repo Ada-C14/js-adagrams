@@ -129,9 +129,9 @@ const Adagrams = {
 
     // use the scoreWord to find the score 
 
-    // return the object with the highest score 
+    // TODO: return the object with the highest score 
 
-    const filterObj = result.find(obj => obj.score == maxScore);
+    const filterObj = result.filter(obj => obj.score == maxScore)[0];
     console.log(filterObj)
     return filterObj
   }
