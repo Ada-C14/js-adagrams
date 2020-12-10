@@ -1,5 +1,3 @@
-// import { map } from "core-js/fn/array";
-
 const Adagrams = {
   letterDistribution: {
     A: 9,	
@@ -43,7 +41,7 @@ const Adagrams = {
     return hand;
   },
   usesAvailableLetters(input, lettersInHand) {
-    lettersToUse = {};
+    const lettersToUse = {};
     for(const letter of lettersInHand) {
       if (lettersToUse[letter]) {
         lettersToUse[letter] += 1;
@@ -99,9 +97,12 @@ const Adagrams = {
     words.forEach( word => {
       const score = this.scoreWord(word)
 
-      if ((score > winner.score) ||
-      (score === winner.score && score.length === 10) || 
-      (score === winner.score && score.length < winner.score.length && winner.word.length != 10)) {
+      if (score > winner.score) {
+        winner.score = score
+        winner.word = word
+      } else if (score === winner.score && 
+        winner.word.length != 10 && 
+        ( word.length === 10 || word.length < winner.word.length)) {
         winner.score = score
         winner.word = word
       }
@@ -111,10 +112,4 @@ const Adagrams = {
 };
 
 // Do not remove this line or your tests will break!
-// export default Adagrams;
-
-// const lettersInHand = Adagrams.drawLetters();
-// console.log(lettersInHand)
-// console.log(Adagrams.usesAvailableLetters("A", 'abcd'))
-console.log(Adagrams.highestScoreFrom(['x','j']))
-
+export default Adagrams;
