@@ -103,10 +103,43 @@ const Adagrams = {
     
     return sum
   },
+  highestScoreFrom(words) {
+    // return a single object that represent the data 
+    // of a winning word and it's score
+    // handle tie cases of ties
+
+    // pseudo code 
+    // declare an object 
+
+    let result = [];
+    let maxScore = 0;
+
+    // populate the object with word and the score 
+    for (let word of words) {
+      // result['word'] = word;
+      // result['score'] = this.scoreWord(word);
+      if (this.scoreWord(word) > maxScore) {
+        maxScore = this.scoreWord(word)
+      }
+      result.push({'word': word, 'score': this.scoreWord(word)})
+    }
+
+    console.log(result);
+    console.log(maxScore)
+
+    // use the scoreWord to find the score 
+
+    // return the object with the highest score 
+
+    const filterObj = result.find(obj => obj.score == maxScore);
+    console.log(filterObj)
+    return filterObj
+  }
 };
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
 
 // Adagrams.usesAvailableLetters("tram", ["T", "R", "A", "M", "B"])
+Adagrams.highestScoreFrom(['XXX', 'XXXX', 'X', 'XX'])
 
