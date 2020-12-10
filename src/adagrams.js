@@ -84,7 +84,24 @@ const Adagrams = {
       7: ["Q", "Z"]
     };
 
+    let sum = 0;
+    let wordArr = word.toUpperCase().split('');
+
+    // 
+
+    for (let letter of wordArr) {
+      for (let value in wordValue) {
+        if (wordValue[value].includes(letter)) {
+          sum += Number(value);
+        }
+      }
+    }
+
+    if (word.length >= 7) {
+      sum += 8;
+    }
     
+    return sum
   },
 };
 
