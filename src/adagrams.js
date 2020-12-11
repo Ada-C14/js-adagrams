@@ -56,7 +56,8 @@ const Adagrams = {
   usesAvailableLetters(input, lettersInHand) {
 
     const hand = {}
-
+    
+    // stores the letters as keys and count as the value
     for (const letter of lettersInHand) {
       if (hand[letter]) {
         hand[letter] += 1;
@@ -65,11 +66,12 @@ const Adagrams = {
       }
     }
 
+    // checks the letters of unput against the hand object
     for (const letter of input) {
       if (!hand[letter] || hand[letter] === 0) {
         return false;
       } else if (hand[letter]) {
-        hand[letter] -= 1;
+        hand[letter] -= 1; // if there is a match, reduce count by one
       }
     }
 
