@@ -59,7 +59,7 @@ drawLetters: function() {
     return count;
   },
   usesAvailableLetters: function(input,lettersInHand){
- 
+
       input = input.split('');
 
       for(let letter of input){
@@ -68,6 +68,63 @@ drawLetters: function() {
         }
       }
       return true
+  },
+  
+  // wave 3
+  scoreWord: function(word){
+    let points = 0
+
+    if(word.length > 6){
+      points += 8
+    }
+
+    word = word.toUpperCase();
+
+    for( let letter of word){
+      switch(letter){
+        case 'A':
+        case 'E':
+        case 'I':
+        case 'O':
+        case 'U':
+        case 'L':
+        case 'N':
+        case 'R':
+        case 'S':
+        case 'T':
+          points += 1;
+          break;
+        case 'D':
+        case 'G':
+          points += 2;
+          break;
+        case 'B':
+        case 'C':
+        case 'M':
+        case 'P':
+          points += 3
+          break;
+        case 'F':
+        case 'H':
+        case 'V':
+        case 'W':
+        case 'Y':
+          points += 4;
+          break;
+        case 'k':
+          points += 5;
+          break;
+        case 'J':
+        case 'X':
+          points += 8;
+          break;
+        case 'Q':
+        case 'Z':
+          points += 10;
+          break;
+      }
+    }
+    return points
   },
   
 };
