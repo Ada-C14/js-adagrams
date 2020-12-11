@@ -29,15 +29,53 @@ const Adagrams = {
 
     const drawnHand = _.sample(letterPool, 10);
 
-    // for (let i = 0; i < 10; i++) {
-    //   drawnHand.push(letterPool[Math.floor(Math.random() * letterPool.length)]);
+    ////Attempting to make sure the count doesn't go over the total amount available
+    // const drawnHand = []
+    // const draw = () => {
+    //   for (let i = 0; i < 10; i++) {
+    //     letter = _.sample(letterPool);
+    //     drawnHand.push(letter)
+    //     letterPool = _.difference(letterPool, letter)
+    //   }
     // }
-    // drawnHand.concat(_.sample(letterPool, 10))
     return drawnHand;
   },
+
+  usesAvailableLetters(input, lettersInHand) {
+    //boolean
+
+    const inHandHash = lettersInHand.forEach(function (letter, key) {
+      typeof letter[key] === 'undefined' ? letter[key] = 1 : letter[key]++;
+    });
+
+    const inputHash = input.forEach(function (letter, key) {
+      typeof letter[key] === 'undefined' ? letter[key] = 1 : letter[key]++;
+    });
+    const input_letters = input.split("")
+
+    if (input_letters.length > 10) {return false};
+
+    if (input_letters === _.uniq(input_letters)) {
+      _.isEmpty(_.difference(drawnHand, input_letters))
+    };
+
+//compare the two hashmaps
+// if inHandHash doesn't have all the keys that inputHash does -- false
+// if inHandHash doesn't have the same or more values per key -- false
+
+  },
+
+  scoreWord() {
+
+  },
+
 };
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
 
 // console.log(Adagrams.drawLetters())
+// console.log(_.intersection([A, B, C], [B, A]))
+// console.log(_.intersection([A, B, B, C], [B, B]))
+// console.log(_.difference([A, B, C], [B, A]))
+// console.log(_.diff([A, B, B, C], [B, B]))
