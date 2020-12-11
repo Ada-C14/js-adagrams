@@ -17,13 +17,29 @@ const Adagrams = {
         letterPool.push(letter);
       }
     }
-    while(hand.length < 10){
+    while (hand.length < 10) {
       const index = Math.floor(Math.random() * letterPool.length);
       hand.push(letterPool[index]);
       letterPool.splice(index, 1);
     }
     return hand;
-  }
+  },
+
+  usesAvailableLetters(input, lettersInHand) {
+
+    const handCopy = [...lettersInHand];
+    for (const letter of input) {
+      if (handCopy.includes(letter)) {
+        handCopy.splice(handCopy.indexOf(letter), 1)
+      
+      } else {
+        console.log(letter)
+        return false;
+       
+      }
+    }
+    return true;
+  },
 }
 
 // Do not remove this line or your tests will break!
