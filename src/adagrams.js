@@ -1,4 +1,4 @@
-const letters = {
+const lettersDistribution = {
   'A': 9,
   'B': 2,
   'C': 2,
@@ -25,13 +25,43 @@ const letters = {
   'X': 1,
   'Y': 2,
   'Z': 1
+};
+
+//const lettersLength = Object.keys(letters).length
+let lettersArray = []
+
+for (let letter in lettersDistribution) {
+  for (let i = 0; i < lettersDistribution[letter]; i++) {
+    lettersArray.push(letter)
+  }
 }
-console.log(letters)
+
+// shuffle from: https://stackoverflow.com/a/2450976
+function shuffle(array) {
+  let currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
 const Adagrams = {
   drawLetters() {
-    // Implement this method for wave 1
+    shuffle(lettersArray);
+    return lettersArray.slice(0, 10);
   },
 };
 
 // Do not remove this line or your tests will break!
-//export default Adagrams;
+export default Adagrams;
