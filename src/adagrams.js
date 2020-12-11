@@ -25,9 +25,38 @@ const Adagrams = {
     };
     // I'm confused about why an index is needed for .slice and how to use it
     return array.slice(0, hand);
+  },
+
+  usesAvailableLetters(input, lettersInHand) {
+    // input = this.sortString(input)
+    // lettersInHand = lettersInHand.sort()
+    // if (input === lettersInHand.slice(0, input.length - 1)) {
+    //   return true;
+    // } else {
+    //   return false;
+    // };
+    input = input.split('');
+    let tally = {};
+
+    for(const letter of lettersInHand) {
+      if (tally[letter]) {
+        tally[letter] += 1;
+      } else {
+        tally[letter] = 1;
+      };
+    };
+
+    for(const letter of input) {
+      if (tally[letter] && tally[letter] > 1) {
+        tally[letter] -= 1;
+      } else {
+        return false;
+      };
+      return true;
+    };
   }
 };
 
-Adagrams.drawLetters();
+// Adagrams.drawLetters();
 // Do not remove this line or your tests will break!
 export default Adagrams;
