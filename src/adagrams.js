@@ -91,6 +91,7 @@ const Adagrams = {
   },
   // wave 3
   scoreWord(word) {
+    word = word.toUpperCase()
     let score = 0;
     for (let i = 0; i < Object.values(scoreChart).length; i++) {
       for (let j = 0; j < word.length; j++) {
@@ -99,15 +100,13 @@ const Adagrams = {
         }
       }
     }
-    console.log(score)
+    if (word.length >= 7) {
+      score += 8;
+    }
+    return score;
   }
 };
 
-console.log(Object.values(scoreChart)[0][0])
-console.log(Object.values(scoreChart)[0].length)
-console.log(Adagrams.scoreWord('DOGZ'))
-
-
 
 // Do not remove this line or your tests will break!
-//export default Adagrams;
+export default Adagrams;
