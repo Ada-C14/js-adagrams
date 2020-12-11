@@ -132,7 +132,7 @@ const Adagrams = {
     // find all of the words that share the highest scoring word
     const highestScoreWords = words.filter(word => this.scoreWord(word) === highestScore);
 
-    // set the highesore word to be the first element in order to compare against
+    // set the highe scoring word to be the first element in order to compare against
     let winningWord = { 
       'word': highestScoreWords[0], 
       'score': highestScore
