@@ -2,7 +2,6 @@ const Adagrams = {
   drawLetters() {
     const letterQuantity = {"A": 9, "B": 2, "C": 2, "D": 4, "E": 12, "F": 2, "G": 3, "H": 2, "I": 9, "J": 1, "K": 1, "L": 4, "M": 2, "N": 6, "O": 8, "P": 2, "Q": 1, "R": 6, "S": 4, "T": 2, "U": 4, "V": 2, "W": 2, "X": 1, "Y": 2, "Z": 1};
 
-    // build the pool based on above 9 x a, 2 x b etc.
     let letterPool = [];
 
     // method for doing something 'x' times
@@ -24,7 +23,7 @@ const Adagrams = {
           [array[i], array[j]] = [array[j], array[i]]; // swap the last element array[i] with the random element array[j] and decriment i, then the entire list will be random
       }
       return array;
-    }
+    };
 
     return shuffle(letterPool).slice(0, 10); // shuffle the letter pool and take the first 10 letters
   },
@@ -33,8 +32,6 @@ const Adagrams = {
     let lettersInHandCopy = [...lettersInHand];
 
     for (const letter of input) {
-      console.log(letter);
-      console.log(lettersInHandCopy)
       if (!lettersInHandCopy.includes(letter)) {
         return false;
       } else {
@@ -42,6 +39,34 @@ const Adagrams = {
       }
     }
     return true;
+  },
+
+  scoreWord(word) {
+    let score = 0;
+
+    for (const letter of word) {
+      if (letter.match(/[AEIOULNRST]/i)) {
+        score += 1;
+      } else if (letter.match(/[DG]/i)) {
+        score += 2;
+      } else if (letter.match(/[BCMP]/i)) {
+        score += 3;
+      } else if (letter.match(/[FHVWY]/i)) {
+        score += 4;
+      } else if (letter.match(/[K]/i)) {
+        score += 5;
+      } else if (letter.match(/[JX]/i)) {
+        score += 8;
+      } else if (letter.match(/[QZ]/i)) {
+        score += 10;
+      }
+    }
+
+    if (word.length > 6) {
+      score += 8
+    }
+
+    return score;
   }
 };
 
