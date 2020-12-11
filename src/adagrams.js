@@ -28,13 +28,7 @@ const Adagrams = {
   },
 
   usesAvailableLetters(input, lettersInHand) {
-    // input = this.sortString(input)
-    // lettersInHand = lettersInHand.sort()
-    // if (input === lettersInHand.slice(0, input.length - 1)) {
-    //   return true;
-    // } else {
-    //   return false;
-    // };
+
     input = input.split('');
     let tally = {};
 
@@ -47,13 +41,14 @@ const Adagrams = {
     };
 
     for(const letter of input) {
-      if (tally[letter] && tally[letter] > 1) {
+      if (tally[letter] && tally[letter] > 0) {
         tally[letter] -= 1;
       } else {
         return false;
       };
-      return true;
     };
+    console.log(tally);
+    return true;
   }
 };
 
