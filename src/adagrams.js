@@ -104,9 +104,42 @@ const Adagrams = {
       score += 8;
     }
     return score;
+  },
+  // wave 4
+  highestScoreFrom(words) {
+    let winningInfo = {};
+    let highScore = 0;
+    let highScoreWordLength = 0;
+
+    for (let i = 0; i < words.length; i++) {
+      let score = this.scoreWord(words[i]);
+
+      if (score > highScore) {
+        highScore = score;
+        let highScoreWordLength = words[i].length;
+        winningInfo = {
+          word: words[i],
+          score: score
+        };
+      }
+      else if ((score == highScore) && (highScoreWordLength < 10)) {
+        if (words[i].length < highScoreWordLength) {
+          winningInfo = {
+            word: words[i],
+            score: score
+          };
+        }
+        else if (words[i].length == 10) {
+          winningInfo = {
+            word: words[i],
+            score: score
+          };
+        }
+      }
+    }
+    return winningInfo;
   }
 };
-
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
