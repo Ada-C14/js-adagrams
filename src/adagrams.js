@@ -47,12 +47,11 @@ const Adagrams = {
         return false;
       };
     };
-    console.log(tally);
     return true;
   },
 
   scoreWord(word) {
-    let sum = 0
+    let sum = 0;
     word = word.toUpperCase().split('')
     
     if (word.length > 6) {sum += 8};
@@ -61,7 +60,7 @@ const Adagrams = {
       sum += lettersScore[letter];
     };
 
-    return sum
+    return sum;
   },
 
   highestScoreFrom(words) {
@@ -73,8 +72,6 @@ const Adagrams = {
     words.forEach(word => {
       scores.push({word: word, score: this.scoreWord(word)});
     });
-    
-    console.log(scores);
 
     for(let i = 0; i < scores.length; i++) {
       if (scores[i].score > maxScore) {
@@ -89,7 +86,7 @@ const Adagrams = {
     };
 
     if (highScoreArray.length > 1) {
-      bestWord = this.tieBreaker(highScoreArray)
+      bestWord = this.tieBreaker(highScoreArray);
     } else {
       bestWord = highScoreArray[0];
     };
@@ -99,7 +96,7 @@ const Adagrams = {
 
   tieBreaker(highScoreArray) {
 
-    let minLength = 10
+    let minLength = 10;
 
     for(const word of highScoreArray) {
       if (word.word.length === minLength) {
@@ -109,13 +106,13 @@ const Adagrams = {
 
     for(const word of highScoreArray) {
       if (word.word.length < minLength) {
-        minLength = word.word.length 
+        minLength = word.word.length;
       };
     };
       
     for(const word of highScoreArray) {
       if (word.word.length === minLength) {  
-        return word 
+        return word; 
       };
     };
   }
