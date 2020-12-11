@@ -23,8 +23,10 @@ const Adagrams = {
     } 
     return randomArr
   },
-    usesAvailableLetters(input, lettersInHand) {
-    // clone lettersInHand array
+
+  // wave 2
+  usesAvailableLetters(input, lettersInHand) {
+  // clone lettersInHand array
     let lettersInHandClone = [...lettersInHand]
   
     const inputLetterArr = input.toUpperCase().split('');
@@ -39,12 +41,43 @@ const Adagrams = {
       };
     });
     return !notInHand
-    
+  },
+
+  // wave 3
+  scoreWord(word) {
+
+    const scores = {
+      1: ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
+      2: ["D", "G"],
+      3: ["B", "C", "M", "P"],
+      4: ["F", "H", "V", "W", "Y"],
+      5: ["K"],
+      8: ["J", "X"],
+      10: ["Q", "Z"]
+    };
+
+    let sum = 0
+
+    let letterArr = word.toUpperCase().split('');
+
+    letterArr.forEach((letter) => {
+      for (let value in scores) {
+        if (scores[value].includes(letter)) {
+          sum += Number(value)
+          // console.log(`NUMBER ${Number(value)}`)
+        }
+      }
+    });
+    if(word.length >= 7) {
+      sum += 8;
+    }
+    return sum
   }
-  
 
 };
-console.log(Adagrams.drawLetters()); 
+
+// console.log(Adagrams.drawLetters()); 
+// Adagrams.scoreWord("tt")
 
 
 // Do not remove this line or your tests will break!
