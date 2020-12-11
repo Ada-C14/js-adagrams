@@ -6,23 +6,28 @@ const Adagrams = {
     // build the pool based on above 9 x a, 2 x b etc.
     let letterPool = [];
 
+    // method for doing something 'x' times
     const times = x => f => {
       if (x > 0) {
         f();
         times (x - 1) (f);
       }
     }
-    
-    // use it
-    
 
     for (let letter in letterQuantity) {
-      times (letterQuantity[letter]) (() => letterPool.push(letter)) // add letter to the letter pool array
+      // add letter to the letter pool array
+      times (letterQuantity[letter]) (() => letterPool.push(letter)); 
     };
 
-    // draw from the pool (.sample method?) & return the drawn letters
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]]; // swap the last element array[i] with the random element array[j] and decriment i, then the entire list will be random
+      }
+      return array;
+    }
 
-
+    return shuffle(letterPool).slice(0, 10); // shuffle the letter pool and take the first 10 letters
   },
 };
 
