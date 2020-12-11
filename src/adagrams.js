@@ -98,12 +98,74 @@ const Adagrams = {
 
   },
 
+  /////////// WAVE THREE ///////////
+
+  scoreWord(word) {
+
+    let score = 0
+    word = word.toUpperCase();
+
+    for (letter in word) {
+      // console.log(word[letter]);
+      switch(word[letter]) { 
+        case 'A': 
+        case 'E':
+        case 'I': 
+        case 'O': 
+        case 'U': 
+        case 'L': 
+        case 'N': 
+        case 'R': 
+        case 'S': 
+        case 'T':
+          score += 1;
+          console.log(score, word[letter])
+        case 'D':
+        case 'G':
+          score += 2;
+        case 'B':
+        case 'C':
+        case 'M':
+        case 'P':  
+          score += 3;
+          console.log(score, word[letter])
+        case 'F':
+        case 'H':
+        case 'V':
+        case 'W':
+        case 'Y':
+          score += 4;
+        case 'K':
+          score += 5;
+        case 'J':
+        case 'X':
+          score += 8;
+        case 'Q':
+        case 'Z':
+          score += 10;      
+      }  
+    }
+
+    if (word.length >= 7) {
+      score += 8
+    }
+
+    return score;
+
+    // Psuedocode
+    // word is a string of characters
+    // returns an integer representing sum of words' letters' points
+    // bonus: words 7-10 chars long +8 pts
+
+  },
+
 };
 
 // MANUAL TESTING
-// console.log(Adagrams.drawLetters());
-// Adagrams.usesAvailableLetters('GOOD', 'DOGXXXXXXX')
-// Adagrams.usesAvailableLetters('DOG', 'DOXXXXXXXX')
+console.log(Adagrams.drawLetters());
+Adagrams.usesAvailableLetters('GOOD', 'DOGXXXXXXX')
+Adagrams.usesAvailableLetters('DOG', 'DOXXXXXXXX')
+console.log(Adagrams.scoreWord('cat'))
 
 // Do not remove this line or your tests will break!
-export default Adagrams;
+// export default Adagrams;
