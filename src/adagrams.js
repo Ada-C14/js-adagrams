@@ -1,4 +1,4 @@
-const letterPool = {
+const letterQuantities = {
   'A': 9,
   'B': 2,
   'C': 2,
@@ -33,19 +33,26 @@ const Adagrams = {
     // Implement this method for wave 1
     
     // added the appropriate number of each letter in an array
-    const lettersArray = [];
+    let lettersArray = [];
 
-    for (const [key, value] of Object.entries(letterPool)) {
+    for (const [key, value] of Object.entries(letterQuantities)) {
       for(let i = 0; i < value; i++) {
         lettersArray.push(key);
       } 
     };
 
+    for (let i = lettersArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * i);
+      const temp = lettersArray[i];
+      lettersArray[i] = lettersArray[j];
+      lettersArray[j] = temp;
+    }
 
-
+    console.log(lettersArray.slice(0, 10));
   },
 };
 
+Adagrams.drawLetters();
 
 // Do not remove this line or your tests will break!
-export default Adagrams;
+// export default Adagrams;
