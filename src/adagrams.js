@@ -88,8 +88,12 @@ const Adagrams = {
     
     // stores the letters as keys and count as the value
     for (const letter of lettersInHand) {
-      hand[letter] ? hand[letter]++ : hand[letter] = 1;
-    }
+      if (hand[letter]) {
+        hand[letter]++; 
+      } else {
+        hand[letter] = 1;
+      }; 
+    };
 
     // checks the letters of unput against the hand object
     for (const letter of input) {
