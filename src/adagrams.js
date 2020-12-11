@@ -9,12 +9,12 @@ const Adagrams = {
     let total_letters = [];
 
     for (const letter in lettersCount) {
-      for (i = 0; i < lettersCount[letter]; i++) {
+      for (let i = 0; i < lettersCount[letter]; i++) {
         total_letters.push(letter);
       };  
     };
 
-    return console.log(this.sampleSize(total_letters, 10));
+    return this.sampleSize(total_letters, 10);
   }, 
   // Fisher–Yates shuffle
   sampleSize(array, hand) {
@@ -30,4 +30,4 @@ const Adagrams = {
 
 Adagrams.drawLetters();
 // Do not remove this line or your tests will break!
-// export default Adagrams;
+export default Adagrams;
