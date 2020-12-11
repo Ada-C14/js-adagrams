@@ -170,7 +170,7 @@ const Adagrams = {
     console.log(leastLetters(highestScoreWords))
 
 
-    let winningWord = {}
+    const winningWord = {}
 
     if (highestScoreWords.length === 1) {
       
