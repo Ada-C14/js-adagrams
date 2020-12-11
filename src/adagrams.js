@@ -57,6 +57,30 @@ const Adagrams = {
     }
     return true;
   },
+  scoreWord(word) {
+    let score = 0;
+    for (const char of word){
+      if (char.match(/[AEIOULNRST]/ig)) {
+        score += 1;
+      } else if (char.match(/[DG]/ig)) {
+        score += 2;
+      } else if (char.match(/[BCMP]/ig)) {
+        score += 3;
+      } else if (char.match(/[FHVWY]/ig)) {
+        score += 4;
+      } else if (char.match(/[K]/i)) {
+        score += 5;
+      } else if (char.match(/[JX]/ig)) {
+        score += 8;
+      } else if (char.match(/[QZ]/ig)) {
+        score += 10;
+      }
+    }
+    if ([7, 8, 9, 10].includes(word.length)){
+      score += 8
+    }
+    return score;
+  }
 };
 
 // Do not remove this line or your tests will break!
