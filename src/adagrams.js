@@ -26,8 +26,9 @@ const pool = {
   'Y': 2,
   'Z': 1,
 };
-const Adagrams = {
-  drawLetters() {
+class Adagrams {
+
+  static drawLetters() {
     let allLetters = [];
     const newPool = JSON.parse(JSON.stringify(pool));
 
@@ -43,9 +44,9 @@ const Adagrams = {
       allLetters.splice(allLetters.indexOf(letter), 1);
     }
     return playersLetters;
-  },
+  }
 
-  usesAvailableLetters(input, lettersInHand){
+  static usesAvailableLetters(input, lettersInHand) {
     if (input.length > lettersInHand.length){
       return false;
     }
@@ -56,9 +57,9 @@ const Adagrams = {
       lettersInHand.splice(lettersInHand.indexOf(char), 1);
     }
     return true;
-  },
+  }
 
-  scoreWord(word) {
+  static scoreWord(word) {
     let score = 0;
     for (const char of word){
       if (char.match(/[AEIOULNRST]/ig)) {
@@ -81,9 +82,10 @@ const Adagrams = {
       score += 8
     }
     return score;
-  },
+  }
 
-  highestScoreFrom(words){
+
+  static highestScoreFrom(words){
     let scoreArray = [];
     for (const word of words){
       const pair = {}
@@ -117,17 +119,18 @@ const Adagrams = {
     }
 
     return this.findWinner(minLength, scoreArray, maxScore);
-    },
-    
-  findWinner(length, winningArray, maxScore){
-    winningArray = winningArray.filter(pair => Object.keys(pair)[0].length == length);
-  
-    if (!winningArray.length == 0){
-      return {'word': Object.keys(winningArray[0])[0], score: maxScore};
     }
-    return false;
-  }
-};
+
+    static findWinner(length, winningArray, maxScore){
+      winningArray = winningArray.filter(pair => Object.keys(pair)[0].length == length);
+    
+      if (!winningArray.length == 0){
+        return {'word': Object.keys(winningArray[0])[0], score: maxScore};
+      }
+      return false;
+    }
+
+}
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
