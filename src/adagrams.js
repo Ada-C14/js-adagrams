@@ -109,13 +109,11 @@ const Adagrams = {
   },
 
   scoreWord(word) {
-    
-    const uppercaseWord = word.toUpperCase();
-    
+
     let sum = 0
 
-    for (const letter of uppercaseWord) {
-      sum += letterScore[letter];
+    for (const letter of word) {
+      sum += letterScore[letter.toUpperCase()];
     };
 
     if (word.length > 6) sum += 8;
@@ -125,15 +123,7 @@ const Adagrams = {
 
   highestScoreFrom(words) {
 
-    // prefer word with fewest letters
-    // unless word is 10 letters
-    // multiple words with same length, choose first word
-
     // find the highest score
-    // find if there are more than one highest score
-  
-    
-    
     let highestScore = 0
 
     for (const word of words) {
@@ -143,14 +133,13 @@ const Adagrams = {
       };
     };
 
-    console.log(highestScore)
-
+    // find all of the words that share the highest scoring word
     const highestScoreWords = words.filter(word => this.scoreWord(word) === highestScore);
 
-    console.log(highestScoreWords);
+    // find any 10 letter words among the highest scoring words
     const tenLetters = highestScoreWords.find(word => word.length === 10);
 
-
+    // function to find the word with the least letters
     const leastLetters = (words) => {
       let leastLetterWord = words[0];
       let count = words[0].length;
@@ -167,9 +156,7 @@ const Adagrams = {
       return leastLetterWord
     };
 
-    console.log(leastLetters(highestScoreWords))
-
-
+    
     const winningWord = {}
 
     if (highestScoreWords.length === 1) {
