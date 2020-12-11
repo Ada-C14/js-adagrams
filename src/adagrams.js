@@ -96,7 +96,7 @@ const Adagrams = {
       if (!hand[letter] || hand[letter] === 0) {
         return false;
       } else if (hand[letter]) {
-        hand[letter] -= 1; // if there is a match, reduce count by one
+        hand[letter]--; // if there is a match, reduce count by one
       }
     }
 
@@ -137,23 +137,26 @@ const Adagrams = {
       'score': highestScore
     };
 
+    // for (const word of highestScoreWords) {
+    //   if ( winningWord['word'].length !== 10) {
+    //     if (word.length === 10) {
+    //       winningWord['word'] = word;
+    //     } else if (word.length < winningWord['word'].length) {
+    //       winningWord['word'] = word;
+    //     }
+    //   }
+    // }
+
     for (const word of highestScoreWords) {
-     
-      if ( winningWord['word'].length !== 10) {
-        if (word.length === 10) {
-          winningWord['word'] = word;
-        } else if (word.length < winningWord['word'].length) {
+      if ( winningWord['word'].length !== 10 && ( word.length === 10 || word.length < winningWord['word'].length)) {
           winningWord['word'] = word;
         }
-      }
     }
 
     return winningWord;
   }
 
-
 };
 
-// Adagrams.highestScoreFrom(['X', 'XX', 'XXX', 'XXXX', 'XXXX', 'XXXXXXXXXX']);
 // Do not remove this line or your tests will break!
 export default Adagrams;
