@@ -88,11 +88,7 @@ const Adagrams = {
     
     // stores the letters as keys and count as the value
     for (const letter of lettersInHand) {
-      if (hand[letter]) {
-        hand[letter] += 1;
-      } else {
-        hand[letter] = 1;
-      }
+      hand[letter] ? hand[letter]++ : hand[letter] = 1;
     }
 
     // checks the letters of unput against the hand object
@@ -151,48 +147,6 @@ const Adagrams = {
         }
       }
     }
-
-
-
-    // // find any 10 letter words among the highest scoring words
-    // const tenLetters = highestScoreWords.find(word => word.length === 10);
-
-    // // function to find the word with the least letters
-    // const leastLetters = (words) => {
-    //   let leastLetterWord = words[0];
-    //   let count = words[0].length;
-
-    //   for (const word of words) {
-    //     const length = word.length;
-
-    //     if (length < count) {
-    //       leastLetterWord = word;
-    //       count = length;
-    //     }
-    //   }
-
-    //   return leastLetterWord
-    // };
-
-    
-    // const winningWord = {}
-
-    // if (highestScoreWords.length === 1) {
-      
-    //   winningWord['word'] = highestScoreWords[0];
-    //   winningWord['score'] = highestScore;
-      
-    // } else if (tenLetters) {
-
-    //   winningWord['word'] = tenLetters;
-    //   winningWord['score'] = highestScore;
-
-    // } else {
-
-    //   winningWord['word'] = leastLetters(highestScoreWords);
-    //   winningWord['score'] = highestScore;
-
-    // }
 
     return winningWord;
   }
