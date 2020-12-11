@@ -104,46 +104,49 @@ const Adagrams = {
 
     let score = 0
     word = word.toUpperCase();
+    const scorePool = {
+      'A': 1,
+      'B': 3,
+      'C': 3,
+      'D': 2,
+      'E': 1,
+      'F': 4,
+      'G': 2,
+      'H': 4,
+      'I': 1,
+      'J': 8,
+      'K': 5,
+      'L': 1,
+      'M': 3,
+      'N': 1,
+      'O': 1,
+      'P': 3,
+      'Q': 10,
+      'R': 1,
+      'S': 1,
+      'T': 1,
+      'U': 1,
+      'V': 4,
+      'W': 4,
+      'X': 8,
+      'Y': 4,
+      'Z': 10
+    }
 
-    for (letter in word) {
+    for (const letter in word) {
+      // console.log(letter); // refers to index
+      // console.log(word[letter]); // refers to letter
       // console.log(word[letter]);
-      switch(word[letter]) { 
-        case 'A': 
-        case 'E':
-        case 'I': 
-        case 'O': 
-        case 'U': 
-        case 'L': 
-        case 'N': 
-        case 'R': 
-        case 'S': 
-        case 'T':
-          score += 1;
-          console.log(score, word[letter])
-        case 'D':
-        case 'G':
-          score += 2;
-        case 'B':
-        case 'C':
-        case 'M':
-        case 'P':  
-          score += 3;
-          console.log(score, word[letter])
-        case 'F':
-        case 'H':
-        case 'V':
-        case 'W':
-        case 'Y':
-          score += 4;
-        case 'K':
-          score += 5;
-        case 'J':
-        case 'X':
-          score += 8;
-        case 'Q':
-        case 'Z':
-          score += 10;      
-      }  
+
+      // find key in scorePool that matches
+      if (word[letter] in scorePool) {
+        score += scorePool[word[letter]]
+        // console.log(score)
+        // console.log(`found letter`)
+        // console.log(scorePool[word[letter]])
+        // console.log(scorePool[letter])
+        // score += scorePool[word[letter]]
+      }
     }
 
     if (word.length >= 7) {
@@ -162,10 +165,11 @@ const Adagrams = {
 };
 
 // MANUAL TESTING
-console.log(Adagrams.drawLetters());
-Adagrams.usesAvailableLetters('GOOD', 'DOGXXXXXXX')
-Adagrams.usesAvailableLetters('DOG', 'DOXXXXXXXX')
-console.log(Adagrams.scoreWord('cat'))
+// console.log(Adagrams.drawLetters());
+// Adagrams.usesAvailableLetters('GOOD', 'DOGXXXXXXX')
+// Adagrams.usesAvailableLetters('DOG', 'DOXXXXXXXX')
+// console.log(Adagrams.scoreWord('cat'))
+// console.log(Adagrams.scoreWord('zippers'))
 
 // Do not remove this line or your tests will break!
-// export default Adagrams;
+export default Adagrams;
