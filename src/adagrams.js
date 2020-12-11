@@ -31,12 +31,21 @@ const letterPool = {
 const Adagrams = {
   drawLetters() {
     // Implement this method for wave 1
+    
+    // added the appropriate number of each letter in an array
+    const lettersArray = [];
 
+    for (const [key, value] of Object.entries(letterPool)) {
+      for(let i = 0; i < value; i++) {
+        lettersArray.push(key);
+      } 
+    };
 
 
 
   },
 };
+
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
