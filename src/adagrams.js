@@ -1,6 +1,6 @@
 const Adagrams = {
   drawLetters() {
-    // WAVE ONE
+    /////////// WAVE ONE ///////////
     const drawPool = {
       'A': 9,
       'B': 2,
@@ -30,7 +30,7 @@ const Adagrams = {
       'Z': 1
     };
 
-    const handLettersArray = []
+    const lettersInHand = [];
 
     // Psuedocode
     // 10 times do:
@@ -38,17 +38,72 @@ const Adagrams = {
     // put it in the array of the person's hand
     // (if you draw the only Z, you can't draw it again)
 
-    let i = 0
+    let i = 0;
     while (i < 10) { 
       const random = Object.keys(drawPool)[Math.floor(Math.random()*Object.keys(drawPool).length)] // selects a random key from drawPool: https://stackoverflow.com/questions/2532218/pick-random-property-from-a-javascript-object
-      drawPool[random] -= 1
-      handLettersArray.push(random);
-        i += 1
+      drawPool[random] -= 1;
+      lettersInHand.push(random);
+        i += 1;
     }
 
-    return handLettersArray
+    return lettersInHand;
   },
+
+  /////////// WAVE TWO ///////////
+  
+  usesAvailableLetters(input, lettersInHand) {
+
+    // Psuedocode
+    // make a hashmap of input
+    // make a hashmap of lettersInHand
+    // check if each value in input's hashmap exists in letters's -- input's quantity must less than letters's (return false for any fails)
+    // otherwise return true
+
+    let inputHashTable = {};
+    let lettersInHandHashTable = {};
+
+    for (const letter in input) {
+      if (inputHashTable[input[letter]]) {
+        inputHashTable[input[letter]] += 1;
+      } else {
+        inputHashTable[input[letter]] = 1;
+      }
+    }
+
+    for (const letter in lettersInHand) {
+      if (lettersInHandHashTable[lettersInHand[letter]]) {
+        lettersInHandHashTable[lettersInHand[letter]] += 1;
+      } else {
+        lettersInHandHashTable[lettersInHand[letter]] = 1;
+      }
+    }
+
+    // console.log(inputHashTable)
+    // console.log(lettersInHandHashTable)
+
+    for (const letter in inputHashTable) {
+      // console.log(lettersInHandHashTable[[letter]])
+      // console.log(inputHashTable[letter])
+      if (!lettersInHandHashTable[[letter]]) {
+        // console.log(`false`)
+        return false;
+      } else if (lettersInHandHashTable[[letter]] < inputHashTable[letter] ) {
+        // console.log(`false`)
+        return false;
+      }  
+    }
+
+    // console.log(`true`)
+    return true;
+
+  },
+
 };
+
+// MANUAL TESTING
+// console.log(Adagrams.drawLetters());
+// Adagrams.usesAvailableLetters('GOOD', 'DOGXXXXXXX')
+// Adagrams.usesAvailableLetters('DOG', 'DOXXXXXXXX')
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
