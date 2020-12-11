@@ -17,13 +17,14 @@ const Adagrams = {
       }
     };
     //need to create a 'sample' method to return a sampling of tiles
-    const randomTenTiles = _.sampleSize;
+    const randomTenTiles = _.sampleSize; //_.sampleSize is lodash npm
     const drawn = randomTenTiles(letters, 10);
     return drawn;
   },
 
   usesAvailableLetters(input, lettersInHand) {
-
+    const drawn_tiles = input;
+    let used_tiles = Array.from(drawn_tiles);
 
 
   }
@@ -39,6 +40,7 @@ export default Adagrams;
 
 
 //citing my code sources:
-// For transforming hash into array: https://stackoverflow.com/questions/23237610/javascript-add-same-element-n-times-in-an-array
-//lodash _.sampleSize: https://lodash.com/docs/4.17.15 
-//Chris was used as a reference for learning how to get lodash to work w/jest :)
+// 1. For transforming hash into array: https://stackoverflow.com/questions/23237610/javascript-add-same-element-n-times-in-an-array
+//2. lodash _.sampleSize: https://lodash.com/docs/4.17.15 
+//3. Chris was used as a reference for learning how to get lodash to work w/jest :)
+//4. creating duplicate array (number 10-Array.from): https://www.freecodecamp.org/news/how-to-clone-an-array-in-javascript-1d3183468f6a/ 
