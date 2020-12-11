@@ -1,4 +1,3 @@
-
 const Adagrams = {
   // wave 1
   drawLetters() {
@@ -24,6 +23,25 @@ const Adagrams = {
     } 
     return randomArr
   },
+    usesAvailableLetters(input, lettersInHand) {
+    // clone lettersInHand array
+    let lettersInHandClone = [...lettersInHand]
+  
+    const inputLetterArr = input.toUpperCase().split('');
+
+    let notInHand = false
+    inputLetterArr.forEach((letter) => {
+      const index = lettersInHandClone.indexOf(letter);
+      if(index !== -1) {
+        lettersInHandClone.splice(index, 1);
+      } else {
+        notInHand = true;
+      };
+    });
+    return !notInHand
+    
+  }
+  
 
 };
 console.log(Adagrams.drawLetters()); 
