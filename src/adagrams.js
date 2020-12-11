@@ -21,6 +21,13 @@ const Adagrams = {
     const drawn = randomTenTiles(letters, 10);
     return drawn;
   },
+
+  usesAvailableLetters(input, lettersInHand) {
+
+
+
+  }
+
 };
 
 // Do not remove this line or your tests will break!
@@ -30,3 +37,8 @@ export default Adagrams;
 
 
 
+
+//citing my code sources:
+// For transforming hash into array: https://stackoverflow.com/questions/23237610/javascript-add-same-element-n-times-in-an-array
+//lodash _.sampleSize: https://lodash.com/docs/4.17.15 
+//Chris was used as a reference for learning how to get lodash to work w/jest :)
