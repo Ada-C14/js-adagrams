@@ -111,7 +111,6 @@ const Adagrams = {
       }
     })
     
-
     const winner = this.findWinner(10, scoreArray, maxScore);
     if (winner){
       return winner;
@@ -119,12 +118,10 @@ const Adagrams = {
 
     return this.findWinner(minLength, scoreArray, maxScore);
     },
-
-
-  // },
+    
   findWinner(length, winningArray, maxScore){
     winningArray = winningArray.filter(pair => Object.keys(pair)[0].length == length);
-    
+  
     if (!winningArray.length == 0){
       return {'word': Object.keys(winningArray[0])[0], score: maxScore};
     }
