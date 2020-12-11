@@ -41,6 +41,7 @@ const Adagrams = {
       } 
     };
 
+    // shuffles the letters array
     for (let i = lettersArray.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * i);
       const temp = lettersArray[i];
@@ -48,11 +49,39 @@ const Adagrams = {
       lettersArray[j] = temp;
     }
 
-    console.log(lettersArray.slice(0, 10));
+    // takes the first 10 letters of the array
+    return lettersArray.slice(0, 10);
   },
+
+  usesAvailableLetters(input, lettersInHand) {
+
+    const hand = {}
+
+    for (const letter of lettersInHand) {
+      if (hand[letter]) {
+        hand[letter] += 1;
+      } else {
+        hand[letter] = 1;
+      }
+    }
+
+    for (const letter of input) {
+      if (!hand[letter] || hand[letter] === 0) {
+        return false;
+      } else if (hand[letter]) {
+        hand[letter] -= 1;
+      }
+    }
+
+    return true;
+
+  },
+
+
+
+
 };
 
-Adagrams.drawLetters();
 
 // Do not remove this line or your tests will break!
-// export default Adagrams;
+export default Adagrams;
