@@ -44,19 +44,20 @@ const Adagrams = {
     }
     return playersLetters;
   },
+
   usesAvailableLetters(input, lettersInHand){
     if (input.length > lettersInHand.length){
       return false;
     }
     for (const char of input){
       if (!lettersInHand.includes(char)) {
-        // console.log(char)
         return false;
       }
       lettersInHand.splice(lettersInHand.indexOf(char), 1);
     }
     return true;
   },
+
   scoreWord(word) {
     let score = 0;
     for (const char of word){
@@ -80,6 +81,54 @@ const Adagrams = {
       score += 8
     }
     return score;
+  },
+
+  highestScoreFrom(words){
+    let scoreArray = [];
+    for (const word of words){
+      const pair = {}
+      pair[word] = this.scoreWord(word)
+      scoreArray.push(pair)
+    }
+
+    // get the max score
+    let maxScore = 0;
+    scoreArray.forEach( function(pair) {
+      if (Object.values(pair)[0] > maxScore){
+        maxScore = Object.values(pair)[0];
+      }
+    });
+
+    // only keep words with max score
+    scoreArray = scoreArray.filter(pair => Object.values(pair) == maxScore)
+
+    // get the min length
+    let minLength = Object.keys(scoreArray[0])[0].length;
+    scoreArray.forEach( function(pair) {
+      let wordLength = Object.keys(pair)[0].length;
+      if (wordLength < minLength) {
+        minLength = wordLength;
+      }
+    })
+    
+
+    const winner = this.findWinner(10, scoreArray, maxScore);
+    if (winner){
+      return winner;
+    }
+
+    return this.findWinner(minLength, scoreArray, maxScore);
+    },
+
+
+  // },
+  findWinner(length, winningArray, maxScore){
+    winningArray = winningArray.filter(pair => Object.keys(pair)[0].length == length);
+    
+    if (!winningArray.length == 0){
+      return {'word': Object.keys(winningArray[0])[0], score: maxScore};
+    }
+    return false;
   }
 };
 
