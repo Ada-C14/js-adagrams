@@ -75,6 +75,8 @@ const Adagrams = {
       scores.push({word: word, score: this.scoreWord(word)});
     });
     
+    console.log(scores);
+
     for(let i = 0; i < scores.length; i++) {
       if (scores[i][score] > maxScore) {
         maxScore = scores[i][score];
