@@ -1,4 +1,4 @@
-const LETTER_HASH = {
+const LETTERHASH = {
   A: 9,
   B: 2,
   C: 2,
@@ -30,7 +30,7 @@ const Adagrams = {
   drawLetters() {
     const letters = [];
 
-    for (const [key, value] of Object.entries(LETTER_HASH)) {
+    for (const [key, value] of Object.entries(LETTERHASH)) {
       for (let i = 0; i < value + 1; i += 1) {
         letters.push(key);
       }
@@ -38,7 +38,23 @@ const Adagrams = {
 
     letters.sort(function(a, b) {return 0.5 - Math.random()});
     return letters.slice(0, 10);
+  },
+
+  usesAvailableLetters(input, lettersInHand) {
+    const inputSplit = input.split('');
+    const lettersInHandCopy = [...lettersInHand];
+    
+    for (let letter of input) {
+      if (!lettersInHandCopy.includes(letter)) {
+        return false;
+      } else {
+        lettersInHandCopy.splice(lettersInHandCopy.indexOf(letter), 1);
+      }
+    }
+    return true;
   }
+
+
 };
 
 // Do not remove this line or your tests will break!
