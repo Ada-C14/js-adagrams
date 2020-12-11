@@ -27,12 +27,11 @@ const lettersDistribution = {
   'Z': 1
 };
 
-//const lettersLength = Object.keys(letters).length
-let lettersArray = []
+let lettersArray = [];
 
 for (let letter in lettersDistribution) {
   for (let i = 0; i < lettersDistribution[letter]; i++) {
-    lettersArray.push(letter)
+    lettersArray.push(letter);
   }
 }
 
@@ -61,6 +60,22 @@ const Adagrams = {
     shuffle(lettersArray);
     return lettersArray.slice(0, 10);
   },
+  usesAvailableLetters(word, drawn) {
+   const wordDrawnDiff = drawn.length - word.length
+  
+    for (let char in word) {
+      for (let i = 0; i < drawn.length; i++) {
+        if (word[char] === drawn[i]) {
+          drawn.splice(drawn[i], 1);
+          break;
+        }
+      } 
+    }
+    if ((drawn.length - wordDrawnDiff) === 0) {
+      return true;
+    }
+    return false;
+  }
 };
 
 // Do not remove this line or your tests will break!
