@@ -62,8 +62,59 @@ const Adagrams = {
     };
 
     return sum
-  }
+  },
+
+  highestScoreFrom(words) {
+    let scores = [];
+    let highScoreArray = [];
+    let maxScore = 0;
+    let bestWord = {};
+    let minLength = 10
+
+    words.forEach(word => {
+      scores.push({word: word, score: this.scoreWord(word)});
+    });
     
+    for(let i = 0; i < scores.length; i++) {
+      if (scores[i][score] > maxScore) {
+        maxScore = scores[i][score];
+      };
+    };
+
+    for(let i = 0; i < scores.length; i++) {
+      if (scores[i][score] === maxScore) {
+        highScoreArray.push(scores[i]);
+      };
+    };
+
+    if (highScoreArray.length > 1) {
+      bestWord = this.tieBreaker(highScoreArray)
+    } else {
+      bestWord = highScoreArray[0];
+    };
+
+    return bestWord;
+  },
+
+  tieBreaker(highScoreArray) {
+    for(const word of highScoreArray) {
+      if (word[word].length === minLength) {
+        return word;
+      };
+    };
+
+    for(const word of highScoreArray) {
+      if (word[word].length < minLength) {
+        minLength = word[word].length 
+      };
+    };
+      
+    for(const word of highScoreArray) {
+      if (word[word].length === minLength) {  
+        return word 
+      };
+    };
+  }
 
 };
 
