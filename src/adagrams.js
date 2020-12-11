@@ -109,14 +109,92 @@ const Adagrams = {
   },
 
   scoreWord(word) {
-    letterScore = {
+    
+    const uppercaseWord = word.toUpperCase();
+    
+    let sum = 0
+
+    for (const letter of uppercaseWord) {
+      sum += letterScore[letter];
+    };
+
+    if (word.length > 6) sum += 8;
+    
+    return sum;
+  },
+
+  highestScoreFrom(words) {
+
+    // prefer word with fewest letters
+    // unless word is 10 letters
+    // multiple words with same length, choose first word
+
+    // find the highest score
+    // find if there are more than one highest score
+  
+    
+    
+    let highestScore = 0
+
+    for (const word of words) {
+      const score = this.scoreWord(word);
+      if (score > highestScore) {
+        highestScore = score
+      };
+    };
+
+    console.log(highestScore)
+
+    const highestScoreWords = words.filter(word => this.scoreWord(word) === highestScore);
+
+    console.log(highestScoreWords);
+    const tenLetters = highestScoreWords.find(word => word.length === 10);
+
+
+    const leastLetters = (words) => {
+      let leastLetterWord = words[0];
+      let count = words[0].length;
+
+      for (const word of words) {
+        const length = word.length;
+
+        if (length < count) {
+          leastLetterWord = word;
+          count = length;
+        }
+      }
+
+      return leastLetterWord
+    };
+
+    console.log(leastLetters(highestScoreWords))
+
+
+    let winningWord = {}
+
+    if (highestScoreWords.length === 1) {
+      
+      winningWord['word'] = highestScoreWords[0];
+      winningWord['score'] = highestScore;
+      
+    } else if (tenLetters) {
+
+      winningWord['word'] = tenLetters;
+      winningWord['score'] = highestScore;
+
+    } else {
+
+      winningWord['word'] = leastLetters(highestScoreWords);
+      winningWord['score'] = highestScore;
 
     }
+
+    return winningWord;
   }
 
 
 };
 
-
+// Adagrams.highestScoreFrom(['X', 'XX', 'XXX', 'XXXX', 'XXXX', 'XXXXXXXXXX']);
 // Do not remove this line or your tests will break!
 export default Adagrams;
