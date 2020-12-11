@@ -69,7 +69,6 @@ const Adagrams = {
     let highScoreArray = [];
     let maxScore = 0;
     let bestWord = {};
-    let minLength = 10
 
     words.forEach(word => {
       scores.push({word: word, score: this.scoreWord(word)});
@@ -78,13 +77,13 @@ const Adagrams = {
     console.log(scores);
 
     for(let i = 0; i < scores.length; i++) {
-      if (scores[i][score] > maxScore) {
-        maxScore = scores[i][score];
+      if (scores[i].score > maxScore) {
+        maxScore = scores[i].score;
       };
     };
 
     for(let i = 0; i < scores.length; i++) {
-      if (scores[i][score] === maxScore) {
+      if (scores[i].score === maxScore) {
         highScoreArray.push(scores[i]);
       };
     };
@@ -99,20 +98,23 @@ const Adagrams = {
   },
 
   tieBreaker(highScoreArray) {
+
+    let minLength = 10
+
     for(const word of highScoreArray) {
-      if (word[word].length === minLength) {
+      if (word.word.length === minLength) {
         return word;
       };
     };
 
     for(const word of highScoreArray) {
-      if (word[word].length < minLength) {
-        minLength = word[word].length 
+      if (word.word.length < minLength) {
+        minLength = word.word.length 
       };
     };
       
     for(const word of highScoreArray) {
-      if (word[word].length === minLength) {  
+      if (word.word.length === minLength) {  
         return word 
       };
     };
