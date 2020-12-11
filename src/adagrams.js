@@ -46,10 +46,14 @@ class Adagrams {
       letterPool = letterPool.concat(Array.from(letter.repeat(count)));
     }
 
-    const hand = [];    
-    for(let i = 0; i < 10; i += 1 ) {
-      const rand_index = Math.floor(Math.random() * letterPool.length);
-      hand.push(letterPool[rand_index]);
+    const hand = [];
+    while(hand.length < 10) {
+      const usedIndex = new Set()
+      const randIndex = Math.floor(Math.random() * letterPool.length + 1);
+      if(!usedIndex.has(randIndex)) {
+        hand.push(letterPool[randIndex]);
+        usedIndex.add(randIndex);
+      }
     }
     return hand;
   }
