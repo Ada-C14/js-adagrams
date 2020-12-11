@@ -1,5 +1,4 @@
 const Adagrams = {
-  // wave 1
   letters: {
     A: 9,
     B: 2,
@@ -29,6 +28,8 @@ const Adagrams = {
     Z: 1
 },
 
+// wave 1
+
 allLetters: [],
 
 drawLetters: function() {
@@ -44,6 +45,31 @@ drawLetters: function() {
   // return first 10 letterrs
   return randomLetter.slice(0,10)
   },
+
+  // wave 2
+
+  // count function
+  count: function(array, element){
+    let count = 0;
+    for(let i = 0; i < array.length; ++i){
+      if(array[i] == element){
+        count++;
+      }
+    };
+    return count;
+  },
+  usesAvailableLetters: function(input,lettersInHand){
+ 
+      input = input.split('');
+
+      for(let letter of input){
+        if(count(input,letter) > this.count(lettersInHand,letter)){
+          return false
+        }
+      }
+      return true
+  },
+  
 };
 
 // Do not remove this line or your tests will break!
