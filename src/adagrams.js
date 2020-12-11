@@ -116,20 +116,21 @@ const Adagrams = {
 
       if (score > highScore) {
         highScore = score;
-        let highScoreWordLength = words[i].length;
+        highScoreWordLength = words[i].length;
         winningInfo = {
           word: words[i],
           score: score
         };
       }
-      else if ((score == highScore) && (highScoreWordLength < 10)) {
+
+      if ((score === highScore) && (highScoreWordLength < 10)) {
         if (words[i].length < highScoreWordLength) {
           winningInfo = {
             word: words[i],
             score: score
           };
         }
-        else if (words[i].length == 10) {
+        else if (words[i].length === 10) {
           winningInfo = {
             word: words[i],
             score: score
