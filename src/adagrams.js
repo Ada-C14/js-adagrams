@@ -30,17 +30,24 @@ const Adagrams = {
     Z : 1,
   },
 
-  generateLetterPool() {
+  drawLetters() {
     const letterPool = [];
-    for (const letter in letterDistribution) {
-      for (let counter = 0; counter < letterDistribution[letter]; counter++) {
+    for (const letter in Adagrams.letterDistribution) {
+      for (let counter = 0; counter < Adagrams.letterDistribution[letter]; counter++) {
         letterPool.push(letter);
       }
-      return letterPool;
     }
-  },
+    const hand = [];
 
-  drawLetters() {
+    for (let counter = 0; counter < 10; counter++) {
+      const randomLetters = Math.floor(Math.random() * letterPool.length);
+      const drawnLetters = letterPool[randomLetters];
+      hand.push(drawnLetters);
+      letterPool.splice(randomLetters, 1)
+    }
+
+    return hand;
+
     //draw 10 random letters from letterPool
     //let drawnLetters = ['A', 'T', 'V', 'W', 'E', 'F', 'E', 'D','I', 'N']
     //how do I randomly draw letters and make sure those get removed from letterPool?
@@ -63,4 +70,4 @@ const Adagrams = {
 // console.log(Adagrams.letterPool);
 
 // Do not remove this line or your tests will break!
-// export default Adagrams;
+export default Adagrams;
