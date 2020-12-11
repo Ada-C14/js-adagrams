@@ -136,45 +136,63 @@ const Adagrams = {
     // find all of the words that share the highest scoring word
     const highestScoreWords = words.filter(word => this.scoreWord(word) === highestScore);
 
-    // find any 10 letter words among the highest scoring words
-    const tenLetters = highestScoreWords.find(word => word.length === 10);
-
-    // function to find the word with the least letters
-    const leastLetters = (words) => {
-      let leastLetterWord = words[0];
-      let count = words[0].length;
-
-      for (const word of words) {
-        const length = word.length;
-
-        if (length < count) {
-          leastLetterWord = word;
-          count = length;
-        }
-      }
-
-      return leastLetterWord
+    let winningWord = { 
+      'word': highestScoreWords[0], 
+      'score': highestScore
     };
 
-    
-    const winningWord = {}
-
-    if (highestScoreWords.length === 1) {
-      
-      winningWord['word'] = highestScoreWords[0];
-      winningWord['score'] = highestScore;
-      
-    } else if (tenLetters) {
-
-      winningWord['word'] = tenLetters;
-      winningWord['score'] = highestScore;
-
-    } else {
-
-      winningWord['word'] = leastLetters(highestScoreWords);
-      winningWord['score'] = highestScore;
-
+    for (const word of highestScoreWords) {
+     
+      if ( winningWord['word'].length !== 10) {
+        if (word.length === 10) {
+          winningWord['word'] = word;
+        } else if (word.length < winningWord['word'].length) {
+          winningWord['word'] = word;
+        }
+      }
     }
+
+
+
+    // // find any 10 letter words among the highest scoring words
+    // const tenLetters = highestScoreWords.find(word => word.length === 10);
+
+    // // function to find the word with the least letters
+    // const leastLetters = (words) => {
+    //   let leastLetterWord = words[0];
+    //   let count = words[0].length;
+
+    //   for (const word of words) {
+    //     const length = word.length;
+
+    //     if (length < count) {
+    //       leastLetterWord = word;
+    //       count = length;
+    //     }
+    //   }
+
+    //   return leastLetterWord
+    // };
+
+    
+    // const winningWord = {}
+
+    // if (highestScoreWords.length === 1) {
+      
+    //   winningWord['word'] = highestScoreWords[0];
+    //   winningWord['score'] = highestScore;
+      
+    // } else if (tenLetters) {
+
+    //   winningWord['word'] = tenLetters;
+    //   winningWord['score'] = highestScore;
+
+    // } else {
+
+    //   winningWord['word'] = leastLetters(highestScoreWords);
+    //   winningWord['score'] = highestScore;
+
+    // }
 
     return winningWord;
   }
