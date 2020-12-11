@@ -71,13 +71,39 @@ const Adagrams = {
     if(word.length >= 7) {
       sum += 8;
     }
-    return sum
+    return sum;
+  },
+
+  // wave 4 
+  highestScoreFrom(words) {
+    let winningWord = {word: words[0], score: this.scoreWord(words[0])};
+    let winningScore = this.scoreWord(words[0]);
+
+    for (const word of words) {
+      if(this.scoreWord(word) > winningScore) {
+        winningScore = this.scoreWord(word);
+        winningScore = {word: word, score: this.scoreWord(word)};
+      }
+      else if (this.scoreWord(word) === winningScore) {
+        if(winningWord['word'].length === 10) {
+          winningWord = winningWord;
+        }
+        else if (word.length === 10) {
+          winningWord = { word: word, score: this.scoreWord(word)};
+        }
+        else if (word.length < winningWord['word'].length) {
+          winningWord = { word: word, score: this.scoreWord(word)};
+        }
+      }
+      return winningWord;
+    }
   }
 
 };
 
 // console.log(Adagrams.drawLetters()); 
-// Adagrams.scoreWord("tt")
+// Adagrams.scoreWord("ADA")
+// console.log(Adagrams.highestScoreFrom("ADA"));
 
 
 // Do not remove this line or your tests will break!
