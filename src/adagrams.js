@@ -91,17 +91,13 @@ const Adagrams = {
   },
   // wave 3
   scoreWord(word) {
-    let wordArray = word.split('')
     let score = 0;
     for (let i = 0; i < Object.values(scoreChart).length; i++) {
-      for (let j = 0; j < Object.values(scoreChart)[i].length; j++) {
-        console.log(wordArray[i])// == Object.values(scoreChart)[i][j])
-        console.log(`chart check ${Object.values(scoreChart)[i][j]}`)
-        if (wordArray[i] == Object.values(scoreChart)[i][j]) {
-          score += Object.keys(scoreChart)[i];
+      for (let j = 0; j < word.length; j++) {
+        if (Object.values(scoreChart)[i].includes(word[j])) {
+          score += parseFloat(Object.keys(scoreChart)[i]);
         }
       }
-      console.log(`${i} i`)
     }
     console.log(score)
   }
@@ -109,7 +105,9 @@ const Adagrams = {
 
 console.log(Object.values(scoreChart)[0][0])
 console.log(Object.values(scoreChart)[0].length)
-console.log(Adagrams.scoreWord('DOG'))
+console.log(Adagrams.scoreWord('DOGZ'))
+
+
 
 // Do not remove this line or your tests will break!
 //export default Adagrams;
