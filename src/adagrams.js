@@ -51,6 +51,22 @@ const Adagrams = {
     
     return letterCount;
   },
+  usesAvailableLetters(input, lettersInHand) {
+    if (input.length > lettersInHand.length) {
+      return false;
+    } 
+
+    const handCount = this.countLetters(lettersInHand);
+    const inputCount = this.countLetters(input.split(''));
+
+    for (const [letter, count] of Object.entries(inputCount)) {
+      if (!handCount[letter] || count > handCount[letter]) {
+        return false;
+      }
+    }
+
+    return true;
+  },
 };
 
 // Do not remove this line or your tests will break!
