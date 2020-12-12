@@ -42,6 +42,15 @@ const Adagrams = {
     // Return a random collection with 10 elements
     return shuffle.pick(allLetters, { picks: 10 }); 
   },
+  countLetters(lettersArray) {
+    const letterCount = {};
+
+    lettersArray.forEach(letter => {
+      letterCount[letter] = (letterCount[letter] || 0) + 1;
+    })
+    
+    return letterCount;
+  },
 };
 
 // Do not remove this line or your tests will break!
