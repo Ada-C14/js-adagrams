@@ -1,35 +1,37 @@
 import Real from 'adagrams';
 
+const real = new Real()
+
 const Stub = {
   drawLetters() {
     const defaultLetters = ['H', 'E', 'L', 'L', 'O', 'W', 'O', 'R', 'L', 'D'];
 
-    if(typeof Real.drawLetters === 'function') {
-      return Real.drawLetters() || defaultLetters;
+    if(typeof real.drawLetters === 'function') {
+      return real.drawLetters() || defaultLetters;
     }
 
     return defaultLetters;
   },
 
   usesAvailableLetters(input, lettersInHand) {
-    if(typeof Real.usesAvailableLetters === 'function') {
-      return Real.usesAvailableLetters(input, lettersInHand);
+    if(typeof real.usesAvailableLetters === 'function') {
+      return real.usesAvailableLetters(input, lettersInHand);
     }
 
     return true;
   },
 
   scoreWord(word) {
-    if(typeof Real.scoreWord === 'function') {
-      return Real.scoreWord(word);
+    if(typeof real.scoreWord === 'function') {
+      return real.scoreWord(word);
     }
 
     return -1;
   },
 
   highestScoreFrom(words) {
-    if(typeof Real.highestScoreFrom === 'function') {
-      return Real.highestScoreFrom(words);
+    if(typeof real.highestScoreFrom === 'function') {
+      return real.highestScoreFrom(words);
     }
 
     if(words.length < 1) return null;
