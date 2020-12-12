@@ -32,11 +32,27 @@ const Adagrams = {
     }
     // console.log(hand);
     return hand;
+    },
+    usesAvailableLetters(input, lettersInHand) {
+      let operatingHand = lettersInHand.map((x) => x);
+      
+      for (let i = 0; i < input.length; i++) {
+        if (operatingHand.includes(input[i])) {
+          const index = operatingHand.indexOf(input[i]);
+          operatingHand.splice(index,1);
+        } else {
+          return false;
+        }
+      }
+      
+      return true
     }
 };
 
 // console.log(Adagrams.drawLetters());
 // console.log(Adagrams.drawLetters().length);
+
+// console.log(Adagrams.usesAvailableLetters("DOG", ['G','O', 'O', 'D', 'N', 'E', 'S', 'S']));
 
 
 
