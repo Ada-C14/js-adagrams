@@ -1,5 +1,3 @@
-// import { pop } from "core-js/fn/array";
-// let newObj = JSON.parse(JSON.stringify(obj));
 const Adagrams = {
   letterDistribution: {
     A : 9,
@@ -30,44 +28,62 @@ const Adagrams = {
     Z : 1,
   },
 
-  drawLetters() {
+  letterPool: [],
+
+  randomize() {
     const letterPool = [];
-    for (const letter in Adagrams.letterDistribution) {
-      for (let counter = 0; counter < Adagrams.letterDistribution[letter]; counter++) {
-        letterPool.push(letter);
+    for (const letter in this.letterDistribution) {
+      for (let counter = 0; counter < this.letterDistribution[letter]; counter++) {
+        this.letterPool.push(letter);
       }
     }
-    const hand = [];
+    const randomNumber = Math.floor(Math.random() * this.letterPool.length);
+    const letter = this.letterPool[randomNumber];
 
+    return letter;
+  },
+
+  drawLetters() {
+    const hand = [];
     for (let counter = 0; counter < 10; counter++) {
-      const randomLetters = Math.floor(Math.random() * letterPool.length);
-      const drawnLetters = letterPool[randomLetters];
-      hand.push(drawnLetters);
-      letterPool.splice(randomLetters, 1)
+      const drawnLetter = this.randomize();
+
+      hand.push(drawnLetter);
+      this.letterPool.splice(drawnLetter, 1)
     }
 
     return hand;
+  },
 
-    //draw 10 random letters from letterPool
-    //let drawnLetters = ['A', 'T', 'V', 'W', 'E', 'F', 'E', 'D','I', 'N']
-    //how do I randomly draw letters and make sure those get removed from letterPool?
-    // const drawn = [];
-    // const letterPoolCopy = Object.assign({}, Adagrams.letterPool);
-    // let counter = 0;
+  usesAvailableLetters(input, lettersInHand) {
 
-    // while (counter < 10) {
-    //   for (const letter of letterPoolCopy) {
-    //     if (letterPoolCopy[letter] > 0) {
-    //       drawn.push(`${letter}`);
-    //       letterPoolCopy[letter] -= 1;          
-    //     }
-    //     counter += 1;
-    //   }
-    // }
-    // return drawn;
   },
 };
-// console.log(Adagrams.letterPool);
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
+
+
+//Decrementing letters from object--I just curious about how to write another function to solve wave 1
+// randomize() {
+//   const keys = Object.keys(this.letterPool);
+//   const randomNumber = Math.floor(Math.random() * keys.length);
+//   const letter = keys[randomNumber];
+
+//   return letter;
+// },
+
+// drawLetters() {
+//   const hand = [];
+//   let counter = 0;
+
+//   while (counter < 10) {
+//     const drawnLetter = this.randomize();
+//     if (this.letterPool[drawnLetter] > 0) {
+//       hand.push(drawnLetter);
+//       this.letterPool[drawnLetter] -= 1;
+//       counter += 1;
+//     }
+//   }
+//   return hand;
+// },
