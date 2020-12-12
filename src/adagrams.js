@@ -29,7 +29,7 @@ const ALL_LETTERS = {
   Z: 1
 }
 
-const Adagrams = {
+class Adagrams {
   drawLetters() {
     const allLetters = [];
 
@@ -41,7 +41,8 @@ const Adagrams = {
     
     // Return a random collection with 10 elements
     return shuffle.pick(allLetters, { picks: 10 }); 
-  },
+  }
+
   countLetters(lettersArray) {
     const letterCount = {};
 
@@ -50,7 +51,8 @@ const Adagrams = {
     })
     
     return letterCount;
-  },
+  }
+
   usesAvailableLetters(input, lettersInHand) {
     if (input.length > lettersInHand.length) {
       return false;
@@ -66,8 +68,8 @@ const Adagrams = {
     }
 
     return true;
-  },
-};
+  }
+}
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
