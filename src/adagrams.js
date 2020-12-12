@@ -77,9 +77,25 @@ const Adagrams = {
   },
 
   scoreWord(word) {
+    let score = 0;
+    const letters = word.toUpperCase().split('');
+  
 
+    if (word.length >= 7) {
+      score += 8;
+    } 
+    else {
+      score = 0;
+    }
 
-    return score,
+    for (const scoreLetter in this.scoreChart) {
+      for (const letter in letters) {
+        if (letters[letter] === scoreLetter) {
+          score += this.scoreChart[scoreLetter];
+        }
+      }
+    }
+    return score;
   },
 
 };
@@ -87,7 +103,7 @@ const Adagrams = {
 // Do not remove this line or your tests will break!
 export default Adagrams;
 
-// console.log(Adagrams.usesAvailableLetters('GOOD', ['D', 'O', 'G', 'X', 'X', 'X', 'X', 'X', 'X', 'X']))
+// console.log(Adagrams.scoreWord('PINEAPPLE'))
 
 //Decrementing letters from object--I just curious about how to write another function to solve wave 1
 // randomize() {
