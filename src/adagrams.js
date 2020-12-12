@@ -71,7 +71,7 @@ const Adagrams = {
         return false }
       };
     return true;
-  }
+  },
 
   // scoreWord
 
@@ -105,10 +105,16 @@ const Adagrams = {
       Z: 10
     };
 
+    const add8 = [7, 8, 9, 10]
+    let score = 0
 
+    if (add8.includes(word.length)) {
+      score += 8 }
 
+    for (let letter of word) {
+      score += letterScore[letter.toUpperCase()]}
 
-
+    return score
   }
 
   
