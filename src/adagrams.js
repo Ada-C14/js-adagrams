@@ -38,7 +38,7 @@ class Adagrams {
     while (handOfLetters.length < 10) {
       let randomLetter = letters[Math.floor(Math.random() * letters.length)];
         if (letterPool[randomLetter] > 0) {
-            letterPool[randomLetter] -= 1;
+            handOfLetters[randomLetter] -= 1;
             handOfLetters.push(randomLetter);
           }
         }
