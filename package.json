@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "core-js": "^3.8.0",
+    "shuffle-array": "^1.0.1",
     "vorpal": "^1.12.0"
   }
 }
