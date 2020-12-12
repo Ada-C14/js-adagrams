@@ -43,7 +43,8 @@ const Adagrams = {
         return allLetters;
     },
 
-    shuffleArray(array) {
+    shuffleArray() {
+        const array = Adagrams.fillArray()
         for (let i = array.length - 1; i > 0; i--) { // array length times
             let j = Math.floor(Math.random() * (i + 1)); // find random index
             [array[i], array[j]] = [array[j], array[i]]; // swap last index with random index
@@ -51,7 +52,8 @@ const Adagrams = {
         return array;
     },
 
-    drawLetters(array) {
+    drawLetters() {
+        const array = Adagrams.shuffleArray()
         let letterHand = []
         for (let i = 0; i < 10; i += 1) { // 10 times
             letterHand.push(array.pop()); // take the last element from shuffled array
@@ -108,17 +110,35 @@ const Adagrams = {
 
         return score;
     },
+
+    // wave 4 -- highest score!
+
+    highestScoreFrom(array) {
+
+        let bestScore = 0
+        let bestWord = ""
+
+        for (let word of array) {
+            let score = Adagrams.scoreWord(word);
+            if (score > bestScore) {
+                bestWord = word
+                bestScore = score
+            } else if ((word.length == 10) && (score == bestScore) && (bestWord.length < 10)) {
+                bestWord = word
+                bestScore = score
+            } else if ((score == bestScore) && (word.length < bestWord.length) && (bestWord.length != 10)) {
+                bestWord = word
+                bestScore = score
+            }
+        }
+
+        let winner = {
+            word: bestWord,
+            score: bestScore
+        };
+
+        return winner;
+    },
 };
 
-// console.log(Adagrams.drawLetters(Adagrams.shuffleArray(Adagrams.fillArray())));
-
-// console.log(Adagrams.usesAvailableLetters("hello", ['h', 'e', 'l', 'l', 'o']))
-console.log(Adagrams.scoreWord("hi4"))
-console.log(Adagrams.scoreWord("hi"))
-console.log(Adagrams.scoreWord("j"))
-
-// const allLetters = Adagrams.fillArray();
-// console.log(Adagrams.shuffleArray(allLetters));
-
-// Do not remove this line or your tests will break!
-// export default Adagrams;
+export default Adagrams;
