@@ -27,13 +27,29 @@ const Adagrams = {
     Y: 2,
     Z: 1
   },
-
+  
   drawLetters() {
+    const letterPool = [];
+    for (const letter in this.letterDist) {
+      let i = 0;
+      while (i < this.letterDist[letter]) {
+        letterPool.push(letter);
+        i++;
+      }
+    }
+    
     const hand = [];
+    let i = 0;
+    while (i < 10) {
+      hand.push(letterPool[Math.floor(Math.random() * letterPool.length - 1)]);
+      i++;
+    }
 
     return hand;
   },
 };
+
+// console.log(Adagrams.drawLetters())
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
