@@ -59,6 +59,19 @@ const Adagrams = {
     return true
   },
 
+  scoreWord(word) {
+    let points = 0
+    for (const char of word.toUpperCase()) {
+      if (letterValue[char]) {
+        points += letterValue[char]
+      }
+    }
+    if (word.length >= 7 && word.length <= 10) {
+      points += 8
+    }
+    return points
+  },
+
 };
 
 // Do not remove this line or your tests will break!
