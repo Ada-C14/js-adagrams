@@ -46,6 +46,35 @@ const Adagrams = {
       }
       
       return true
+    },
+    scoreWord(word) {
+      let wordCap = word.toUpperCase();
+      
+      console.log(wordCap);
+      let score = 0;
+
+      if (word.length > 6) {
+        score += 8 ;
+      }
+    
+      for (let i=0; i < wordCap.length; i++) {
+        if (['A','E','I','O','U','L','N','R','S','T'].includes(wordCap[i])) {
+          score++ ;
+        } else if (['D','G'].includes(wordCap[i])) {
+          score += 2 ;
+        } else if (['B','C','M','P'].includes(wordCap[i])) {
+          score += 3 ;
+        } else if (['F', 'H', 'V', 'W', 'Y'].includes(wordCap[i])) {
+          score += 4 ;
+        } else if (wordCap[i] == 'K') {
+          score += 5 ;
+        } else if (wordCap[i] == 'J' || wordCap[i] == 'X') {
+          score += 8 ;
+        } else if (wordCap[i] == 'Q' || wordCap[i] == 'Z') {
+          score += 10 ;
+        }
+      }
+      return score;
     }
 };
 
@@ -53,8 +82,8 @@ const Adagrams = {
 // console.log(Adagrams.drawLetters().length);
 
 // console.log(Adagrams.usesAvailableLetters("DOG", ['G','O', 'O', 'D', 'N', 'E', 'S', 'S']));
-
-
+// console.log(Adagrams.scoreWord('dOg'));
+// console.log(Adagrams.scoreWord('dOgdogDOG'));
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
