@@ -67,6 +67,46 @@ const Adagrams = {
     }
 
     return score;
+  }, 
+
+  highestScoreFrom(words) {
+    let scores = [];
+    
+    for (let word of words) {
+      scores.push({word: word, score: this.scoreWord(word)});
+    }
+    
+    let highestScorer = scores[0];
+    // iterate through scores and if the selected score > highestScorer, save it over
+    for (let item of scores) {
+      if (item['score'] > highestScorer['score']) {
+        highestScorer = item;
+      } 
+    }
+
+    let ties = []
+
+    for (let item of scores) {
+      if (item['score'] === highestScorer['score']) {
+        ties.push(item);
+      } 
+    }
+
+    console.log(ties)
+
+    let winner = ties.find(word => word['word'].length == 10 ) // finds the fir st word with ten letters
+
+    if (winner) {
+      return winner;
+    } else { // find the word with min length
+      winner = ties[0]
+      for (let item of ties) {
+        if (item['word'].legth < winner.word.length) {
+          winner = item
+        }
+      }
+      return winner
+    }
   }
 };
 
