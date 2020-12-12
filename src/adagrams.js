@@ -99,7 +99,7 @@ const Adagrams = {
     } else { // find the word with min length
       winner = ties[0]
       for (let item of ties) {
-        if (item['word'].legth < winner.word.length) {
+        if (item['word'].length < winner.word.length) {
           winner = item
         }
       }
