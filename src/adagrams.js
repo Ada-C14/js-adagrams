@@ -3,7 +3,7 @@ const letterValue = {A: 1, B: 3, C: 3, D: 2, E: 1, F: 4, G: 2, H: 4, I: 1, J: 8,
 
 const helperMethods = {
   letterArray(object) {
-    // Turn letterPool into Arry
+    // Turn letterPool into Array
     let array = [];
     for (const [key, value] of Object.entries(object)) {
       array = array.concat(key.repeat(value).split(''))
@@ -21,6 +21,19 @@ const helperMethods = {
     }
     return array
   },
+  letterObject(array) {
+    // Turn array into Object
+    let obj = {};
+    for (const ltr of array) {
+      if (obj[ltr]) {
+        obj[ltr] += 1
+      }
+      else {
+        obj[ltr] = 1
+      }
+    }
+    return obj
+  },
 }
 
 const Adagrams = {
@@ -28,6 +41,22 @@ const Adagrams = {
     const ltrArray = helperMethods.letterArray(letterPool)
     const tenLetters = helperMethods.shuffle(ltrArray).slice(0, 10)
     return tenLetters
+  },
+
+  usesAvailableLetters(input, lettersInHand) {
+    const ltrInHand = helperMethods.letterObject(lettersInHand)
+    for (const char of input) {
+      if (!ltrInHand[char]) {
+        return false
+      }
+      else if (ltrInHand[char] === 0) {
+        return false
+      }
+      else {
+        ltrInHand[char] -= 1
+      }
+    }
+    return true
   },
 
 };
