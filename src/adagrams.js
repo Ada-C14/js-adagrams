@@ -27,13 +27,13 @@ const z = new Array('Z')
 
 const alphabetArray  = function () { 
 return  [...a, ...b, ...c, ...d, ...e, ...f, ...g, ...h, ...i, ...j, ...k, ...l, ...m, ...n,
-  ...o, ...p, ...q, ...r, ...s, ...t, ...u, ...v, ...w, ...x, ...y, ...z] //spread operator
+  ...o, ...p, ...q, ...r, ...s, ...t, ...u, ...v, ...w, ...x, ...y, ...z] 
+  // ... = spread operator,  makes it a one dimensional array
 }
 
 const Adagrams = {
   drawLetters() {
-    // const ten_letters = _.shuffle(alphabet)[10];
-    // return ten_letters
+  
     const alphabet = alphabetArray();
     const ten_letters = []
     for(let i= 0; i < 10; i += 1) {
@@ -48,7 +48,59 @@ const Adagrams = {
     return ten_letters
   },
 
+  usesAvailableLetters(input, lettersInHand) {
+    const letterCount = this.countLetters(lettersInHand)
+    for (let i = 0; i < input.length; i += 1) {
+      let currentLetter = input[i]
+      let count = letterCount[currentLetter]
+      if (count === 0) {
+        return false
+      } else if (count === undefined) {
+          return false
+      } else {
+        count -= 1
+        letterCount[currentLetter] = count
+      } 
+    }
+        console.log(letterCount)
+    return true        
+
+  },
+
+  countLetters(letters) {
+    const letterFrequency = {}
+  
+     for (const letter of letters) {
+      if (letterFrequency[letter] === undefined) {
+        letterFrequency[letter] = 1;
+      } else {
+        letterFrequency[letter] += 1;
+      }
+     }
+     return letterFrequency
+  }
+
 };
+
+// const usesAvailableLetters = function(input, lettersInHand) {
+//   const letterCount = countLetters(lettersInHand)
+//   for (let i = 0; i < input.length; i += 1) {
+//     let count = letterCount[i]
+//     if (count === 0) {
+//       return false
+//     } else {
+//       count -= 1
+//       letterCount[i] = count
+//       return true
+//     }
+//   }
+// }
+
+
+
+
+
+
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
