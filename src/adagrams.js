@@ -66,12 +66,28 @@ const Adagrams = {
         points += letterValue[char]
       }
     }
-    if (word.length >= 7 && word.length <= 10) {
+    if (word.length >= 7) {
       points += 8
     }
     return points
   },
 
+  highestScoreFrom(words) {
+    const maxScore = words.map(w => this.scoreWord(w))
+                    .sort((a, b) => b-a)
+    const highestList = words.filter(w => this.scoreWord(w) === maxScore[0])
+
+    let winner = {word: highestList[0], score: maxScore[0]}
+    for (const w of highestList) {
+      if (w.length === 10 && winner.word.length < 10) {
+        winner.word = w
+      }
+      else if (w.length < winner.word.length && winner.word.length != 10) {
+        winner.word = w
+      }
+    }
+    return winner
+  },
 };
 
 // Do not remove this line or your tests will break!
