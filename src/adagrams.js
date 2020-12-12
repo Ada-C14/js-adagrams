@@ -77,7 +77,6 @@ const Adagrams = {
     }
     
     let highestScorer = scores[0];
-    // iterate through scores and if the selected score > highestScorer, save it over
     for (let item of scores) {
       if (item['score'] > highestScorer['score']) {
         highestScorer = item;
@@ -85,7 +84,6 @@ const Adagrams = {
     }
 
     let ties = []
-
     for (let item of scores) {
       if (item['score'] === highestScorer['score']) {
         ties.push(item);
