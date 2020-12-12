@@ -56,13 +56,21 @@ const Adagrams = {
   },
 
   usesAvailableLetters(input, lettersInHand) {
-
+    const inputLetters = input.split('');
+    for (const letter in inputLetters) {
+      if (!inputLetters.includes(lettersInHand[letter])) {
+        return false;
+      }
+    }
+    
+    return true;
   },
 };
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
 
+// console.log(Adagrams.usesAvailableLetters('GOOD', ['D', 'O', 'G', 'X', 'X', 'X', 'X', 'X', 'X', 'X']))
 
 //Decrementing letters from object--I just curious about how to write another function to solve wave 1
 // randomize() {
