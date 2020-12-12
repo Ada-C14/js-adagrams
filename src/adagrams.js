@@ -30,15 +30,16 @@ const letterPool = {
 class Adagrams {
   // WAVE 1
   static drawLetters() {
-  
+    
+    let copyLetterPool = Object.assign({},letterPool)
     let letters = Object.keys(letterPool);
     let handOfLetters = [];
 
   // draw 10 random letters 
     while (handOfLetters.length < 10) {
       let randomLetter = letters[Math.floor(Math.random() * letters.length)];
-        if (letterPool[randomLetter] > 0) {
-            handOfLetters[randomLetter] -= 1;
+        if (copyLetterPool[randomLetter] > 0) {
+            copyLetterPool[randomLetter] -= 1;
             handOfLetters.push(randomLetter);
           }
         }
@@ -97,7 +98,6 @@ class Adagrams {
           winningWordHash['word'] = word;
           winningWordHash['score'] = this.scoreWord(word);
         } else if (this.scoreWord(word) === winningWordHash.score) {
-
           if (word.length === 10 && winningWordHash['word'].length !== 10) {
             winningWordHash['word'] = word;
             winningWordHash['score'] = this.scoreWord(word); 
@@ -110,6 +110,5 @@ class Adagrams {
       return winningWordHash;
     }
 };
-
 // Do not remove this line or your tests will break!
 export default Adagrams;
