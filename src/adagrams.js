@@ -104,6 +104,26 @@ class Adagrams {
 
     return word.length >= 7 ? score + 8 : score;
   }
+
+  highestScoreFrom(words) {
+    let highestScore = { word: "", score: 0 };
+    
+    words.forEach(word => {
+      const wordValue = this.scoreWord(word);
+      const isGreaterValue = wordValue > highestScore.score;
+      const isEqualValue = wordValue == highestScore.score;
+      const isShorterLength = word.length < highestScore.word.length;
+      const isLengthTen = word.length == 10;
+      const isOldLengthNotTen = highestScore.word.length != 10;
+
+      if (isGreaterValue || (isEqualValue && ((isShorterLength || isLengthTen) && isOldLengthNotTen))) {
+        highestScore.score = wordValue;
+        highestScore.word = word;
+      }
+    }) 
+
+    return highestScore
+  }
 }
 
 // Do not remove this line or your tests will break!

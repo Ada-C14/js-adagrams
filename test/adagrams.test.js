@@ -42,7 +42,14 @@ describe('adagrams', () => {
 
       const isValid = adagrams.usesAvailableLetters(word, drawn);
       expect(isValid).toBe(false);
+    });
 
+    it('returns false when word contains more letters than the drawn letters', () => {
+      const drawn = ['D', 'O', 'G', 'X', 'X', 'X', 'X', 'X', 'X', 'X'];
+      const word = 'DDOGXXXXXXX';
+
+      const isValid = adagrams.usesAvailableLetters(word, drawn);
+      expect(isValid).toBe(false);
     });
   });
 
@@ -85,7 +92,7 @@ describe('adagrams', () => {
     });
   });
 
-  describe.skip('highestScoreFrom', () => {
+  describe('highestScoreFrom', () => {
     it('returns a hash that contains the word and score of best word in an array', () => {
       const words = ['X', 'XX', 'XXX', 'XXXX'];
       const correct = { word: 'XXXX', score: adagrams.scoreWord('XXXX') };
