@@ -63,7 +63,7 @@ drawLetters: function() {
       input = input.split('');
 
       for(let letter of input){
-        if(count(input,letter) > this.count(lettersInHand,letter)){
+        if(this.count(input,letter) > this.count(lettersInHand,letter)){
           return false
         }
       }
@@ -126,6 +126,54 @@ drawLetters: function() {
     }
     return points
   },
+
+  // wave 4
+
+  highestScoreFrom: function(words){
+    const wordsArrayOfObject = [];
+    for (const word of words) {
+      wordsArrayOfObject.push({
+        word: word,
+        length: word.length,
+        score: this.scoreWord(word),
+        isMaxPoints: false
+      });
+    }
+
+  
+  //let maxWordScore = Math.max.apply(Math, wordsArrayOfObject.map(function(o) { return o.score; }))
+    const maxWordScore = Math.max(...wordsArrayOfObject.map(o => o.score)) //spread operator
+    const tie = [];
+
+    for (const word of wordsArrayOfObject){
+      if(word.score == maxWordScore){
+        word.isMaxPoints = true;
+        tie.push(word)
+      }
+    }
+
+    //const minWordLength = Math.min.apply(Math, tie.map(function(o) { return o.length; }))
+    const minWordLength = Math.min(...tie.map(o => o.length)) //spread operator
+
+
+    if(tie.length == 1){
+      return {score: tie[0].score, word: tie[0].word};
+    }else{
+      let winner;
+      for(const word of tie){
+        if(word.length == 10){
+          winner = {score: word.score, word: word.word};
+          return winner;
+
+        } else if (word.length < 10) {
+          if(word.length == minWordLength){
+            winner = {score: word.score, word: word.word};
+            }
+          }
+        }
+        return winner;
+      }
+  }
   
 };
 
