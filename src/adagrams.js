@@ -57,8 +57,31 @@ const Adagrams = {
       score += 8;
     }
     return score
+  },
+
+  highestScoreFrom(words) {
+    let maxScore = 0;
+    let highestWord = "";
+
+
+    for (const word of words) {
+      if (this.scoreWord(word) > maxScore) {
+        maxScore = this.scoreWord(word)
+        highestWord = word
+      } else if (this.scoreWord(word) === maxScore && word.length == highestWord.length) {
+        continue
+      } else if (this.scoreWord(word) === maxScore && word.length === 10) {
+        maxScore = this.scoreWord(word)
+        highestWord = word
+      } else if (this.scoreWord(word) === maxScore && word.length < highestWord.length && highestWord.length != 10) {
+        maxScore = this.scoreWord(word)
+        highestWord = word
+      }
+    }
+      return {word: highestWord, score: maxScore}
   }
 }
+
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
