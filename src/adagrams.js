@@ -30,6 +30,27 @@ const Adagrams = {
 
     return hand;
   },
+
+  usesAvailableLetters(input, lettersInHand) {
+    const hand = {};
+    for (const letter of lettersInHand) {
+      if (hand[letter]) {
+        hand[letter] += 1;
+      } else {
+        hand[letter] = 1;
+      }
+    }
+
+    for (const letter of input) {
+      if (!hand[letter] || hand[letter] === 0) {
+        return false;
+      } else if (hand[letter] > 0) {
+        hand[letter] -= 1;
+      }
+    }
+
+    return true;
+  },
 };
 
 // console.log(Adagrams.drawLetters())
