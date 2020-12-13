@@ -113,19 +113,19 @@ const Adagrams = {
     for (const playedWord in words) {
       const score = this.scoreWord(words[playedWord]);
 
-      console.log(words[playedWord]) //prints out each word in the array
+      // console.log(words[playedWord]) //prints out each word in the array
 
       if (score > bestScore) {
-        bestWord = playedWord
-        bestScore = words[score];
+        bestWord = words[playedWord];
+        bestScore = score;
 
       }
-      else if (playedWord.length === 10 && score === bestScore && bestWord.length < 10 ) {
-        bestWord = playedWord;
+      else if (words[playedWord].length === 10 && score === bestScore && bestWord.length < 10 ) {
+        bestWord = words[playedWord];
         bestScore = score;
       }
-      else if (bestScore && bestWord.length === playedWord.length && bestWord.length !== 10) {
-        bestWord = playedWord;
+      else if (score === bestScore && bestWord.length > words[playedWord].length && bestWord.length !== 10) {
+        bestWord = words[playedWord];
         bestScore = score;
       }
       console.log(score)
@@ -135,17 +135,17 @@ const Adagrams = {
     bestWordObj['score'] = bestScore;
 
     // console.log(bestWord);
-    // console.log(bestWordObj);
+    console.log(bestWordObj);
 
-    // return bestWordObj;
+    return bestWordObj;
   },
 
 };
 
 // Do not remove this line or your tests will break!
-// export default Adagrams;
+export default Adagrams;
 
-console.log(Adagrams.highestScoreFrom(['PINEAPPLE', 'APPLE', 'CANDY']))
+// console.log(Adagrams.highestScoreFrom(['HELLO', 'APPLE', 'CANDY']))
 
 //Decrementing letters from object--I just curious about how to write another function to solve wave 1
 // randomize() {
