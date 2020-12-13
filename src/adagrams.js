@@ -57,16 +57,50 @@ function shuffle(array) {
   return array;
 }
 let shuffledLetters = shuffle(allLetters);
-console.log(shuffledLetters);
+// console.log(shuffledLetters);
+
+
 
 
 const Adagrams = {
   drawLetters() {
     shuffle(allLetters);
     let letterHand = allLetters.slice(0,10);
-    console.log(letterHand)
+    // console.log(letterHand)
     return letterHand;
     
+  },
+  usesAvailableLetters(word, drawn){
+    let results = []
+    word = Array.from(word)
+    let wordLength = word.length
+    let drawnLength = drawn.length
+    let i = 0
+    for (let letter in word) {
+      if (drawn.includes(word[letter]))
+      {
+        results.push(true)    
+        drawn.splice(drawn[i], 1);
+        i += 1
+      }
+      else {
+        results.push(false)
+        console.log(drawn[i]);
+        i += 1
+        console.log(word[letter])
+    };
+      console.log(results);
+  
+
+    };
+    
+    if (results.includes(false)) {
+      return false;
+    }
+    else {
+      return true;
+    };
+
   },
 };
 
