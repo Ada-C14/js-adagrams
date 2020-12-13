@@ -78,25 +78,25 @@ const Adagrams = {
     return score;
   },
 
-  // highestScoreFrom(words) {
-  //   let scores = []
-  //   for (const word of words) {
-  //     scores.push(Adagrams.scoreWord(word))
-  //   }
+  highestScoreFrom(words) {
+    let scores = []
+    for (const word of words) {
+      scores.push(Adagrams.scoreWord(word))
+    }
 
-  //   const bestScore = Math.max(...scores);
+    const bestScore = Math.max(...scores);
 
-  //   const indices = scores.flatMap((score, index) => score === bestScore ? index : []);
-  //   let highestScore;
-  //   let winningIndex;
-  //   let tiedWords = []
-  //   if (indices.length === 1) {
-  //     winningIndex = indices[0]
-  //     highestScore = {score: scores[winningIndex], word: words[winningIndex]}
-  //     return highestScore
-  //   } else {
-  //     for (const index of indices) {
-  //       tiedWords.push(words[index])
+    const indices = scores.flatMap((score, index) => score === bestScore ? index : []);
+    let highestScore;
+    let winningIndex;
+    let tiedWords = []
+    if (indices.length === 1) {
+      winningIndex = indices[0]
+      highestScore = {score: scores[winningIndex], word: words[winningIndex]}
+      return highestScore
+    } else {
+      for (const index of indices) {
+        tiedWords.push(words[index])
   //     }
   //     let shortest = tiedWords[0];
   //     let shortestIndex = 0;
