@@ -27,25 +27,21 @@ const letterPool = {
   Z: [1, 10]
 }
 
-const points = {
-  1: ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'],
-  2: ['D', 'G'],
-  3: ['B', 'C', 'M', 'P'],
-  4: ['F', 'H', 'V', 'W', 'Y'],
-  5: 'K',
-  8: ['J', 'X'],
-  10: ['Q', 'Z']
-}
-
 // concat letter to a string and multiply by value. push letter value number of times
 const Adagrams = {
   drawLetters() {
     const letters = [];
     for (const letter in letterPool) {
-      for(let i = 0; i < letterPool[letter][0]; i++) {
+    //   for(let i = 0; i < letterPool[letter][0]; i++) {
+    //     letters.push(letter);
+    // }
+      let i = 0
+      do {
         letters.push(letter);
+        i += 1
+      } while (i < letterPool[letter][0]);
     }
-    }
+
     letters.sort(() => Math.random() - 0.5);
 
     let hand = letters.slice(0,10);
@@ -83,7 +79,7 @@ const Adagrams = {
     if (word.length < 1) {
       return 0
     }
-    
+
     let score = 0
     word.toUpperCase().split('').forEach(letter => score += letterPool[letter][1]);
 
