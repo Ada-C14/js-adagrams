@@ -1,11 +1,11 @@
-const Adagrams = {
-  drawLetters() {
+class Adagrams {
+  static drawLetters() {
     let letterPool = buildPool();
     const shuffled = letterPool.sort(() => 0.5 - Math.random());
     return shuffled.slice(0, 10);
-  },
+  }
 
-  usesAvailableLetters(input, lettersInHand) {
+  static usesAvailableLetters(input, lettersInHand) {
     let counter = counterBuilder(lettersInHand);
     for (let char of input){
       if (!counter[char] === true ) {
@@ -15,9 +15,9 @@ const Adagrams = {
       }
     };
     return true;
-  },
+  }
 
-  scoreWord(word) {
+  static scoreWord(word) {
     const scores = {
       A: 1,
       B: 3,
@@ -57,9 +57,9 @@ const Adagrams = {
   }
 
   return score;
-  },
+  }
 
-  highestScoreFrom(words) {
+  static highestScoreFrom(words) {
     const winning_word = {
       word: '',
       score: 0
@@ -77,7 +77,7 @@ const Adagrams = {
         winning_word['word'] = word;
         winning_word['score'] = score;
       }}};
-    return winning_word
+    return winning_word;
   }};
 
 const buildPool = function () {
