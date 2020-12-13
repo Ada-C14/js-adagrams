@@ -1,6 +1,14 @@
 const Adagrams = {
-  drawLetters() {
     /////////// WAVE ONE ///////////
+
+  drawLetters() {
+    
+    // Psuedocode
+    // 10 times do:
+    // pull a letter from the pool, subtract it from the count (if you draw the only Z, you can't draw it again)
+    // put it in the array of the person's hand
+    // return the person's hand
+
     const drawPool = {
       'A': 9,
       'B': 2,
@@ -32,15 +40,9 @@ const Adagrams = {
 
     const lettersInHand = [];
 
-    // Psuedocode
-    // 10 times do:
-    // pull a letter from the pool, subtract it from the count
-    // put it in the array of the person's hand
-    // (if you draw the only Z, you can't draw it again)
-
     let i = 0;
     while (i < 10) { 
-      const random = Object.keys(drawPool)[Math.floor(Math.random()*Object.keys(drawPool).length)] // selects a random key from drawPool: https://stackoverflow.com/questions/2532218/pick-random-property-from-a-javascript-object
+      const random = Object.keys(drawPool)[Math.floor(Math.random()*Object.keys(drawPool).length)]; // selects a random key from drawPool: https://stackoverflow.com/questions/2532218/pick-random-property-from-a-javascript-object
       drawPool[random] -= 1;
       lettersInHand.push(random);
         i += 1;
@@ -78,22 +80,14 @@ const Adagrams = {
       }
     }
 
-    // console.log(inputHashTable)
-    // console.log(lettersInHandHashTable)
-
     for (const letter in inputHashTable) {
-      // console.log(lettersInHandHashTable[[letter]])
-      // console.log(inputHashTable[letter])
       if (!lettersInHandHashTable[[letter]]) {
-        // console.log(`false`)
         return false;
       } else if (lettersInHandHashTable[[letter]] < inputHashTable[letter] ) {
-        // console.log(`false`)
         return false;
       }  
     }
 
-    // console.log(`true`)
     return true;
 
   },
@@ -101,6 +95,11 @@ const Adagrams = {
   /////////// WAVE THREE ///////////
 
   scoreWord(word) {
+
+    // Psuedocode
+    // for each letter in words, add letter score to the score
+    // returns an integer representing sum of words' letters' points
+    // bonus: words 7-10 chars long +8 pts
 
     let score = 0
     word = word.toUpperCase();
@@ -134,35 +133,24 @@ const Adagrams = {
     }
 
     for (const letter in word) {
-      // console.log(letter); // refers to index
-      // console.log(word[letter]); // refers to letter
-      // console.log(word[letter]);
-
-      // find key in scorePool that matches
       if (word[letter] in scorePool) {
-        score += scorePool[word[letter]]
-        // console.log(score)
-        // console.log(`found letter`)
-        // console.log(scorePool[word[letter]])
-        // console.log(scorePool[letter])
-        // score += scorePool[word[letter]]
+        score += scorePool[word[letter]];
       }
     }
 
     if (word.length >= 7) {
-      score += 8
+      score += 8;
     }
 
     return score;
 
-    // Psuedocode
-    // word is a string of characters
-    // returns an integer representing sum of words' letters' points
-    // bonus: words 7-10 chars long +8 pts
-
   },
 
+  /////////// WAVE FOUR ///////////
+
   highestScoreFrom(words) {
+
+    // Psuedocode - broken down into parts below, because I didn't quite finish making the fuct pass all tests
 
     // gather all the words/scores in a hash
 
@@ -225,13 +213,5 @@ const Adagrams = {
 
 };
 
-// MANUAL TESTING
-// console.log(Adagrams.drawLetters());
-// Adagrams.usesAvailableLetters('GOOD', 'DOGXXXXXXX')
-// Adagrams.usesAvailableLetters('DOG', 'DOXXXXXXXX')
-// console.log(Adagrams.scoreWord('cat'))
-// console.log(Adagrams.scoreWord('zippers'))
-// console.log(Adagrams.highestScoreFrom(['DOG', 'BANANT', 'BANANA']))
-// console.log(Adagrams.highestScoreFrom(['AAAAAAAAAA', 'BBBBBB']))
 // Do not remove this line or your tests will break!
 export default Adagrams;
