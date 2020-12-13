@@ -97,27 +97,27 @@ const Adagrams = {
     } else {
       for (const index of indices) {
         tiedWords.push(words[index])
-  //     }
-  //     let shortest = tiedWords[0];
-  //     let shortestIndex = 0;
-  //     for (const word of tiedWords) {
-  //       if (word.length === 10) {
-  //         winningIndex = tiedWords.indexOf(word)
-  //         highestScore = {score: scores[indices[winningIndex]], word: tiedWords[winningIndex]}
-  //         return highestScore
-  //       } else {
-  //         if (word.length < shortest.length) {
-  //           shortest = word
-  //           shortestIndex = tiedWords.indexOf(shortest)
-  //         }
-  //       }
-  //     }
-  //     winningIndex = shortestIndex
+      }
+      let shortest = tiedWords[0];
+      let shortestIndex = 0;
+      for (const word of tiedWords) {
+        if (word.length === 10) {
+          winningIndex = tiedWords.indexOf(word)
+          highestScore = {score: scores[indices[winningIndex]], word: tiedWords[winningIndex]}
+          return highestScore
+        } else {
+          if (word.length < shortest.length) {
+            shortest = word
+            shortestIndex = tiedWords.indexOf(shortest)
+          }
+        }
+      }
+      winningIndex = shortestIndex
     
-  //     highestScore = {score: scores[indices[winningIndex]], word: tiedWords[winningIndex]}
-  //     return highestScore
-  //   }
-  // }
+      highestScore = {score: scores[indices[winningIndex]], word: tiedWords[winningIndex]}
+      return highestScore
+    }
+  }
 };
 
 // Do not remove this line or your tests will break!
