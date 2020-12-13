@@ -1,15 +1,27 @@
 const Adagrams = {
 
   drawLetters() {
-    build_pool();
-    const shuffled = letter_pool.sort(() => 0.5 - Math.random());
+    let letterPool = buildPool();
+    const shuffled = letterPool.sort(() => 0.5 - Math.random());
     return shuffled.slice(0, 10);
+  },
+  usesAvailableLetters(input, lettersInHand) {
+    let counter = counterBuilder(lettersInHand);
+    for (let char of input){
+      if (!counter[char] === true ) {
+        return false;
+      } else {
+        counter[char] -= 1;
+      }
+    };
+    return true;
   },
 };
 
 
-let letter_pool = [];
-const build_pool = function () {
+
+const buildPool = function () {
+  let letterPool = [];
   const pool = {A:9,
           B:2,
           C:2,
@@ -40,11 +52,21 @@ const build_pool = function () {
   Object.keys(pool).forEach(function (letter) { 
     let number = pool[letter]
     for (let i = 0; i < number; i ++){
-      letter_pool.push(letter)
-    }
-    return letter_pool
-  }); 
-    
+      letterPool.push(letter)
+    }});
+    return letterPool; 
+};
+
+
+const counterBuilder = function(str) {
+  let counter = {};
+  for (let char of str){
+    if (counter[char]) {
+    counter[char] += 1
+  } else {
+    counter[char] = 1
+  }};
+  return counter;
 };
 
 // Do not remove this line or your tests will break!
