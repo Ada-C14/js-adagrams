@@ -74,6 +74,33 @@ const Adagrams = {
     }
 
     return score;
+  },
+
+  highestScoreFrom(words) {
+    const scores = {};
+    let maxScore = 0;
+    let shortestWord;
+
+    for (const word of words) {
+      scores[word] = this.scoreWord(word);
+      if (scores[word] > maxScore) {
+        maxScore = scores[word];
+      }
+    }
+
+    for (const word in scores) {
+      if (scores[word] === maxScore) {
+        if (word.length === 10) {
+          return { word: word, score: scores[word] };
+        } else if (!shortestWord) {
+          shortestWord = word;
+        } else if (shortestWord.length > word.length) {
+          shortestWord = word;
+        }
+      }
+    }
+
+    return { word: shortestWord, score: maxScore };
   }
 };
 
