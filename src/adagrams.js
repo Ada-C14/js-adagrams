@@ -57,6 +57,7 @@ const scoreChart = {
 }
 
 
+
 const Adagrams = {
   drawLetters() {
     // Implement this method for wave 1
@@ -108,6 +109,21 @@ const Adagrams = {
     return score;
   },
 
+// Implement this method for wave 4
+
+  highestScoreFrom(words) {
+    let highestScore = {word: '', score: 0};
+    
+    for(let word of words) {
+      let score = this.scoreWord(word);
+      if ((score > highestScore.score) || (score === highestScore.score) && (highestScore.word.length < 10 && (word.length === 10 || word.length < highestScore.word.length))) {
+        highestScore.word = word;
+        highestScore.score = score;
+      }
+    }
+    return highestScore;
+
+  },
 
   
 };
