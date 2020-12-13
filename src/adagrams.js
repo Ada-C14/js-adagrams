@@ -47,13 +47,13 @@ const Adagrams = {
     const alphabet = alphabetArray();
     const ten_letters = []
     for(let i= 0; i < 10; i += 1) {
-      let randomIndex = Math.floor((Math.random() * alphabet.length)) //pick a random number
-      let temp = alphabet[randomIndex]
-      let lastIndex = alphabet.length - 1
+      let randomIndex = Math.floor((Math.random() * alphabet.length)); //pick a random number
+      let temp = alphabet[randomIndex];
+      let lastIndex = alphabet.length - 1;
 
-      alphabet[randomIndex] = alphabet[lastIndex]
-      alphabet.pop()
-      ten_letters.push(temp)
+      alphabet[randomIndex] = alphabet[lastIndex];
+      alphabet.pop();
+      ten_letters.push(temp);
     }
     return ten_letters
   },
@@ -61,15 +61,15 @@ const Adagrams = {
   usesAvailableLetters(input, lettersInHand) {
     const letterCount = this.countLetters(lettersInHand)
     for (let i = 0; i < input.length; i += 1) {
-      let currentLetter = input[i]
-      let count = letterCount[currentLetter]
+      let currentLetter = input[i];
+      let count = letterCount[currentLetter];
       if (count === 0) {
-        return false
+        return false;
       } else if (count === undefined) {
-          return false
+          return false;
       } else {
         count -= 1
-        letterCount[currentLetter] = count
+        letterCount[currentLetter] = count;
       } 
     }
     return true        
@@ -77,7 +77,7 @@ const Adagrams = {
   },
 
   countLetters(letters) {
-    const letterFrequency = {}
+    const letterFrequency = {};
   
      for (const letter of letters) {
       if (letterFrequency[letter] === undefined) {
@@ -86,7 +86,7 @@ const Adagrams = {
         letterFrequency[letter] += 1;
       }
      }
-     return letterFrequency
+     return letterFrequency;
   },
   
   scoreWord(word) {
@@ -102,15 +102,15 @@ const Adagrams = {
   },
 
   highestScoreFrom(words) {
-    let winningInfo = {}
-    let highScore = 0
-    let highScoreWordLength = 0
+    let winningInfo = {};
+    let highScore = 0;
+    let highScoreWordLength = 0;
 
     for (const word of words) {
-      let score = this.scoreWord(word)
+      let score = this.scoreWord(word);
       if (score > highScore) {
-        highScore = score 
-        highScoreWordLength = word.length
+        highScore = score;
+        highScoreWordLength = word.length;
         winningInfo = {
           word: word,
           score: score
@@ -129,7 +129,7 @@ const Adagrams = {
             }
           }
         }
-    return winningInfo
+    return winningInfo;
     } 
 };
 
