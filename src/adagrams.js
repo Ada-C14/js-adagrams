@@ -76,26 +76,23 @@ const Adagrams = {
 
   // wave 4 
   highestScoreFrom(words) {
-    let winningWord = {word: words[0], score: this.scoreWord(words[0])};
-    let winningScore = this.scoreWord(words[0]);
+    let result = [];
+    let maxScore = 0;
 
-    for (const word of words) {
-      if(this.scoreWord(word) > winningScore) {
-        winningScore = this.scoreWord(word);
-        winningScore = {word: word, score: this.scoreWord(word)};
+    for (let word of words) {
+      if (this.scoreWord(word) > maxScore) {
+        maxScore = this.scoreWord(word)
       }
-      else if (this.scoreWord(word) === winningScore) {
-        if(winningWord['word'].length === 10) {
-          winningWord = winningWord;
-        }
-        else if (word.length === 10) {
-          winningWord = { word: word, score: this.scoreWord(word)};
-        }
-        else if (word.length < winningWord['word'].length) {
-          winningWord = { word: word, score: this.scoreWord(word)};
-        }
-      }
-      return winningWord;
+      result.push({'word': word, 'score': this.scoreWord(word)})
+    }
+  
+    const maxScoreObj = result.filter(obj => obj.score == maxScore);
+    const tenLettersWords = maxScoreObj.find(obj => obj.word.length === 10);
+
+    if (tenLettersWords) {
+      return tenLettersWords
+    } else {
+      return maxScoreObj.sort((a,b) => a.word.length - b.word.length)[0];
     }
   }
 
@@ -104,6 +101,7 @@ const Adagrams = {
 // console.log(Adagrams.drawLetters()); 
 // Adagrams.scoreWord("ADA")
 // console.log(Adagrams.highestScoreFrom("ADA"));
+// Adagrams.highestScoreFrom(["MONA", "HI", "BAD"])
 
 
 // Do not remove this line or your tests will break!
