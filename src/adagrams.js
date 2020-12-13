@@ -163,9 +163,8 @@ const Adagrams = {
   },
 
   highestScoreFrom(words) {
-    // psuedocode
-    // goes through each word in words, finds score for each, makes arr
-    // compares scores in arr, finds highest - Math.max(arr)
+
+    // gather all the words/scores in a hash
 
     const scoresHash = {};
 
@@ -185,17 +184,35 @@ const Adagrams = {
     
     Object.keys(scoresHash).map(function(word) { if (scoresHash[word] === highestScore) { winningWords.push(word) } });
 
-    // evaluate the winningWords based on tiebreaker rules
-    winningWords.sort();
+    // sort the words by length
+
+    winningWords.sort(function(a, b) { 
+      // MDN made it look like .sort() would default sort strings by length, but it did not in the tests, so made custom sort
+      // modified custom sort from here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+      const nameA = a.length; 
+      const nameB = b.length;
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
     
+      return 0; 
+    });
+
+    // make a hash for the function return
+
     let bestScoreHash = {};
 
-    if (winningWords[winningWords.length-1] > 10) {
+    // add the word to the hash based on tiebreaker rules
+
+    if (winningWords[winningWords.length-1].length === 10) {
       bestScoreHash = {
         word: winningWords[winningWords.length-1],
         score: highestScore
       }
-    } else {
+    } else { // STILL TODO: selects the first word when both have same length
       bestScoreHash = {
         word: winningWords[0],
         score: highestScore
@@ -203,38 +220,7 @@ const Adagrams = {
     }
 
     return bestScoreHash;
-    // TODO: now filter or map or something to return all hashes with that value
 
-    // const winningWords = scoresHash.filter(word => {
-    //   if (word.score === highestScore) return word;
-    // });
-
-    // return winningWords;
-
-    // scoresHash.filter(word => { 
-    //   if (scoresHash[words[word]]) 
-    // })
-    // const bestScore = Object.entries(scoresHash).reduce((a,b) => scoresHash[a] > scoresHash[b] ? a : b) // https://stackoverflow.com/questions/51690146/javascript-finding-highest-value-in-map-vs-object
-
-
-    // then go thru the hash and find all instances where it's a score and return each hashpair
-
-
-
-
-
-    // find the highest scoring word
-    // const bestScore = Object.entries(scoresHash).reduce((a,b) => scoresHash[a] > scoresHash[b] ? a : b) // https://stackoverflow.com/questions/51690146/javascript-finding-highest-value-in-map-vs-object
-   
-    // console.log(bestScore);
-
-    //  // make it a hash again
-    // const bestScoreHash = {
-    //   word: bestScore[0],
-    //   score: bestScore[1]
-    // }
-
-    // return bestScoreHash;
   }
 
 };
@@ -245,7 +231,7 @@ const Adagrams = {
 // Adagrams.usesAvailableLetters('DOG', 'DOXXXXXXXX')
 // console.log(Adagrams.scoreWord('cat'))
 // console.log(Adagrams.scoreWord('zippers'))
-console.log(Adagrams.highestScoreFrom(['DOG', 'BANANT', 'BANANA']))
-
+// console.log(Adagrams.highestScoreFrom(['DOG', 'BANANT', 'BANANA']))
+// console.log(Adagrams.highestScoreFrom(['AAAAAAAAAA', 'BBBBBB']))
 // Do not remove this line or your tests will break!
-// export default Adagrams;
+export default Adagrams;
