@@ -11,8 +11,9 @@ const Adagrams = {
     };
 
     // shuffle letter pool, source: https://medium.com/@nitinpatel_20236/how-to-shuffle-correctly-shuffle-an-array-in-javascript-15ea3f84bfb
+    // j is a random integer 0 ≤ j ≤ i
     for (let i = letterPool.length-1; i > 0; i--) {
-      let j = Math.floor(Math.random() * i);
+      let j = Math.floor(Math.random() * i); 
       let temp = letterPool[i];
       letterPool[i] = letterPool[j];
       letterPool[j] = temp;
