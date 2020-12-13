@@ -11,10 +11,8 @@ import _ from 'lodash';
     return array;
   };
 
-
 const Adagrams = {
   drawLetters() {
-    
     //Letters will now be populated for game play! Start with an empty array. Pulling from const LETTERS hash.
     let letters = [];
 
@@ -24,7 +22,7 @@ const Adagrams = {
         letters.push(key);
         
       }
-    };
+    }
     //create a 'sample' method to return a sampling of tiles
     const randomTenTiles = _.sampleSize; //_.sampleSize is lodash npm
     let drawn = randomTenTiles(letters, 10);
@@ -48,18 +46,17 @@ const Adagrams = {
       return true;
       
         return false;
-      };
+      }
       {
       return false;
-      };
+      }
     },
   scoreWord(word) {
     let word_array = word.toUpperCase().split('');
     let score = 0;
-
     if (word_array.length > 6) {
       score += 8;
-    };
+    }
     for (let letter of word_array) {
       switch (letter) {
         case "A":
@@ -103,14 +100,54 @@ const Adagrams = {
           score += 10;
           break;
     }
-};
-return score;
-
-    }
   }
+  return score;
+  },
+  highestScoreFrom(words) {
+    //scenario 1: single high scoring word
+    let bestWords = [];
+    let highestScore = 0;
+    let winningWord = [];
+    let winner = {};
+    let tieBreaker = [];
 
+    for (let word of words) {
+      if (this.scoreWord(word) > highestScore) {
+        bestWords = []; //clear bestWords array
+        bestWords.push(word);
+        highestScore = this.scoreWord(word);
+      }
+      else if (this.scoreWord(word) === highestScore) {
+        bestWords.push(word);
+      }
+    } // end for loop
+    if (bestWords.length > 1) {
+      let wordLength = 10;
+      for (let word of bestWords) {
+        if (word.length === 10) {
+          tieBreaker = [];//clear tie_breaker array
+          tieBreaker.push(word);
+          break;
+        } // end if
+        else if (word.length < wordLength) {
+          tieBreaker = []; //clar tieBreaker array
+          tieBreaker.push(word);
+          wordLength = word.length;
+        } //end else if
+      } //end bestWords loop
+      winningWord = tieBreaker;
+    }
+    else {
+      winningWord = bestWords;
+      
+    } //end of bestWords > 1
 
-
+    //Assign Hash Value
+    winner["word"] = winningWord[0];
+    winner["score"] = highestScore;
+    return winner;
+    }//end highestScore function
+  }// end adagrams
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
@@ -120,9 +157,10 @@ export default Adagrams;
 
 
 
-//citing my code sources:
+//citing my code sources (besides my Ruby Adagrams code):
 // 1. For transforming hash into array: https://stackoverflow.com/questions/23237610/javascript-add-same-element-n-times-in-an-array
 //2. lodash _.sampleSize: https://lodash.com/docs/4.17.15 
 //3. Chris was used as a reference for learning how to get lodash to work w/jest :)
 //4. creating duplicate array (number 10-Array.from): https://www.freecodecamp.org/news/how-to-clone-an-array-in-javascript-1d3183468f6a/ 
-//Removing value from array: https://stackoverflow.com/questions/5767325/how-can-i-remove-a-specific-item-from-an-array
+//5.Removing value from array: https://stackoverflow.com/questions/5767325/how-can-i-remove-a-specific-item-from-an-array
+//6.switch statements were several cases equal same value: https://www.tutorialsteacher.com/javascript/javascript-switch#:~:text=The%20switch%20can%20includes%20multiple,default%20case%20will%20be%20executed.
