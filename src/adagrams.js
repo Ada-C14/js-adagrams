@@ -59,7 +59,7 @@ const LETTER_SCORES = {
 }
 
 class Adagrams {
-  drawLetters() {
+  static drawLetters() {
     const allLetters = [];
 
     for (const [letter, count] of Object.entries(ALL_LETTERS)) {
@@ -72,7 +72,7 @@ class Adagrams {
     return shuffle.pick(allLetters, { picks: 10 }); 
   }
 
-  countLetters(lettersArray) {
+  static countLetters(lettersArray) {
     const letterCount = {};
 
     lettersArray.forEach(letter => {
@@ -82,7 +82,7 @@ class Adagrams {
     return letterCount;
   }
 
-  usesAvailableLetters(input, lettersInHand) {
+  static usesAvailableLetters(input, lettersInHand) {
     if (input.length > lettersInHand.length) {
       return false;
     } 
@@ -99,13 +99,13 @@ class Adagrams {
     return true;
   }
 
-  scoreWord(word) {
+  static scoreWord(word) {
     const score = word.toUpperCase().split('').reduce((score, letter) => score + LETTER_SCORES[letter], 0);
 
     return word.length >= 7 ? score + 8 : score;
   }
 
-  highestScoreFrom(words) {
+  static highestScoreFrom(words) {
     let highestScore = { word: "", score: 0 };
     
     words.forEach(word => {
