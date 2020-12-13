@@ -98,12 +98,54 @@ const Adagrams = {
     return score;
   },
 
+  highestScoreFrom(words) {
+    const bestWordObj = {};
+    let bestScore = 0;
+    let bestWord = '';
+
+    //bestWord = {word: 'PINEAPPLE', score: this.scoreWord('PINEAPPLE'))},
+
+    //SCORING:
+    //prefer word with fewest letters, unless it has 10 letters
+    //ties: word with longest letters win
+    //first word if multiple words have same length/score
+
+    for (const playedWord in words) {
+      const score = this.scoreWord(words[playedWord]);
+
+      console.log(words[playedWord]) //prints out each word in the array
+
+      if (score > bestScore) {
+        bestWord = playedWord
+        bestScore = words[score];
+
+      }
+      else if (playedWord.length === 10 && score === bestScore && bestWord.length < 10 ) {
+        bestWord = playedWord;
+        bestScore = score;
+      }
+      else if (bestScore && bestWord.length === playedWord.length && bestWord.length !== 10) {
+        bestWord = playedWord;
+        bestScore = score;
+      }
+      console.log(score)
+
+    }
+    bestWordObj['word'] = bestWord;
+    bestWordObj['score'] = bestScore;
+
+    // console.log(bestWord);
+    // console.log(bestWordObj);
+
+    // return bestWordObj;
+  },
+
 };
 
 // Do not remove this line or your tests will break!
-export default Adagrams;
+// export default Adagrams;
 
-// console.log(Adagrams.scoreWord('PINEAPPLE'))
+console.log(Adagrams.highestScoreFrom(['PINEAPPLE', 'APPLE', 'CANDY']))
 
 //Decrementing letters from object--I just curious about how to write another function to solve wave 1
 // randomize() {
