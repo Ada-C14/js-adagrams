@@ -1,12 +1,12 @@
 class Adagrams {
   static drawLetters() {
-    let letterPool = buildPool();
+    const letterPool = buildPool();
     const shuffled = letterPool.sort(() => 0.5 - Math.random());
     return shuffled.slice(0, 10);
   }
 
   static usesAvailableLetters(input, lettersInHand) {
-    let counter = counterBuilder(lettersInHand);
+    const counter = counterBuilder(lettersInHand);
     for (let char of input){
       if (!counter[char] === true ) {
         return false;
@@ -81,7 +81,7 @@ class Adagrams {
   }};
 
 const buildPool = function () {
-  let letterPool = [];
+  const letterPool = [];
   const pool = {A:9,
           B:2,
           C:2,
@@ -110,7 +110,7 @@ const buildPool = function () {
           Z:1};
 
   Object.keys(pool).forEach(function (letter) { 
-    let number = pool[letter]
+    const number = pool[letter]
     for (let i = 0; i < number; i ++){
       letterPool.push(letter)
     }});
