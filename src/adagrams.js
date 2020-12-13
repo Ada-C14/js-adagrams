@@ -162,6 +162,81 @@ const Adagrams = {
 
   },
 
+  highestScoreFrom(words) {
+    // psuedocode
+    // goes through each word in words, finds score for each, makes arr
+    // compares scores in arr, finds highest - Math.max(arr)
+
+    const scoresHash = {};
+
+    for (const word in words) {
+      if (scoresHash[words[word]]) {
+        scoresHash[words[word]] = this.scoreWord(words[word]);
+      } else {
+        scoresHash[words[word]] = this.scoreWord(words[word]);
+      }  
+    }
+
+    // find the highest score
+    const highestScore = Math.max(...Object.values(scoresHash));
+
+    // gather all the words with the highest score
+    let winningWords = [];
+    
+    Object.keys(scoresHash).map(function(word) { if (scoresHash[word] === highestScore) { winningWords.push(word) } });
+
+    // evaluate the winningWords based on tiebreaker rules
+    winningWords.sort();
+    
+    let bestScoreHash = {};
+
+    if (winningWords[winningWords.length-1] > 10) {
+      bestScoreHash = {
+        word: winningWords[winningWords.length-1],
+        score: highestScore
+      }
+    } else {
+      bestScoreHash = {
+        word: winningWords[0],
+        score: highestScore
+      }
+    }
+
+    return bestScoreHash;
+    // TODO: now filter or map or something to return all hashes with that value
+
+    // const winningWords = scoresHash.filter(word => {
+    //   if (word.score === highestScore) return word;
+    // });
+
+    // return winningWords;
+
+    // scoresHash.filter(word => { 
+    //   if (scoresHash[words[word]]) 
+    // })
+    // const bestScore = Object.entries(scoresHash).reduce((a,b) => scoresHash[a] > scoresHash[b] ? a : b) // https://stackoverflow.com/questions/51690146/javascript-finding-highest-value-in-map-vs-object
+
+
+    // then go thru the hash and find all instances where it's a score and return each hashpair
+
+
+
+
+
+    // find the highest scoring word
+    // const bestScore = Object.entries(scoresHash).reduce((a,b) => scoresHash[a] > scoresHash[b] ? a : b) // https://stackoverflow.com/questions/51690146/javascript-finding-highest-value-in-map-vs-object
+   
+    // console.log(bestScore);
+
+    //  // make it a hash again
+    // const bestScoreHash = {
+    //   word: bestScore[0],
+    //   score: bestScore[1]
+    // }
+
+    // return bestScoreHash;
+  }
+
 };
 
 // MANUAL TESTING
@@ -170,6 +245,7 @@ const Adagrams = {
 // Adagrams.usesAvailableLetters('DOG', 'DOXXXXXXXX')
 // console.log(Adagrams.scoreWord('cat'))
 // console.log(Adagrams.scoreWord('zippers'))
+console.log(Adagrams.highestScoreFrom(['DOG', 'BANANT', 'BANANA']))
 
 // Do not remove this line or your tests will break!
-export default Adagrams;
+// export default Adagrams;
