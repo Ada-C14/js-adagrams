@@ -27,11 +27,11 @@ const Adagrams = {
     let handHashMap = {};
 
     for (let i = 0; i < lettersInHand.length; i++) {
-      handHashMap[lettersInHand[i]] = 0;
-    };
-
-    for (let i = 0; i < lettersInHand.length; i++) {
-      handHashMap[lettersInHand[i]] += 1;
+      if (handHashMap[lettersInHand[i]]) {
+        handHashMap[lettersInHand[i]] += 1;
+      } else {
+        handHashMap[lettersInHand[i]] = 1;
+      };
     };
 
     for (let letter of input) {
@@ -68,7 +68,7 @@ const Adagrams = {
   highestScoreFrom(words) {
     let winner = {
       word: '',
-      score: 0
+      score: 0,
     };
 
     for (let word of words) {
