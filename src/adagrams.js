@@ -27,14 +27,10 @@ const letterPool = {
   Z: [1, 10]
 }
 
-// concat letter to a string and multiply by value. push letter value number of times
 const Adagrams = {
   drawLetters() {
     const letters = [];
     for (const letter in letterPool) {
-    //   for(let i = 0; i < letterPool[letter][0]; i++) {
-    //     letters.push(letter);
-    // }
       let i = 0
       do {
         letters.push(letter);
@@ -49,33 +45,11 @@ const Adagrams = {
   },
 
   usesAvailableLetters(word, hand = drawLetters()) {
+    // if letter is found in hand, the search continues at an incremented index. this way a letter in hand cant be counted twice
     return word.toUpperCase().split('').every(( index => letter => index = hand.indexOf(letter, index) + 1)(0));
   },
   
   scoreWord(word) {
-    // const onePoint = ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'];
-    // const threePoints = ['B', 'C', 'M', 'P'];
-    // const fourPoints = ['F', 'H', 'V', 'W', 'Y'];
-
-    // word = word.toUpperCase().split('');
-    // let score = 0;
-    // for (const letter of word) {
-    //   if (onePoint.includes(letter)) {
-    //     score += 1;
-    //   } else if (letter === 'D' || letter == 'G') {
-    //     score += 2;
-    //   } else if (threePoints.includes(letter)) {
-    //     score += 3;
-    //   } else if (fourPoints.includes(letter)) {
-    //     score += 4;
-    //   } else if (letter === 'K') {
-    //     score += 5;
-    //   } else if (letter === 'J' || letter === 'X') {
-    //     score += 8;
-    //   } else if (letter === 'Q' || letter === 'Z') {
-    //     score += 10;
-    //   }
-    // }
     if (word.length < 1) {
       return 0
     }
