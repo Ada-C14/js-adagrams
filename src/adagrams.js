@@ -99,30 +99,39 @@ const Adagrams = {
         total += 8;
     }
     return total;
-  }
+  },
+
+  highestScoreFrom(words) {
+    let winningInfo = {}
+    let highScore = 0
+    let highScoreWordLength = 0
+
+    for (const word of words) {
+      let score = this.scoreWord(word)
+      if (score > highScore) {
+        highScore = score 
+        highScoreWordLength = word.length
+        winningInfo = {
+          word: word,
+          score: score
+        }
+        } else if ((score === highScore) && (highScoreWordLength < 10)) {
+            if (word.length < highScoreWordLength) {
+              winningInfo = {
+                word: word,
+                score: score
+              }
+            } else if (word.length === 10) {
+                winningInfo = {
+                  word: word,
+                  score: score
+                }
+            }
+          }
+        }
+    return winningInfo
+    } 
 };
-
-// console.log(scoreWord('ida'))
-
-// const usesAvailableLetters = function(input, lettersInHand) {
-//   const letterCount = countLetters(lettersInHand)
-//   for (let i = 0; i < input.length; i += 1) {
-//     let count = letterCount[i]
-//     if (count === 0) {
-//       return false
-//     } else {
-//       count -= 1
-//       letterCount[i] = count
-//       return true
-//     }
-//   }
-// }
-
-
-
-
-
-
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
