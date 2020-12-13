@@ -28,27 +28,28 @@ const POOL = {
 }
 
 const Adagrams = {
+  randInt(max) {
+    return Math.floor(Math.random() * Math.floor(max))
+  },
+
   drawLetters() {
     // Turn pool object into flat array
     let newPool = [];
     for (var letter in POOL) {
-      console.log(letter)
-      for (i = 0; i < POOL[letter]; i++) {
-        newPool.push(letter);
+      for (let i = 0; i < POOL[letter]; i++) {
+        newPool.push(letter.toUpperCase());
       }
     }
-    
+
     // Select ten letters from pool
     let hand = [];
-    for (i = 0; i < 10; i++) {
-      hand.push(newPool.splice(1, 1));
+    for (let i = 0; i < 10; i++) {
+      hand.push(String(newPool.splice(this.randInt(newPool.length), 1)));
     }
 
     return hand;
   },
 };
 
-console.log(Adagrams.drawLetters())
-
 // Do not remove this line or your tests will break!
-// export default Adagrams;
+export default Adagrams;
