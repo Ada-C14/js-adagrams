@@ -1,3 +1,4 @@
+
 import Adagrams from 'adagrams';
 
 describe('Adagrams', () => {
@@ -84,7 +85,7 @@ describe('Adagrams', () => {
     });
   });
 
-  describe.skip('highestScoreFrom', () => {
+  describe('highestScoreFrom', () => {
     it('returns a hash that contains the word and score of best word in an array', () => {
       const words = ['X', 'XX', 'XXX', 'XXXX'];
       const correct = { word: 'XXXX', score: Adagrams.scoreWord('XXXX') };
