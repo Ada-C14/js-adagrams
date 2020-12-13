@@ -59,15 +59,11 @@ const Adagrams = {
     for (let i = 0; i < lettersInHand.length; i++) {
       handHashMap[lettersInHand[i]] += 1 };
 
-    for (const letter of input) {
+    for (let letter of input) {
       if (handHashMap[letter]) {
-        handHashMap[letter] -= 1
-        // use debugger to learn why it never hits line 66
-        if (handHashMap[letter] < 0) { 
-          console.log(`Not enough of letter ${letter} in hand!`)
-          return false } }
+        handHashMap[letter] -= 1}
       else {
-        console.log(`${letter} was never in hand!`)
+        console.log(`Insufficient quantity of letter ${letter} in hand.`)
         return false }
       };
     return true;
@@ -105,25 +101,43 @@ const Adagrams = {
       Z: 10
     };
 
+    // establish score and add 8 depending on length
     const add8 = [7, 8, 9, 10]
     let score = 0
-
+    
     if (add8.includes(word.length)) {
       score += 8 }
-
+    
+    // calculate score
     for (let letter of word) {
       score += letterScore[letter.toUpperCase()]}
 
     return score
+  },
+
+  highestScoreFrom(words) {
+    let winner = {
+      word: '',
+      score: 0
+    }
+    for (let word of words) {
+      if (this.scoreWord(word) > winner['score']) {
+        winner['word'] = word
+        winner['score'] = this.scoreWord(word)}
+
+      // tie breaker
+      else if (this.scoreWord(word) === winner['score'] && winner['word'].length !== 10) {
+        if (word.length === 10) {
+          winner['word'] = word
+          winner['score'] = this.scoreWord(word) }
+
+        else if (winner['word'].length > word.length) {
+          winner['word'] = word
+          winner['score'] = this.scoreWord(word)}}
+    }
+    return winner
   }
-
-  
-
-
 }
-
-// console.log(Adagrams.drawLetters())
-
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
