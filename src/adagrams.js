@@ -37,7 +37,14 @@ const Adagrams = {
         newPool.push(letter);
       }
     }
-    return newPool
+    
+    // Select ten letters from pool
+    let hand = [];
+    for (i = 0; i < 10; i++) {
+      hand.push(newPool.splice(1, 1));
+    }
+
+    return hand;
   },
 };
 
