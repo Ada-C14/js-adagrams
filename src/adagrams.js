@@ -45,7 +45,29 @@ const Adagrams = {
     }
     return letters_in_hand;
     
-  }
+  },
+
+  usesAvailableLetters(input, lettersInHand){
+    let object = new Object();
+    for (let letter of lettersInHand) {
+      if (object[letter]) {
+          object[letter] += 1;
+        } else {
+          object[letter] = 1;
+        }
+      }
+      const input_array = input.split('');
+      console.log(input_array);
+
+      for (let letter of input_array) {
+        if (object[letter] > 0) {
+          object[letter] -= 1;
+        } else {
+        return false;
+        }
+      }
+      return true;
+   } 
 };
 
 // console.log(Adagrams.drawLetters())
