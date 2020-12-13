@@ -52,8 +52,35 @@ const Adagrams = {
       }
     }
     return true;
-  }
+  },
 
+  scoreWord(word) {
+    let wordSplit = word.toLowerCase();
+    wordSplit = wordSplit.split('');
+    let score = 0;
+    for (let letter of wordSplit) {
+      if (letter === 'a' || letter === 'e' || letter === 'i' || letter === 'o' || letter === 'u' || letter === 'l' || letter === 'n' || letter === 'r' || letter === 's' || letter === 't') {
+        score += 1;
+      } else if (letter === 'd' || letter === 'g') {
+        score += 2;
+      } else if (letter === 'b' || letter === 'c' || letter === 'm' || letter === 'p') {
+        score += 3;
+      } else if (letter === 'f' || letter === 'h' || letter === 'v' || letter === 'w' || letter === 'y') {
+        score += 4;
+      } else if (letter === 'k') {
+        score += 5;
+      } else if (letter === 'j' || letter === 'x') {
+        score += 8;
+      } else if (letter === 'q' || letter === 'z') {
+        score == 10;
+      }
+    }
+
+    if (word.length > 6 && word.length < 11) {
+      score += 8;
+    }
+    return score;
+  }
 
 };
 
