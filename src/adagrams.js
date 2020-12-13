@@ -111,9 +111,50 @@ const Adagrams = {
       }
     }
     return sum;
+  },
+
+  highestScoreFrom(words) {
+    let winner = new Object();
+    let scores = new Object();
+    //create an object where word from words will be a key and value is a score
+      // to do so I iterate through the words, call a function scoreWord on each, than put word and score pair in the object
+    for (let word of words) {
+      scores[word] = this.scoreWord(word);
+    }
+    // find maximum between values 
+    let max = 0;
+    for (let word in scores) {
+      if (scores[word] > max) {
+        max = scores[word];
+      }
+    }
+
+    //create an array of words with tie scores
+    const ties_array = [];
+    for (let word in scores) {
+      if (scores[word] === max) {
+        ties_array.push(word);
+      }
+    }
+    // if array of ties contains 1 element, than return it
+    if (ties_array.length == 1) {
+      return {"score": max, "word": ties_array[0]};
+    }
+
+    // in array if ties looking for a word that is 10 characters long, return if found;
+    // if there is no 10-characters long word, find he shortest word and return it.
+    let shortest = ties_array[0];
+    for (let word of ties_array) {
+      if (word.length === 10) {
+        return {"score": max, "word": word} 
+      }
+      if (word.length < shortest.length) {
+        shortest = word;
+      }
+    }
+
+    return {"score": max, "word": shortest};
   }
-
-
 };
 
 // console.log(Adagrams.drawLetters())
