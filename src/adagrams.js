@@ -27,11 +27,11 @@ const Adagrams = {
     let handHashMap = {};
 
     for (let i = 0; i < lettersInHand.length; i++) {
-      handHashMap[lettersInHand[i]] = 0
+      handHashMap[lettersInHand[i]] = 0;
     };
 
     for (let i = 0; i < lettersInHand.length; i++) {
-      handHashMap[lettersInHand[i]] += 1 
+      handHashMap[lettersInHand[i]] += 1;
     };
 
     for (let letter of input) {
@@ -54,11 +54,12 @@ const Adagrams = {
     let score = 0;
     
     if (add8.includes(word.length)) {
-      score += 8 };
+      score += 8;
+    };
     
     // calculate score
     for (let letter of word) {
-      score += letterScore[letter.toUpperCase()]
+      score += letterScore[letter.toUpperCase()];
     };
 
     return score;
@@ -81,12 +82,12 @@ const Adagrams = {
         } else if (winner['word'].length > word.length) {
           winner['word'] = word;
           winner['score'] = this.scoreWord(word);
-        }
-      }
-    }
+        };
+      };
+    };
     return winner;
-  }
-}
+  },
+};
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
