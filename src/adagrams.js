@@ -103,8 +103,6 @@ const Adagrams = {
     let bestScore = 0;
     let bestWord = '';
 
-    //bestWord = {word: 'PINEAPPLE', score: this.scoreWord('PINEAPPLE'))},
-
     //SCORING:
     //prefer word with fewest letters, unless it has 10 letters
     //ties: word with longest letters win
