@@ -52,14 +52,14 @@ const Adagrams = {
     return _.sampleSize(letterPool, 10);
   },
   usesAvailableLetters(input, lettersInHand) {
-    let dupHand = _.clone(lettersInHand);
+    let clonedHand = _.clone(lettersInHand);
     
     for (const letter of input) {
-      if (!dupHand.includes(letter)) {
+      if (!clonedHand.includes(letter)) {
         return false;
       }
 
-      _.pull(dupHand, letter);
+      _.pull(clonedHand, letter);
     }
 
     return true;
@@ -82,7 +82,31 @@ const Adagrams = {
     return score;
   },
   highestScoreFrom(words) {
-    
+    const scores = words.map(word => this.scoreWord(word));
+    const max_score = Math.max(...scores);
+    const highestScoringWords = words.filter(word => this.scoreWord(word) === max_score);
+
+    if (highestScoringWords.length === 1) {
+      return {
+        word: highestScoringWords[0],
+        score: max_score
+      };
+    } else {
+      const tiedWordsLength = highestScoringWords.map(word => word.length);
+
+      if (tiedWordsLength.includes(10)) {
+        return {
+          // .find returns the first instance
+          word: highestScoringWords.find(word => word.length === 10),
+          score: max_score
+        };
+      } else {
+        return {
+          word: highestScoringWords.find(word => word.length === Math.min(...tiedWordsLength)),
+          score: max_score
+        };
+      }
+    }
   }
 };
 
