@@ -49,6 +49,26 @@ const Adagrams = {
 
     return hand;
   },
+
+   usesAvailableLetters(input, lettersInHand) {
+     if (input.length > lettersInHand.length) {
+       return false;
+     }
+
+     // Iterate through characters in input string
+     for (let c of input) {
+       // Return false if letter is not in hand
+       if (!lettersInHand.includes(c)) {
+         return false;
+       }
+
+       // Remove letter from hand
+       let index = lettersInHand.findIndex(letter => letter === c);
+       lettersInHand.splice(index, 1);
+     }
+
+     return true;
+  },
 };
 
 // Do not remove this line or your tests will break!
