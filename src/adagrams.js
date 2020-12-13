@@ -46,37 +46,37 @@ const Adagrams = {
     return word.toUpperCase().split('').every(( index => letter => index = hand.indexOf(letter, index) + 1)(0));
   },
   
-  // scoreWord(word) {
+  scoreWord(word) {
     const onePoint = ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'];
     const threePoints = ['B', 'C', 'M', 'P'];
     const fourPoints = ['F', 'H', 'V', 'W', 'Y'];
 
-  //   word = word.toUpperCase().split('');
-  //   let score = 0;
-  //   for (const letter of word) {
-  //     if (onePoint.includes(letter)) {
-  //       score += 1;
-  //     } else if (letter === 'D' || letter == 'G') {
-  //       score += 2;
-  //     } else if (threePoints.includes(letter)) {
-  //       score += 3;
-  //     } else if (fourPoints.includes(letter)) {
-  //       score += 4;
-  //     } else if (letter === 'K') {
-  //       score += 5;
-  //     } else if (letter === 'J' || letter === 'X') {
-  //       score += 8;
-  //     } else if (letter === 'Q' || letter === 'Z') {
-  //       score += 10;
-  //     }
-  //   }
+    word = word.toUpperCase().split('');
+    let score = 0;
+    for (const letter of word) {
+      if (onePoint.includes(letter)) {
+        score += 1;
+      } else if (letter === 'D' || letter == 'G') {
+        score += 2;
+      } else if (threePoints.includes(letter)) {
+        score += 3;
+      } else if (fourPoints.includes(letter)) {
+        score += 4;
+      } else if (letter === 'K') {
+        score += 5;
+      } else if (letter === 'J' || letter === 'X') {
+        score += 8;
+      } else if (letter === 'Q' || letter === 'Z') {
+        score += 10;
+      }
+    }
 
-  //   if (word.length > 6) {
-  //     score += 8;
-  //   }
+    if (word.length > 6) {
+      score += 8;
+    }
 
-  //   return score;
-  // },
+    return score;
+  },
 
   // highestScoreFrom(words) {
   //   let scores = []
