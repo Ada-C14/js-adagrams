@@ -103,6 +103,9 @@ const Adagrams = {
   }
   return score;
   },
+
+  //heavily relied on my Adagrams.rb program for this part. Translated into js. 
+  //hardest part was indentation, finding my 'ends', and semicolon syntax. Took awhile to get this code to work due to poor indentation and mixed up end braces. 
   highestScoreFrom(words) {
     //scenario 1: single high scoring word
     let bestWords = [];
@@ -154,8 +157,6 @@ export default Adagrams;
 
 
 // Adagrams.usesAvailableLetters('test', Adagrams.drawLetters());
-
-
 
 //citing my code sources (besides my Ruby Adagrams code):
 // 1. For transforming hash into array: https://stackoverflow.com/questions/23237610/javascript-add-same-element-n-times-in-an-array
