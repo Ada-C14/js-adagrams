@@ -162,6 +162,67 @@ const Adagrams = {
 
   },
 
+  highestScoreFrom(words) {
+
+    // gather all the words/scores in a hash
+
+    const scoresHash = {};
+
+    for (const word in words) {
+      if (scoresHash[words[word]]) {
+        scoresHash[words[word]] = this.scoreWord(words[word]);
+      } else {
+        scoresHash[words[word]] = this.scoreWord(words[word]);
+      }  
+    }
+
+    // find the highest score
+    const highestScore = Math.max(...Object.values(scoresHash));
+
+    // gather all the words with the highest score
+    let winningWords = [];
+    
+    Object.keys(scoresHash).map(function(word) { if (scoresHash[word] === highestScore) { winningWords.push(word) } });
+
+    // sort the words by length
+
+    winningWords.sort(function(a, b) { 
+      // MDN made it look like .sort() would default sort strings by length, but it did not in the tests, so made custom sort
+      // modified custom sort from here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+      const nameA = a.length; 
+      const nameB = b.length;
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+    
+      return 0; 
+    });
+
+    // make a hash for the function return
+
+    let bestScoreHash = {};
+
+    // add the word to the hash based on tiebreaker rules
+
+    if (winningWords[winningWords.length-1].length === 10) {
+      bestScoreHash = {
+        word: winningWords[winningWords.length-1],
+        score: highestScore
+      }
+    } else { // STILL TODO: selects the first word when both have same length
+      bestScoreHash = {
+        word: winningWords[0],
+        score: highestScore
+      }
+    }
+
+    return bestScoreHash;
+
+  }
+
 };
 
 // MANUAL TESTING
@@ -170,6 +231,7 @@ const Adagrams = {
 // Adagrams.usesAvailableLetters('DOG', 'DOXXXXXXXX')
 // console.log(Adagrams.scoreWord('cat'))
 // console.log(Adagrams.scoreWord('zippers'))
-
+// console.log(Adagrams.highestScoreFrom(['DOG', 'BANANT', 'BANANA']))
+// console.log(Adagrams.highestScoreFrom(['AAAAAAAAAA', 'BBBBBB']))
 // Do not remove this line or your tests will break!
 export default Adagrams;
