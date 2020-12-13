@@ -79,9 +79,9 @@ const Adagrams = {
   },
 
   highestScoreFrom(words) {
-    let scores = []
+    let scores = [];
     for (const word of words) {
-      scores.push(Adagrams.scoreWord(word))
+      scores.push(Adagrams.scoreWord(word));
     }
 
     const bestScore = Math.max(...scores);
@@ -91,31 +91,30 @@ const Adagrams = {
     let winningIndex;
     let tiedWords = []
     if (indices.length === 1) {
-      winningIndex = indices[0]
-      highestScore = {score: scores[winningIndex], word: words[winningIndex]}
-      return highestScore
+      winningIndex = indices[0];
+      highestScore = {score: scores[winningIndex], word: words[winningIndex]};
+      return highestScore;
     } else {
       for (const index of indices) {
-        tiedWords.push(words[index])
+        tiedWords.push(words[index]);
       }
       let shortest = tiedWords[0];
       let shortestIndex = 0;
       for (const word of tiedWords) {
         if (word.length === 10) {
-          winningIndex = tiedWords.indexOf(word)
-          highestScore = {score: scores[indices[winningIndex]], word: tiedWords[winningIndex]}
-          return highestScore
+          winningIndex = tiedWords.indexOf(word);
+          highestScore = {score: scores[indices[winningIndex]], word: tiedWords[winningIndex]};
+          return highestScore;
         } else {
           if (word.length < shortest.length) {
-            shortest = word
-            shortestIndex = tiedWords.indexOf(shortest)
+            shortest = word;
+            shortestIndex = tiedWords.indexOf(shortest);
           }
         }
       }
-      winningIndex = shortestIndex
     
-      highestScore = {score: scores[indices[winningIndex]], word: tiedWords[winningIndex]}
-      return highestScore
+      highestScore = {score: scores[indices[shortestIndex]], word: tiedWords[shortestIndex]};
+      return highestScore;
     }
   }
 };
