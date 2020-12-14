@@ -80,6 +80,48 @@ const Adagrams = {
       score += 8;
     }
     return score;
+  },
+
+  highestScoreFrom(words) {
+    //make an object with word as key, score as value - add each word object to an array
+    const wordsArray = [];
+    for (let word of words) {
+      let newObject = {};
+      newObject['word'] = word;
+      newObject['score'] = this.scoreWord(word);
+      wordsArray.push(newObject);
+    }
+
+    //initialize highest score word empty string, highest score starting at 0
+    let highestWord = '';
+    let highestScore = 0;
+    let winningWord = {};
+    //iterate through array, compare highest score
+    for (let wordObject of wordsArray) {
+      //if score > highest score then highest score object is replaced with current word
+      if (wordObject.score > highestScore) {
+        highestWord = wordObject.word;
+        highestScore = wordObject.score;
+      //else if scores are equal
+      } else if (wordObject.score === highestScore) {
+        //if the word length is 10 and the current highest score is not 10
+        if (wordObject.word.length === 10 && highestWord.length !== 10) {
+          //new highest score word is the current one
+          highestWord = wordObject.word;
+          highestScore = wordObject.score;
+        //else if word length is shorder than current highest score and the highest score word length is not 10
+        } else if (wordObject.word.length < highestWord.length && highestWord.length !== 10) {
+          //new highest score word is the current word
+          highestWord = wordObject.word;
+          highestScore = wordObject.score;
+        }
+
+      }
+    }
+    //return the winning word object
+    winningWord['word'] = highestWord;
+    winningWord['score'] = highestScore;
+    return winningWord;
   }
 
 };
