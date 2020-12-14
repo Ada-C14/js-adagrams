@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "core-js": "^3.8.0",
+    "underscore": "^1.12.0",
     "vorpal": "^1.12.0"
   }
 }
