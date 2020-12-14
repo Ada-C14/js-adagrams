@@ -82,11 +82,14 @@ const Adagrams = {
 
   usesAvailableLetters (wordCreated, letterInHand) {
     // Wave 2
-    const letterInHandCopy = Array.from(letterInHand);
+    let letterInHandCopy = Array.from(letterInHand);
     const word = wordCreated.toUpperCase().split('');
+
     for (const char of word) {
       if (!letterInHandCopy.includes(char)) {
         return false;
+      } else {
+        letterInHandCopy.splice(letterInHandCopy.indexOf(char), 1);
       }
     }
     return true;
@@ -102,43 +105,59 @@ const Adagrams = {
         case '':
           value = 0;
           break;
-        case 'A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T':
+        case 'A':
+        case 'E':
+        case 'I':
+        case 'O':
+        case 'U':
+        case 'L':
+        case 'N':
+        case 'R':
+        case 'S':
+        case 'T':
           value += 1;
           break;
-        case 'D', 'G':
+        case 'D':
+        case 'G':
           value += 2;
           break;
-        case 'B', 'C', 'M', 'P':
+        case 'B':
+        case 'C':
+        case 'M':
+        case 'P':
           value += 3;
           break;
-        case 'F', 'H', 'V', 'W', 'Y':
+        case 'F':
+        case 'H':
+        case 'V':
+        case 'W':
+        case 'Y':
           value += 4;
           break;
         case 'K':
           value += 5;
           break;
-        case 'J','X':
+        case 'J':
+        case 'X':
           value += 8;
           break;
-        case 'Q', 'Z':
+        case 'Q':
+        case 'Z':
           value += 10;
           break;
         // default: 
         //   alert (`Your word contains ${char} an invalid character. `);
         //   break;
       };
-
-      let wordScores = value;
-      if (word.length >= 7) {
-        wordScores = value + 8 
-      }
-      return wordScores;
     };
-
+    if (word.length >= 7) {
+      value = value + 8 
+    }
+    return value;
   },
 
 }
-
+console.log(Adagrams.scoreWord('hello'));
 // console.log(Adagrams.usesAvailableLetters(wordCreated, letterInHand));
 // console.log(Adagrams.drawLetters());
 
