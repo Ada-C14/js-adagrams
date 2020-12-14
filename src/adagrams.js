@@ -47,10 +47,10 @@ const Adagrams = {
 
     const inHandHash = {}
     lettersInHand.forEach((letter) => {
-      inHandHash[letter] === 'undefined' ? inHandHash[letter] = 1 : inHandHash[letter]++;
+      inHandHash[letter] === undefined ? inHandHash[letter] = 1 : inHandHash[letter]++;
     });
 
-    const inputLetters = input.toUpperCase().split(" ");
+    const inputLetters = input.toUpperCase().split("");
 
     if (inputLetters.length > 10) {return false};
 
@@ -132,11 +132,7 @@ const Adagrams = {
         }
       }
     })
-    
-    
-    // word - string of winning word score - score of winning word
-
-    return highestScore
+    return highestScore;
   }
 };
 
