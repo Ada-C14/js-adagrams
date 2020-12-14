@@ -20,12 +20,12 @@ const Adagrams = {
   },
 
   usesAvailableLetters(input,lettersInHand) {
-    const lettersCopy = [...lettersInHand];
-    for (const letter of input.toUpperCase()) {
-      if(!lettersCopy.includes(letter)) {
+    // const lettersCopy = [...lettersInHand];
+    for (const letter of input) {
+      if(!lettersInHand.includes(letter)) {
         return false;
       } else {
-        lettersCopy.splice(lettersCopy.indexOf(letter), 1);
+        lettersInHand.splice(lettersInHand.indexOf(letter), 1);
       }
     }
     return true;
