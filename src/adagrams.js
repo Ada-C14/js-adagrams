@@ -27,6 +27,7 @@ const Adagrams = {
     Y: 2,
     Z: 1,
   },
+
   buildPool() {
     let pool = [];
     for (const letter in this.poolCount) {
@@ -38,10 +39,35 @@ const Adagrams = {
     }
     return pool;
   },
+
   drawLetters() {
     const pool = this.buildPool();
     const __ = require('underscore');
     return __.sample(pool, 10);
+  },
+
+  countLetters(array) {
+    const __ = require('underscore');
+    for (const letter in array) {
+      return __.countBy(array, letter);
+    }
+  },
+
+  usesAvailableLetters(input, lettersInHand) {
+    const __ = require('underscore');
+    const word = input.split('');
+    
+    const handCount = this.countLetters(lettersInHand);
+    const wordCount = this.countLetters(word);
+
+    for (const letter in wordCount) {
+      if (handCount[letter] === undefined) {
+          return false;
+      } else if (handCount[letter] < wordCount[letter]) {
+          return false;
+      }
+    }
+    return true;
   },
 };
 
