@@ -1,4 +1,5 @@
 const Adagrams = {
+  __: require('underscore'),
   poolCount: {
     A: 9,
     B: 2,
@@ -42,19 +43,16 @@ const Adagrams = {
 
   drawLetters() {
     const pool = this.buildPool();
-    const __ = require('underscore');
-    return __.sample(pool, 10);
+    return this.__.sample(pool, 10);
   },
 
   countLetters(array) {
-    const __ = require('underscore');
     for (const letter in array) {
-      return __.countBy(array, letter);
+      return this.__.countBy(array, letter);
     }
   },
 
   usesAvailableLetters(input, lettersInHand) {
-    const __ = require('underscore');
     const word = input.split('');
     
     const handCount = this.countLetters(lettersInHand);
@@ -112,11 +110,10 @@ const Adagrams = {
   },
 
   highestScoreFrom(words) {
-    const __ = require('underscore')
     let topScore = 0;
     let shortestWord = 10;
 
-    const scoredWords = __.map(words, (word) => {
+    const scoredWords = this.__.map(words, (word) => {
       const score = this.scoreWord(word);
       if (score > topScore) {
         topScore = score;
@@ -128,11 +125,11 @@ const Adagrams = {
       return { word: word, length: word.length, score: score };
     });
 
-    let topWords = __.where(scoredWords, { score: topScore });
+    let topWords = this.__.where(scoredWords, { score: topScore });
     
     let winner = {};
-    const tenLetter = __.findWhere(topWords, { length: 10 });
-    const shortWinner = __.findWhere(topWords, { length: shortestWord });
+    const tenLetter = this.__.findWhere(topWords, { length: 10 });
+    const shortWinner = this.__.findWhere(topWords, { length: shortestWord });
 
     if (topWords.length === 1) {
       winner.word = topWords[0]['word'];
