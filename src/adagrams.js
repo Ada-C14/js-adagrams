@@ -45,9 +45,35 @@ const Adagrams = {
   return sampleTen;
 
   },
+
+  usesAvailableLetters(input, lettersInHand) {
+    const lettersInHandCopy = [...lettersInHand];
+    const inputSplit = input.split('');
+
+    for(let letter of input) { 
+      if (lettersInHandCopy.includes(letter)) {
+        lettersInHandCopy.splice(lettersInHandCopy.indexOf(letter), 1);
+      } else {
+        return false;
+      }
+    }
+  return true;  
+  }
 };
 
-console.log(Adagrams.drawLetters());
+
+// input_split.each do |i|
+// if letters_in_hand_copy.include?(i)
+//   letters_in_hand_copy.delete_at(letters_in_hand_copy.index(i))
+// else
+//   return false
+// end
+// end
+// return true
+
+console.log(Adagrams.usesAvailableLetters('bye', ['b','e','y']))
+
+// console.log(Adagrams.drawLetters());
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
