@@ -82,6 +82,49 @@ const Adagrams = {
     }
     return score;
   },
+
+  highestScoreFrom(words) {
+    let winner = {
+      word: '',
+      score: 0,
+    };
+    let bestWords = [];
+    let highScore = 0;
+    for (const word of words) {
+      if (this.scoreWord(word) > highScore) {
+        bestWords = [];
+        bestWords.push(word);
+        highScore = this.scoreWord(word);
+      } else if (this.scoreWord(word) === highScore) {
+        bestWords.push(word);
+      }
+    }
+    if (bestWords.length > 1) {
+      winner['word'] = this.breakTie(bestWords);
+    } else {
+      winner['word'] = bestWords.first;
+    }
+
+    winner['score'] = highScore;
+    return winner;
+  },
+
+  breakTie(words) {
+    let winners = [];
+    let wordLength = 10;
+    for (const word of words) {
+      if (word.length === 10) {
+        winners = [];
+        winners.push(word);
+        break;
+      } else if (word.length < wordLength) {
+          winners = [];
+          winners.push(word);
+          wordLength = word.length;
+      }
+    }
+    return winners.first;
+  }
 };
 
 // Do not remove this line or your tests will break!
