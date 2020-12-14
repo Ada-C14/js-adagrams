@@ -1,8 +1,8 @@
 const Adagrams = {
   lettersDistribution: [
     "A", "A", "A", "A", "A", "A", "A", "A", "A",
-    "B", "B", 
-    "C", "C", 
+    "B", "B",
+    "C", "C",
     "D", "D", "D", "D",
     "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E",
     "F", "F",
@@ -16,21 +16,21 @@ const Adagrams = {
     "N", "N", "N", "N", "N", "N",
     "O", "O", "O", "O", "O", "O", "O", "O",
     "P", "P",
-    "Q", 
+    "Q",
     "R", "R", "R", "R", "R", "R",
-    "S", "S", "S", "S", 
+    "S", "S", "S", "S",
     "T", "T", "T", "T", "T", "T",
     "U", "U", "U", "U",
-    "V", "V", 
+    "V", "V",
     "W", "W",
-    "X", 
-    "Y", "Y", 
-    "Z" 
-    ],
+    "X",
+    "Y", "Y",
+    "Z"
+  ],
 
-  drawLetters: function() {
+  drawLetters: function () {
     // shuffle array
-    for(let i = this.lettersDistribution.length - 1; i > 0; i--){
+    for (let i = this.lettersDistribution.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * i)
       const temp = this.lettersDistribution[i]
       this.lettersDistribution[i] = this.lettersDistribution[j]
@@ -41,9 +41,9 @@ const Adagrams = {
     return this.lettersDistribution.slice(0, 10);
   },
 
-  usesAvailableLetters: function(input, lettersInHand) {
+  usesAvailableLetters: function (input, lettersInHand) {
     const inputLetters = input.split('');
-    
+
     let usesAvailableLetters = true;
     inputLetters.forEach(letter => {
       const matchLetter = lettersInHand.findIndex(handLetter => handLetter == letter);
@@ -53,12 +53,11 @@ const Adagrams = {
       }
 
       lettersInHand.splice(matchLetter, 1);
-      usesAvailableLetters = true;
     });
 
     return usesAvailableLetters;
   }
 };
 
-// Do not remove this line or your tests will break!
-export default Adagrams;
+    // Do not remove this line or your tests will break!
+    export default Adagrams;
