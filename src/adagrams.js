@@ -33,7 +33,7 @@ for(const letter in pool)
 {
     for(let i=1; i <= pool[letter] ; i++)
     {
-       allLetters.push(letter)
+      allLetters.push(letter);
     }
 }
 // console.log(allLetters)
@@ -73,8 +73,6 @@ const Adagrams = {
   usesAvailableLetters(word, drawn){
     let results = []
     word = Array.from(word)
-    let wordLength = word.length
-    let drawnLength = drawn.length
     let i = 0
     for (let letter in word) {
       if (drawn.includes(word[letter]))
@@ -85,13 +83,8 @@ const Adagrams = {
       }
       else {
         results.push(false)
-        console.log(drawn[i]);
         i += 1
-        console.log(word[letter])
-    };
-      console.log(results);
-  
-
+      };
     };
     
     if (results.includes(false)) {
@@ -102,6 +95,35 @@ const Adagrams = {
     };
 
   },
+  scoreWord(word){
+    let scoreChart = {1: ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'],
+      2: ['D', 'G',],
+      3: ['B', 'C', 'M', 'P' ],
+      4: ['F', 'H', 'V', 'W', 'Y'],
+      5: ['K'],
+      8: ['J', 'X'],
+      10: ['Q', 'Z']}
+    let points = 0
+    if (word.length >= 7 && word.length <= 10){
+      points = 8;
+    };
+    word = word.toUpperCase()
+    word = Array.from(word)
+    for (let letter in word){
+      for (let i = 0; i < Object.values(scoreChart).length; i++)
+        if (Object.values(scoreChart)[i].includes(word[letter]))
+        {
+        points = points + parseInt(Object.keys(scoreChart)[i]);
+      };
+    };
+    return points
+
+  },
+  highestScoreFrom(words){
+    scoreObject = {}
+    for (let word in words)
+      scoreObject[word] = scoreWord(word);
+  }
 };
 
 // // Do not remove this line or your tests will break!
