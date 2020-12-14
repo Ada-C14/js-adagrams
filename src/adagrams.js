@@ -67,7 +67,7 @@ const shuffleLetterPool = (array) => {
 };
 
 const Adagrams = {
-  drawLetters () {
+  drawLetters: function() {
     // Implement this method for wave 1
     // const shuffleLetterPoolToDrawFrom = _.shuffle(poolCreate(letterPool));
     const shuffleLetterPoolToDrawFrom = shuffleLetterPool((poolCreate(letterPool)));
@@ -80,7 +80,7 @@ const Adagrams = {
     return letterInHand;
   },
 
-  usesAvailableLetters (wordCreated, letterInHand) {
+  usesAvailableLetters: function(wordCreated, letterInHand) {
     // Wave 2
     let letterInHandCopy = Array.from(letterInHand);
     const word = wordCreated.toUpperCase().split('');
@@ -95,7 +95,7 @@ const Adagrams = {
     return true;
   },
 
-  scoreWord(wordCreated) {
+  scoreWord: function(wordCreated) {
     // Wave 3
     const word = wordCreated.toUpperCase().split('');
     let value = 0;
@@ -156,38 +156,46 @@ const Adagrams = {
     return value;
   },
 
-  highestScoreFrom(words) {
+  highestScoreFrom: function(words)  {
 
     const highScore = {
       word: '',
       score: 0
     };
 
-    const highScoreWords = [];
-    for (const word of words){
+    let highScoreWords = [];
+
+    for (const word of words) {
       let score = this.scoreWord(word);
 
       if (highScore.score < score) {
-        // highScore['score'] = score; not possible?
         highScore.score = score;
         highScore.word = word;
+        highScoreWords = [word]; 
+      } else if (highScore.score === score) {
         highScoreWords.push(word);
-      };
-    };
-
-    const sortedHighScoreWords = highScoreWords.sort((a, b) => a - b);
-    if (sortedHighScoreWords.length > 1 && sortedHighScoreWords[0].length === sortedHighScoreWords[1].length) {
-      return `Word: ${sortedHighScoreWords[0]}, Score: ${highScore}`
+      }
     }
+    // create a helper function to handle tie
+    const sortedHighScoreWords = highScoreWords.sort((a, b) => a.length - b.length);
 
-    if (sortedHighScoreWords[sortedHighScoreWords.length - 1].length === 10){
-      return `Word: ${sortedHighScoreWords[sortedHighScoreWords.length - 1]}, Score: ${highScore}`
+    if (sortedHighScoreWords.length > 1 ) { // was there a tie?
+      if (sortedHighScoreWords[sortedHighScoreWords.length - 1].length === 10) { // was there a 10-letter word?
+        for (const word of sortedHighScoreWords) {
+          if (word.length === 10) {
+            return { word: word, score: highScore.score };
+          }
+        }
+      } 
+      return { word: sortedHighScoreWords[0], score: highScore.score };
+      // } else if (sortedHighScoreWords[0].length !== sortedHighScoreWords[1].length) {
+      //   return { word: sortedHighScoreWords[0], score: highScore.score };
+      // }
     }
-
-    return  `Word: ${sortedHighScoreWords[0]}, Score: ${highScore}`
+    return  highScore;
     
   }
-}
+};
 // console.log(Adagrams.scoreWord('hello'));
 // console.log(Adagrams.usesAvailableLetters(wordCreated, letterInHand));
 // console.log(Adagrams.drawLetters());
