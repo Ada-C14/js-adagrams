@@ -45,14 +45,14 @@ const Adagrams = {
     let hand = {};
 
     for (const letter of lettersInHand) {
-      hand[letter.toUpperCase()] ? hand[letter.toUpperCase()] += 1 : hand[letter.toUpperCase()] = 1
+      hand[letter.toUpperCase()] ? hand[letter.toUpperCase()]++ : hand[letter.toUpperCase()] = 1
     }
     
     for (const letter of input.toUpperCase()) {
       if (hand[letter] === 0 || hand[letter] === undefined) {
         return false;
       }
-      hand[letter] -= 1;
+      hand[letter]--;
     }
 
     return true;
