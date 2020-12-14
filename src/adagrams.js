@@ -18,7 +18,7 @@ const Adagrams = {
     });
     return letterHand 
   },
-  
+
   // Wave 2
   usesAvailableLetters(input, lettersInHand) {
     const lettersInHandCopy = Array.from(lettersInHand);
@@ -32,8 +32,36 @@ const Adagrams = {
       }  
     });
   return validHand
+  },
+
+  scoreWord(word) {
+    const scores = {
+    "AEIOULNRST": 1,
+    "DG": 2,
+    "BCMP": 3,
+    "FHVWY": 4,
+    "K": 5,
+    "JX": 8,
+    "QZ": 10
+  } 
+  const wordArray = word.toUpperCase().split('');
+  let wordScore = 0;
+
+  wordArray.forEach( function(char) {
+    for (const key in scores) {
+      if (key.includes(char)) {
+        wordScore += scores[key];
+      }
+    }
+  });
+  if (wordArray.length > 6) {
+    wordScore += 8;
   }
-};
+
+  return wordScore
+  },
+}
+
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
