@@ -20,17 +20,13 @@ const letterPool = {
 
 const Adagrams = {
   drawLetters() {
-    // Implement this method for wave 1
-  
     let letters = letterPool.build();
-    // console.log(letters);
-    
     let hand = [];
     
     for (let i=0; i < 10; i++) {
       hand.push(letters[Math.floor(Math.random() * letters.length)]); 
     }
-    // console.log(hand);
+
     return hand;
     },
     usesAvailableLetters(input, lettersInHand) {
@@ -49,7 +45,6 @@ const Adagrams = {
     },
     scoreWord(word) {
       let wordCap = word.toUpperCase();
-      
       let score = 0;
 
       if (word.length > 6) {
@@ -78,7 +73,6 @@ const Adagrams = {
     highestScoreFrom(words) {
       let scoresOnly = words.map(word => this.scoreWord(word));
       let highScore = Math.max.apply(null, scoresOnly);
-
 
       let tiedWords = [];
       let winner = [];
