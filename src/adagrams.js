@@ -14,7 +14,7 @@ const Adagrams = {
     let lettersInHand = [];
     for (let i = 0; i < 10; i++) {
       let randomLetter = letterArray[Math.floor(Math.random() * letterArray.length)];
-      tenLetters.push(randomLetter);
+      lettersInHand.push(randomLetter);
     }
     return lettersInHand;
   },
@@ -22,7 +22,7 @@ const Adagrams = {
   usesAvailableLetters(input,lettersInHand) {
     let lettersCopy = [...lettersInHand];
     for (const letter of input.toUpperCase()) {
-      if(!lettersCopy[letter]) {
+      if(!lettersCopy.includes(letter)) {
         return false;
       } else {
         lettersCopy.splice(lettersCopy.indexOf(letter), 1);
