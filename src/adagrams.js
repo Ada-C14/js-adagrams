@@ -75,26 +75,26 @@ const Adagrams = {
     const letterInHand = []
     for (let i = 0; i < 10; i++) {
       const drawLetter = shuffleLetterPoolToDrawFrom.pop();
-      letterOnHand.push(drawLetter);
+      letterInHand.push(drawLetter);
     };
     return letterInHand;
   },
 
-  usesAvailableLetters (word, letterInHand) {
+  usesAvailableLetters (wordCreated, letterInHand) {
     // Wave 2
     const letterInHandCopy = Array.from(letterInHand);
-    const word = word.toUpperCase().split('');
+    const word = wordCreated.toUpperCase().split('');
     for (const char of word) {
-      if (letterInHandCopy.includes(char) === undefined) {
+      if (!letterInHandCopy.includes(char)) {
         return false;
       }
     }
     return true;
   },
 
-  scoreWord(word) {
+  scoreWord(wordCreated) {
     // Wave 3
-    const word = word.toUpperCase().split('');
+    const word = wordCreated.toUpperCase().split('');
     let value = 0;
 
     for (const char of word) {
@@ -123,11 +123,12 @@ const Adagrams = {
         case 'Q', 'Z':
           value += 10;
           break;
-        default: 
-        alert (`Your word contains ${char} an invalid character. `)
+        // default: 
+        //   alert (`Your word contains ${char} an invalid character. `);
+        //   break;
       };
 
-      let wordScores = value
+      let wordScores = value;
       if (word.length >= 7) {
         wordScores = value + 8 
       }
@@ -138,6 +139,7 @@ const Adagrams = {
 
 }
 
+// console.log(Adagrams.usesAvailableLetters(wordCreated, letterInHand));
 // console.log(Adagrams.drawLetters());
 
 // Do not remove this line or your tests will break!
