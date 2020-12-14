@@ -57,20 +57,81 @@ const Adagrams = {
       }
     }
   return true;  
+  },
+
+  scoreWord(word) {
+    const wordSplit = word.toLowerCase().split('');
+    let score = 0;
+
+    console.log(wordSplit)
+
+    for (let letter of wordSplit) {
+      switch(letter) {
+        case 'a': case 'e': case 'i': case 'o': case 'u': case 'l': case 'n': case 'r': case 's': case 't':
+          score += 1;
+          break;
+        case 'd': case 'g':
+          score += 2;
+          break;
+        case 'b': case 'c': case 'm': case 'p':
+          score += 3;
+          break;
+        case 'f': case 'h': case 'v': case 'w': case 'y':
+          score += 4;
+          break;  
+        case 'k':
+          score += 5;
+          break;
+        case 'j': case 'x':
+          score += 8;
+          break;
+        case 'q': case 'z':
+          score += 10;
+          break;    
+      }
+    }    
+
+    if (wordSplit.length > 6 && wordSplit.length < 11) {
+      score += 8;
+    }
+
+    return score
   }
+
 };
 
 
-// input_split.each do |i|
-// if letters_in_hand_copy.include?(i)
-//   letters_in_hand_copy.delete_at(letters_in_hand_copy.index(i))
-// else
-//   return false
-// end
-// end
-// return true
+// def score_word(word)
+//   word_split = word.downcase.split("")
+//   score = 0
+//   word_split.each do |letter|
+//     case letter
+//     when "a", "e", "i", "o", "u", "l", "n", "r", "s", "t"
+//       score += 1
+//     when "d", "g"
+//       score += 2
+//     when "b", "c", "m", "p"
+//       score += 3
+//     when "f", "h", "v", "w", "y"
+//       score += 4
+//     when "k"
+//       score += 5
+//     when "j", "x"
+//       score += 8
+//     when "q", "z"
+//       score += 10
+//     end
+//   end
 
-console.log(Adagrams.usesAvailableLetters('bad', ['b','a','y','d']))
+//   if word_split.length > 6 && word_split.length < 11
+//     score += 8
+//   end
+
+//   return score
+
+// end
+
+console.log(Adagrams.scoreWord('kqgda'))
 
 // console.log(Adagrams.drawLetters());
 
