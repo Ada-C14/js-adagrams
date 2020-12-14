@@ -134,11 +134,11 @@ const Adagrams = {
     };
 
     // find all of the words that share the highest scoring word
-    const highestScoreWords = words.filter(word => this.scoreWord(word) === highestScore);
+    const highestScoringWords = words.filter(word => this.scoreWord(word) === highestScore);
 
-    // set the highe scoring word to be the first element in order to compare against
+    // set the highest scoring word to be the first element in order to compare against
     let winningWord = { 
-      'word': highestScoreWords[0], 
+      'word': highestScoringWords[0], 
       'score': highestScore
     };
 
@@ -146,7 +146,7 @@ const Adagrams = {
     // 10 letter words takes precedence
     // if there are multiple 10 letter words, use the first one that appears in the array of words
     // next is the least letter words
-    for (const word of highestScoreWords) {
+    for (const word of highestScoringWords) {
       if ( winningWord['word'].length !== 10 && ( word.length === 10 || word.length < winningWord['word'].length)) {
           winningWord['word'] = word;
         }
