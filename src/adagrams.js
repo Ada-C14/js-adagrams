@@ -1,5 +1,5 @@
 const letterPool = [
-  new Array(1, 'A'),
+  new Array(9, 'A'),
   new Array(2, 'B'),
   new Array(2, 'C'),
   new Array(4, 'D'),
@@ -39,7 +39,7 @@ const createPool = (letterPool) => {
 
 const Adagrams = {
   drawLetters() {
-    // Implement this method for wave 1
+    letterPoolToDrawFrom = createPool(letterPool).
   },
 };
 
