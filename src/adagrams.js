@@ -65,30 +65,6 @@ const Adagrams = {
     let shortestWords = highScoreArr.filter(word => (word.length == 10 ? 0 : word.length) === minLength);
     return {word: shortestWords[0], score: maxScore};
   },
-
-  // tieBreaker(highScoreArray) {
-
-  //   let minLength = 10;
-
-  //   for(const word of highScoreArray) {
-  //     if (word.word.length === minLength) {
-  //       return word;
-  //     };
-  //   };
-
-  //   for(const word of highScoreArray) {
-  //     if (word.word.length < minLength) {
-  //       minLength = word.word.length;
-  //     };
-  //   };
-      
-  //   for(const word of highScoreArray) {
-  //     if (word.word.length === minLength) {  
-  //       return word; 
-  //     };
-  //   };
-  // },
-
 };
 
 // Do not remove this line or your tests will break!
