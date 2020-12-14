@@ -120,9 +120,19 @@ const Adagrams = {
 
   },
   highestScoreFrom(words){
-    scoreObject = {}
-    for (let word in words)
-      scoreObject[word] = scoreWord(word);
+    let scoreObject = {}
+    for (let i = 0; i < words.length; i++) {
+      let score = this.scoreWord[words[i]];
+      scoreObject = {
+        word: words[i],
+        score: score
+      };
+    };
+    console.log(scoreObject)
+    let scores = Object.values(scoreObject);
+    let max = Math.max(...scores);
+    
+    
   }
 };
 
