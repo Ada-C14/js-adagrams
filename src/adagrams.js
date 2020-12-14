@@ -61,58 +61,72 @@ const Adagrams = {
     return sum;
   },
 
+  scoreWord(word) {
+    let sum = 0;
+    word = word.toUpperCase().split('')
+    
+    if (word.length > 6) {sum += 8};
+
+    for(const letter of word) {
+      sum += lettersScore[letter];
+    };
+
+    return sum;
+  },
+
   highestScoreFrom(words) {
-    let word_scores = [];
-    let max_score = 0;
-    let best_word = {};
-    let high_score = [];
+    let scores = [];
+    let highScoreArray = [];
+    let maxScore = 0;
+    let bestWord = {};
 
     words.forEach(word => {
-      word_scores.push({word: word, score: this.scoreWord(word)});
+      scores.push({word: word, score: this.scoreWord(word)});
     });
 
-    for(let i = 0; i < word_scores.length; i++) {
-      if(word_scores[i].score > max_score) {
-        max_score = word_scores[i].score;
+    for(let i = 0; i < scores.length; i++) {
+      if (scores[i].score > maxScore) {
+        maxScore = scores[i].score;
       };
     };
 
-    for(let i = 0; i < word_scores.length; i++) {
-      if(word_scores[i].score === max_score) {
-        high_score.push(word_scores[i]);
+    for(let i = 0; i < scores.length; i++) {
+      if (scores[i].score === maxScore) {
+        highScoreArray.push(scores[i]);
       };
     };
 
-    if(high_score.length > 1) {
-      best_word = this.tieBreaker(high_score);
+    if (highScoreArray.length > 1) {
+      bestWord = this.tieBreaker(highScoreArray);
     } else {
-      best_word = high_score[0];
+      bestWord = highScoreArray[0];
     };
-    return best_word;
+
+    return bestWord;
   },
 
-  tieBreaker(high_score) {
-    let min_length = 10;
+  tieBreaker(highScoreArray) {
 
-    for(const word of high_score) {
-      if(word.word.length === min_length) {
+    let minLength = 10;
+
+    for(const word of highScoreArray) {
+      if (word.word.length === minLength) {
         return word;
       };
     };
 
-    for(const word of high_score) {
-      if(word.word.length < min_length) {
-        min_length = word.word.length;
+    for(const word of highScoreArray) {
+      if (word.word.length < minLength) {
+        minLength = word.word.length;
       };
     };
-
-    for(const word of high_score) {
-      if(word.word.length === min_length) {
-        return word;
+      
+    for(const word of highScoreArray) {
+      if (word.word.length === minLength) {  
+        return word; 
       };
     };
   },
-
 
 };
 
