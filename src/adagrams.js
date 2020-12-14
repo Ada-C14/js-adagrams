@@ -48,7 +48,6 @@ const Adagrams = {
 
   usesAvailableLetters(input, lettersInHand) {
     const lettersInHandCopy = [...lettersInHand];
-    const inputSplit = input.split('');
 
     for(let letter of input) { 
       if (lettersInHandCopy.includes(letter)) {
@@ -71,7 +70,7 @@ const Adagrams = {
 // end
 // return true
 
-console.log(Adagrams.usesAvailableLetters('bye', ['b','e','y']))
+console.log(Adagrams.usesAvailableLetters('bad', ['b','a','y','d']))
 
 // console.log(Adagrams.drawLetters());
 
