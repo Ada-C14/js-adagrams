@@ -41,8 +41,22 @@ const Adagrams = {
     return this.lettersDistribution.slice(0, 10);
   },
 
-  usesAvailableLetters: function() {
+  usesAvailableLetters: function(input, lettersInHand) {
+    const inputLetters = input.split('');
+    
+    let usesAvailableLetters = true;
+    inputLetters.forEach(letter => {
+      const matchLetter = lettersInHand.findIndex(handLetter => handLetter == letter);
 
+      if (matchLetter === -1) {
+        usesAvailableLetters = false;
+      }
+
+      lettersInHand.splice(matchLetter, 1);
+      usesAvailableLetters = true;
+    });
+
+    return usesAvailableLetters;
   }
 };
 
