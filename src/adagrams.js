@@ -12,9 +12,65 @@ const Adagrams = {
       };
     };
     return this.sampleSize(total_letters, 10);
-
-  };
+  },
   
+  sampleSize(array, hand) {
+    let max = array.length;
+    while (max > 0) {
+      const i = Math.floor(Math.random() * max--);
+      [array[max], array[i]] = [array[i], array[max]];
+    };
+
+    return array.slice(0, hand);
+  },
+
+  scoreWord(word) {
+    let sum = 0;
+    word = word.toUpperCase().split('')
+    
+    if (word.length > 6) {sum += 8};
+
+    for(const letter of word) {
+      sum += lettersScore[letter];
+    };
+
+    return sum;
+  },
+
+  highestScoreFrom(words) {
+    let word_scores = [];
+    let max_score = 0;
+    let best_word = {};
+    let high_score = [];
+
+    words.forEach(word => {
+      word_scores.push({word: word, score: this.scoreWord(word)});
+    });
+
+    for(let i = 0; i < word_scores.length; i++) {
+      if(word_scores[i].score > max_score) {
+        max_score = word_scores[i].score;
+      };
+    };
+
+    for(let i = 0; i < word_scores.length; i++) {
+      if(word_scores[i].score === max_score) {
+        high_score.push(word_scores[i]);
+      };
+    };
+
+    if(high_score.length > 1) {
+      best_word = this.tieBreaker(high_score);
+    } else {
+      best_word = high_score[0];
+    };
+    return best_word;
+  },
+
+  
+
+ 
+
 };
 
 // Do not remove this line or your tests will break!
