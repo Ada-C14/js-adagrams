@@ -1,4 +1,6 @@
-import _, { findLastIndex } from "underscore"
+import _, {
+  findLastIndex
+} from "underscore"
 
 const Adagrams = {
   drawLetters() {
@@ -44,7 +46,7 @@ const Adagrams = {
   usesAvailableLetters(input, lettersInHand) {
 
     const inHandHash = {}
-    lettersInHand.forEach( (letter) =>  {
+    lettersInHand.forEach((letter) => {
       inHandHash[letter] === 'undefined' ? inHandHash[letter] = 1 : inHandHash[letter]++;
     });
 
@@ -58,24 +60,52 @@ const Adagrams = {
 
     let valid = true;
     inputLetters.forEach(checkLetter => {
-      if (valid === false) {
-        return false;
-      }
-      else if (inHandHash[checkLetter] < 1){
+      if (valid === false) {return false;} 
+      else if (inHandHash[checkLetter] < 1) {
         valid = false;
       } else if (inHandHash[checkLetter] >= 1) {
         inHandHash[checkLetter] -= 1;
-      } else {
-        valid = false;
-      }
+      } else {valid = false;}
     });
     return valid;
-
-
   },
 
-  scoreWord() {
+  scoreWord(word) {
+    let points = 0;
 
+    const wordPoints = word.toUpperCase().split("");
+    if (wordPoints.length >= 7) {
+      points += 8;
+    }
+
+    const scoreChart = {};
+    const addPointValues = function (letters, value) {
+      letters.forEach((letter) => {
+        scoreChart[letter] = value;
+      });
+    }
+
+    const uno = ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'];
+    const due = ['D', 'G'];
+    const tre = ['B', 'C', 'M', 'P'];
+    const quattro = ['F', 'H', 'V', 'W', 'Y'];
+    const cinque = ['K'];
+    const otto = ['J', 'X'];
+    const dieci = ['Q', 'Z'];
+    addPointValues(uno, 1);
+    addPointValues(due, 2);
+    addPointValues(tre, 3);
+    addPointValues(quattro, 4);
+    addPointValues(cinque, 5);
+    addPointValues(otto, 8);
+    addPointValues(dieci, 10);
+
+    wordPoints.forEach((letter) => {
+      points += scoreChart[letter];
+    })
+
+
+    return points;
   },
 
 };
