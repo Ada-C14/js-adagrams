@@ -1,4 +1,4 @@
-import _, { shuffle } from 'underscore'; 
+import _, { result, shuffle } from 'underscore'; 
 
 const printValue = (value, letter) => {
   const newArrayLetter = [];
@@ -72,14 +72,71 @@ const Adagrams = {
     // const shuffleLetterPoolToDrawFrom = _.shuffle(poolCreate(letterPool));
     const shuffleLetterPoolToDrawFrom = shuffleLetterPool((poolCreate(letterPool)));
 
-    const letterOnHand = []
+    const letterInHand = []
     for (let i = 0; i < 10; i++) {
       const drawLetter = shuffleLetterPoolToDrawFrom.pop();
       letterOnHand.push(drawLetter);
     };
-    return letterOnHand;
-  }
-};
+    return letterInHand;
+  },
+
+  usesAvailableLetters (word, letterInHand) {
+    // Wave 2
+    const letterInHandCopy = Array.from(letterInHand);
+    const word = word.toUpperCase().split('');
+    for (const char of word) {
+      if (letterInHandCopy.includes(char) === undefined) {
+        return false;
+      }
+    }
+    return true;
+  },
+
+  scoreWord(word) {
+    // Wave 3
+    const word = word.toUpperCase().split('');
+    let value = 0;
+
+    for (const char of word) {
+      switch(char) {
+        case '':
+          value = 0;
+          break;
+        case 'A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T':
+          value += 1;
+          break;
+        case 'D', 'G':
+          value += 2;
+          break;
+        case 'B', 'C', 'M', 'P':
+          value += 3;
+          break;
+        case 'F', 'H', 'V', 'W', 'Y':
+          value += 4;
+          break;
+        case 'K':
+          value += 5;
+          break;
+        case 'J','X':
+          value += 8;
+          break;
+        case 'Q', 'Z':
+          value += 10;
+          break;
+        default: 
+        alert (`Your word contains ${char} an invalid character. `)
+      };
+
+      let wordScores = value
+      if (word.length >= 7) {
+        wordScores = value + 8 
+      }
+      return wordScores;
+    };
+
+  },
+
+}
 
 // console.log(Adagrams.drawLetters());
 
