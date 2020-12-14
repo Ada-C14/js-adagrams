@@ -50,7 +50,20 @@ const Adagrams = {
       }
     })
     return validWord;
+    },
+
+    // Wave Three 
+  
+  scoreWord(word) {
+    let score = 0
+    for(const letter of word.toUpperCase().split('')){
+      score += letterScore[letter];
     }
+    if (word.length >= 7) {
+      score += 8;
+    }
+    return score;
+  }
 }
 
 // Do not remove this line or your tests will break!
