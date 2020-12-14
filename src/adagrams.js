@@ -1,4 +1,4 @@
-import _, { shuffle } from 'underscore';
+import _, { shuffle } from 'underscore'; 
 
 const printValue = (value, letter) => {
   const newArrayLetter = [];
@@ -46,7 +46,7 @@ const poolCreate = (letterPool) => {
       letterPoolToDrawFrom.push(letter)//push each letter into the pool of letter
     }); 
   });
-   return letterPoolToDrawFrom;
+  return letterPoolToDrawFrom;
 };
 
 // console.log(poolCreate(letterPool));
@@ -67,7 +67,7 @@ const shuffleLetterPool = (array) => {
 };
 
 const Adagrams = {
-  drawLetters() {
+  drawLetters () {
     // Implement this method for wave 1
     // const shuffleLetterPoolToDrawFrom = _.shuffle(poolCreate(letterPool));
     const shuffleLetterPoolToDrawFrom = shuffleLetterPool((poolCreate(letterPool)));
@@ -77,11 +77,11 @@ const Adagrams = {
       const drawLetter = shuffleLetterPoolToDrawFrom.pop();
       letterOnHand.push(drawLetter);
     };
-    return letterOnHand
+    return letterOnHand;
   }
 };
 
-console.log(Adagrams.drawLetters());
+// console.log(Adagrams.drawLetters());
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
