@@ -102,7 +102,7 @@ const Adagrams = {
     if (bestWords.length > 1) {
       winner['word'] = this.breakTie(bestWords);
     } else {
-      winner['word'] = bestWords.first;
+      winner['word'] = bestWords[0];
     }
 
     winner['score'] = highScore;
@@ -123,7 +123,7 @@ const Adagrams = {
           wordLength = word.length;
       }
     }
-    return winners.first;
+    return winners[0];
   }
 };
 
