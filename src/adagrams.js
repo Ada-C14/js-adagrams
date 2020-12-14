@@ -67,9 +67,27 @@ const Adagrams = {
     return best_word;
   },
 
-  
+  tieBreaker(high_score) {
+    let min_length = 10;
 
- 
+    for(const word of high_score) {
+      if(word.word.length === min_length) {
+        return word;
+      };
+    };
+
+    for(const word of high_score) {
+      if(word.word.length < min_length) {
+        min_length = word.word.length;
+      };
+    };
+
+    for(const word of high_score) {
+      if(word.word.length === min_length) {
+        return word;
+      };
+    };
+  },
 
 };
 
