@@ -34,6 +34,7 @@ const Adagrams = {
   return validHand
   },
 
+  // Wave 3
   scoreWord(word) {
     const scores = {
     "AEIOULNRST": 1,
@@ -59,6 +60,28 @@ const Adagrams = {
   }
 
   return wordScore
+  },
+  
+  // Wave 4
+  highestScoreFrom(words) {
+    let wordStats = words.map(x => ( { word: x, score: this.scoreWord(x) } ));
+    
+    wordStats.sort(function (a, b) { 
+      return b.score - a.score;
+    });
+    console.log(wordStats);
+
+    let bestWord = wordStats[0];
+    console.log(`the word with best score after sorting is ${bestWord.word}`)
+
+    for (const element of wordStats) { 
+      if (element.score === bestWord.score && element.word.length === 10) {
+        return element
+      } else if (element.score === bestWord.score && element.word.length <      bestWord.word.length) {
+          bestWord = element
+        }
+    }
+    return bestWord
   },
 }
 
