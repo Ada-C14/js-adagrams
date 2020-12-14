@@ -69,6 +69,51 @@ const Adagrams = {
 
      return true;
   },
+
+  scoreWord(word) {
+    let score = 0;
+    // Iterate through characters in word
+    for (let c of word) {
+      switch (c.toUpperCase()) {
+        case 'D':
+        case 'G':
+          score += 2;
+          break;0
+        case 'B':
+        case 'C':
+        case 'M':
+        case 'P':
+          score += 3;
+          break;
+        case 'F':
+        case 'H':
+        case 'V':
+        case 'W':
+        case 'Y':
+          score += 4;
+          break;
+        case 'K':
+          score += 5;
+          break;
+        case 'J':
+        case 'X':
+          score += 8;
+          break;
+        case 'Q':
+        case 'Z':
+          score += 10;
+          break;
+        default:
+          score += 1;
+      }
+    }
+
+    if (word.length >= 7) {
+      score += 8;
+    }
+
+    return score;
+  }
 };
 
 // Do not remove this line or your tests will break!
