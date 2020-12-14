@@ -47,7 +47,7 @@ const Adagrams = {
   },
 
   usesAvailableLetters(input, lettersInHand) {
-    const lettersInHandCopy = [...lettersInHand];
+    const lettersInHandCopy = [...lettersInHand]; // spread operator: shallow copy
 
     for(let letter of input) { 
       if (lettersInHandCopy.includes(letter)) {
