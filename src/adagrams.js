@@ -50,7 +50,6 @@ const Adagrams = {
     scoreWord(word) {
       let wordCap = word.toUpperCase();
       
-      console.log(wordCap);
       let score = 0;
 
       if (word.length > 6) {
@@ -75,8 +74,49 @@ const Adagrams = {
         }
       }
       return score;
+    },
+    highestScoreFrom(words) {
+      let scoresOnly = words.map(word => this.scoreWord(word));
+      let highScore = Math.max.apply(null, scoresOnly);
+
+
+      let tiedWords = [];
+      let winner = [];
+
+      words.forEach(word => {
+        if (this.scoreWord(word) == highScore) {
+        tiedWords.push({"word": word, "score": this.scoreWord(word)});
+      }
+      });
+
+      if (tiedWords.length == 1) {
+        winner.push(tiedWords[0]);
+      }
+
+      let lengthsOnly = [];
+      
+      for (let i=0; i < tiedWords.length; i++) {
+        lengthsOnly.push(tiedWords[i]['word'].length);
+      }
+      
+      let lengthToFind;
+
+      if (lengthsOnly.includes(10)) {
+        lengthToFind = 10;
+      } else {
+        lengthToFind = Math.min.apply(null, lengthsOnly);
+      }
+
+      for (let i = 0; i < tiedWords.length; i++) {
+        if (tiedWords[i]['word'].length == lengthToFind) {
+          winner.push(tiedWords[i]);
+        }
+      }
+
+      return winner[0];
     }
-};
+}
+
 
 // console.log(Adagrams.drawLetters());
 // console.log(Adagrams.drawLetters().length);
@@ -85,5 +125,7 @@ const Adagrams = {
 // console.log(Adagrams.scoreWord('dOg'));
 // console.log(Adagrams.scoreWord('dOgdogDOG'));
 
+// console.log(Adagrams.highestScoreFrom(['dog', 'cat', 'a']));
+
 // Do not remove this line or your tests will break!
-export default Adagrams;
+ export default Adagrams;
