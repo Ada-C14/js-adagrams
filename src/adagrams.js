@@ -87,29 +87,25 @@ const Adagrams = {
   highestScoreFrom(words) {
     const scores = words.map(word => this.scoreWord(word));
     const maxScore = Math.max(...scores);
+    let winner = {
+      word: '',
+      score: maxScore
+    };
     const highestScoringWords = words.filter(word => this.scoreWord(word) === maxScore);
 
     if (highestScoringWords.length === 1) {
-      return {
-        word: highestScoringWords[0],
-        score: maxScore
-      };
+      winner.word = highestScoringWords[0];
     } else {
       const tiedWordsLength = highestScoringWords.map(word => word.length);
 
       if (tiedWordsLength.includes(10)) {
-        return {
           // .find returns the first instance
-          word: highestScoringWords.find(word => word.length === 10),
-          score: maxScore
-        };
+          winner.word = highestScoringWords.find(word => word.length === 10);
       } else {
-        return {
-          word: highestScoringWords.find(word => word.length === Math.min(...tiedWordsLength)),
-          score: maxScore
-        };
+          winner.word = highestScoringWords.find(word => word.length === Math.min(...tiedWordsLength));
       }
     }
+    return winner;
   }
 };
 
