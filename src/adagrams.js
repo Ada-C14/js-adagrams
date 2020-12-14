@@ -129,3 +129,6 @@ const Adagrams = {
   },
 
 };
+
+// Do not remove this line or your tests will break!
+export default Adagrams;
