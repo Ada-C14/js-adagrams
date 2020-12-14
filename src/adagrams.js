@@ -29,7 +29,7 @@ const LETTERHASH = {
 
 const Adagrams = {
   drawLetters() {
-  var letters = [];
+  let letters = [];
   
   for (const [key, value] of Object.entries(LETTERHASH)) {
     for (let i = 0; i < value + 1; i += 1) {
@@ -98,38 +98,43 @@ const Adagrams = {
     return score
   }
 
+  highestScoreFrom(words) {
+    let wordScores = []
+
+    Do a for...of loop thru each word in the words array
+    Within that loop:
+      Create an object for each word with 2 key,value pairs:
+      1. key: word, value: word from the words array
+      2. key: score, value: score for that word (calling scoreWord function)
+      Push the object into the wordScores array
+    Result: wordScores array with each word and its score per object
+    
+    let highestScoreWord = ''
+    let highestScore = 0
+    let winningWord = {}
+
+    A for...of loop thru each of the objects in the wordScores array created above
+      IF STATEMENT: DETERMINES HIGHEST SCORING WORD
+        if the score of the word is greater than the highestScore, which begins at 0,
+          that word becomes the highestScoreWord
+          the highestScore is adjusted to be the score of the highestScoreWord
+      ELSE IF STATEMENT: BREAKS TIES WHEN SCORES ARE THE SAME
+        if the word's length is 10 and the length of the current highestScoreWord isn't 10
+          that word becomes the new highestScoreWord
+          update highestScore to reflect the score of this new word
+        else if the word's length is not 10 and the scores are the same
+          exit statement because the first one in the array should be chosen
+
+    
+    Add the highestScoreWord as the value for the word key in the winningWord object
+    Add the highestScore as the value for the score key in the winningWord object
+
+    Return the winningWord object
+  }
 };
 
 
-// def score_word(word)
-//   word_split = word.downcase.split("")
-//   score = 0
-//   word_split.each do |letter|
-//     case letter
-//     when "a", "e", "i", "o", "u", "l", "n", "r", "s", "t"
-//       score += 1
-//     when "d", "g"
-//       score += 2
-//     when "b", "c", "m", "p"
-//       score += 3
-//     when "f", "h", "v", "w", "y"
-//       score += 4
-//     when "k"
-//       score += 5
-//     when "j", "x"
-//       score += 8
-//     when "q", "z"
-//       score += 10
-//     end
-//   end
 
-//   if word_split.length > 6 && word_split.length < 11
-//     score += 8
-//   end
-
-//   return score
-
-// end
 
 console.log(Adagrams.scoreWord('kqgda'))
 
