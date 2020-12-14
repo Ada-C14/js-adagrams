@@ -90,8 +90,6 @@ const Adagrams = {
       } 
     }
 
-    console.log(ties)
-
     let winner = ties.find(word => word['word'].length == 10 ) // finds the fir st word with ten letters
 
     if (winner) {
