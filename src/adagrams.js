@@ -63,8 +63,6 @@ const Adagrams = {
     const wordSplit = word.toLowerCase().split('');
     let score = 0;
 
-    console.log(wordSplit)
-
     for (let letter of wordSplit) {
       switch(letter) {
         case 'a': case 'e': case 'i': case 'o': case 'u': case 'l': case 'n': case 'r': case 's': case 't':
@@ -96,47 +94,75 @@ const Adagrams = {
     }
 
     return score
-  }
+  },
 
   highestScoreFrom(words) {
     let wordScores = []
 
-    Do a for...of loop thru each word in the words array
-    Within that loop:
-      Create an object for each word with 2 key,value pairs:
-      1. key: word, value: word from the words array
-      2. key: score, value: score for that word (calling scoreWord function)
-      Push the object into the wordScores array
-    Result: wordScores array with each word and its score per object
-    
+    for (let word of words) {
+      let eachWordObject = {};
+      eachWordObject['word'] = word;
+      eachWordObject['score'] = this.scoreWord(word);
+
+      wordScores.push(eachWordObject);
+    }
+
     let highestScoreWord = ''
     let highestScore = 0
     let winningWord = {}
 
-    A for...of loop thru each of the objects in the wordScores array created above
-      IF STATEMENT: DETERMINES HIGHEST SCORING WORD
-        if the score of the word is greater than the highestScore, which begins at 0,
-          that word becomes the highestScoreWord
-          the highestScore is adjusted to be the score of the highestScoreWord
-      ELSE IF STATEMENT: BREAKS TIES WHEN SCORES ARE THE SAME
-        if the word's length is 10 and the length of the current highestScoreWord isn't 10
-          that word becomes the new highestScoreWord
-          update highestScore to reflect the score of this new word
-        else if the word's length is not 10 and the scores are the same
-          exit statement because the first one in the array should be chosen
+    for (let word of wordScores) {
+      if (word['score'] > highestScore) {
+        highestScoreWord = word['word'];
+        highestScore = word['score'];
+      } else if (word['score'] === highestScore) {
 
-    
-    Add the highestScoreWord as the value for the word key in the winningWord object
-    Add the highestScore as the value for the score key in the winningWord object
+        // if same length, prefer word that has 10 letters if applicable
+        if (word['word'].length === 10 && highestScoreWord.length !== 10) {
+          highestScoreWord = word['word'];
+          highestScore = word['score'];
+        // otherwise prefers the word with the fewest letters
+        } else if (word['word'].length < highestScoreWord.length && highestScoreWord.length !== 10) { 
+          highestScoreWord = word['word'];
+          highestScore = word['score'];
+        }
+      }
+    }
 
-    Return the winningWord object
+    winningWord['word'] = highestScoreWord
+    winningWord['score'] = highestScore
+
+    return winningWord
   }
 };
 
+// Wave 4 Pseudocode
+// Do a for...of loop thru each word in the words array
+// Within that loop:
+//   Create an object for each word with 2 key,value pairs:
+//   1. key: word, value: word from the words array
+//   2. key: score, value: score for that word (calling scoreWord function)
+//   Push the object into the wordScores array
+// Result: wordScores array with each word and its score per object
 
+// A for...of loop thru each of the objects in the wordScores array created above
+// IF STATEMENT: DETERMINES HIGHEST SCORING WORD
+//   if the score of the word is greater than the highestScore, which begins at 0,
+//     that word becomes the highestScoreWord
+//     the highestScore is adjusted to be the score of the highestScoreWord
+// ELSE IF STATEMENT: BREAKS TIES WHEN SCORES ARE THE SAME
+//   if the word's length is 10 and the length of the current highestScoreWord isn't 10
+//     that word becomes the new highestScoreWord
+//     update highestScore to reflect the score of this new word
+//   else if the word's length is not 10 and the scores are the same
+//     exit statement because the first one in the array should be chosen
 
+// Add the highestScoreWord as the value for the word key in the winningWord object
+// Add the highestScore as the value for the score key in the winningWord object
 
-console.log(Adagrams.scoreWord('kqgda'))
+// Return the winningWord object
+
+// console.log(Adagrams.highestScoreFrom(['beep', 'bop', 'boopboopbb', 'zzzq']))
 
 // console.log(Adagrams.drawLetters());
 
