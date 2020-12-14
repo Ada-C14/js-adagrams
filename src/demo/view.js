@@ -37,6 +37,7 @@ const View = {
         } else {
           game.log(MESSAGES.playWordFailure(word));
         }
+        game.log(model.letterBank.join(' '));
 
         done();
       });

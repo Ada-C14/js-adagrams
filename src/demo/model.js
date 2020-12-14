@@ -12,6 +12,7 @@ class Model {
     this.round = 0;
     this.currentPlayer = null;
     this.letterBank = null;
+    this.letterBankCopy = null;
 
     /* Plays history structure is:
         {
@@ -50,6 +51,8 @@ class Model {
 
     // Draw the letter bank
     this.letterBank = Adagrams.drawLetters();
+    this.letterBankCopy = this.letterBank;
+    this.letterBankCopy = JSON.parse(JSON.stringify(this.letterBank));
 
     // Initialize player history for this round
     this.config.players.forEach((player) => {
@@ -61,6 +64,7 @@ class Model {
 
   nextTurn() {
     this.currentPlayer++;
+    this.letterBank = this.letterBankCopy
 
     const roundOver = this.currentPlayer >= this.config.players.length;
     const winner = !roundOver ? null : this._roundWinner(this.round);
