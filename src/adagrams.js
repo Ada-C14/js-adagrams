@@ -156,8 +156,39 @@ const Adagrams = {
     return value;
   },
 
+  highestScoreFrom(words) {
+
+    const highScore = {
+      word: '',
+      score: 0
+    };
+
+    const highScoreWords = [];
+    for (const word of words){
+      let score = this.scoreWord(word);
+
+      if (highScore.score < score) {
+        // highScore['score'] = score; not possible?
+        highScore.score = score;
+        highScore.word = word;
+        highScoreWords.push(word);
+      };
+    };
+
+    const sortedHighScoreWords = highScoreWords.sort((a, b) => a - b);
+    if (sortedHighScoreWords.length > 1 && sortedHighScoreWords[0].length === sortedHighScoreWords[1].length) {
+      return `Word: ${sortedHighScoreWords[0]}, Score: ${highScore}`
+    }
+
+    if (sortedHighScoreWords[sortedHighScoreWords.length - 1].length === 10){
+      return `Word: ${sortedHighScoreWords[sortedHighScoreWords.length - 1]}, Score: ${highScore}`
+    }
+
+    return  `Word: ${sortedHighScoreWords[0]}, Score: ${highScore}`
+    
+  }
 }
-console.log(Adagrams.scoreWord('hello'));
+// console.log(Adagrams.scoreWord('hello'));
 // console.log(Adagrams.usesAvailableLetters(wordCreated, letterInHand));
 // console.log(Adagrams.drawLetters());
 
