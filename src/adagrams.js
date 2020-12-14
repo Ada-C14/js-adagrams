@@ -4,7 +4,6 @@ const POOL = {
   c: 2,
   d: 4,
   e: 12,
-  f: 2,
   g: 3,
   h: 2,
   i: 9,
@@ -113,7 +112,41 @@ const Adagrams = {
     }
 
     return score;
-  }
+  },
+
+  // Tries to find a winner given a certain length
+  findWinner(maxScoreWords, length) {
+    let winners = maxScoreWords.filter(winner => winner.word.length === length);
+    if (winners.length) {
+      return winners[0];
+    }
+
+    return null;
+  },
+
+  highestScoreFrom(words) {
+   // Create array of objects of words and scores
+    let wordScoresObj = [];
+    for (let word of words) {
+      wordScoresObj.push({
+        word: word,
+        score: this.scoreWord(word),
+      })
+    }
+    // Find maximum score possible
+    const maxScore = Math.max(...wordScoresObj.map(word => word.score));    
+    // Filter array of objects to only include max score words
+    const maxScoreWords = wordScoresObj.filter(word => word.score === maxScore);    
+    // Attempt to find winner using ten character word
+    const winner = this.findWinner(maxScoreWords, 10);
+    if (winner) {
+      return winner;
+    }
+    // Find smallest word length
+    const minLength = Math.min(...maxScoreWords.map(winner => winner.word.length));
+    // Find winner using shortest word
+    return this.findWinner(maxScoreWords, minLength);
+  },
 };
 
 // Do not remove this line or your tests will break!
