@@ -110,6 +110,44 @@ const Adagrams = {
 
     return score
   },
+
+  highestScoreFrom(words) {
+    const __ = require('underscore')
+    let topScore = 0;
+    let shortestWord = 10;
+
+    const scoredWords = __.map(words, (word) => {
+      const score = this.scoreWord(word);
+      if (score > topScore) {
+        topScore = score;
+      }
+      if (word.length < shortestWord) {
+        shortestWord = word.length;
+      }
+
+      return { word: word, length: word.length, score: score };
+    });
+
+    let topWords = __.where(scoredWords, { score: topScore });
+    
+    let winner = {};
+    const tenLetter = __.findWhere(topWords, { length: 10 });
+    const shortWinner = __.findWhere(topWords, { length: shortestWord });
+
+    if (topWords.length === 1) {
+      winner.word = topWords[0]['word'];
+      winner.score = topWords[0]['score'];
+    } else if (tenLetter) {
+      winner.word = tenLetter.word;
+      winner.score = tenLetter.score;
+    } else {
+      winner.word = shortWinner.word;
+      winner.score = shortWinner.score;
+    }
+
+    return winner;
+  }
+
 };
 
 // Do not remove this line or your tests will break!
