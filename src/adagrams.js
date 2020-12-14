@@ -1,4 +1,4 @@
-import _ from "underscore"
+import _, { findLastIndex } from "underscore"
 
 const Adagrams = {
   drawLetters() {
@@ -42,26 +42,35 @@ const Adagrams = {
   },
 
   usesAvailableLetters(input, lettersInHand) {
-    //boolean
 
-    const inHandHash = lettersInHand.forEach(function (letter, key) {
-      typeof letter[key] === 'undefined' ? letter[key] = 1 : letter[key]++;
+    const inHandHash = {}
+    lettersInHand.forEach( (letter) =>  {
+      inHandHash[letter] === 'undefined' ? inHandHash[letter] = 1 : inHandHash[letter]++;
     });
 
-    const inputHash = input.forEach(function (letter, key) {
-      typeof letter[key] === 'undefined' ? letter[key] = 1 : letter[key]++;
-    });
-    const input_letters = input.split("")
+    const inputLetters = input.toUpperCase().split(" ");
 
-    if (input_letters.length > 10) {return false};
+    if (inputLetters.length > 10) {return false};
 
-    if (input_letters === _.uniq(input_letters)) {
-      _.isEmpty(_.difference(drawnHand, input_letters))
+    if (inputLetters === _.uniq(inputLetters)) {
+      _.isEmpty(_.difference(lettersInHand, inputLetters))
     };
 
-//compare the two hashmaps
-// if inHandHash doesn't have all the keys that inputHash does -- false
-// if inHandHash doesn't have the same or more values per key -- false
+    let valid = true;
+    inputLetters.forEach(checkLetter => {
+      if (valid === false) {
+        return false;
+      }
+      else if (inHandHash[checkLetter] < 1){
+        valid = false;
+      } else if (inHandHash[checkLetter] >= 1) {
+        inHandHash[checkLetter] -= 1;
+      } else {
+        valid = false;
+      }
+    });
+    return valid;
+
 
   },
 
@@ -75,7 +84,3 @@ const Adagrams = {
 export default Adagrams;
 
 // console.log(Adagrams.drawLetters())
-// console.log(_.intersection([A, B, C], [B, A]))
-// console.log(_.intersection([A, B, B, C], [B, B]))
-// console.log(_.difference([A, B, C], [B, A]))
-// console.log(_.diff([A, B, B, C], [B, B]))
