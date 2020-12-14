@@ -103,11 +103,41 @@ const Adagrams = {
     wordPoints.forEach((letter) => {
       points += scoreChart[letter];
     })
-
-
+    
     return points;
   },
 
+  highestScoreFrom(words){
+    
+    const score = {};
+    let highestScore = {
+      word: '',
+      score: 0,
+    };
+
+    words.forEach((word) => {
+      let topScore = Adagrams.scoreWord(word);
+      let topWord = word;
+      if (topScore > highestScore.score) {
+        highestScore.score = topScore;
+        highestScore.word = topWord;
+      }
+      else if (topScore === highestScore.score) {
+        if (topWord.length === 10 && highestScore.word.length !== 10) {
+          highestScore.score = topScore;
+          highestScore.word = topWord;
+        } else if (topWord.length < highestScore.word.length && highestScore.word.length !== 10) {
+          highestScore.score = topScore;
+          highestScore.word = topWord;
+        }
+      }
+    })
+    
+    
+    // word - string of winning word score - score of winning word
+
+    return highestScore
+  }
 };
 
 // Do not remove this line or your tests will break!
