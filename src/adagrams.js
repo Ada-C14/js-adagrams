@@ -118,6 +118,12 @@ const Adagrams = {
     }
   
     return score;
+  },
+
+  // Wave 4 
+
+  highestScoreForm(words) {
+
   }
 }
 
