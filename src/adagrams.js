@@ -1,41 +1,35 @@
-const letterPool = [
-  new Array(9, 'A'),
-  new Array(2, 'B'),
-  new Array(2, 'C'),
-  new Array(4, 'D'),
-  new Array(12, 'E'),
-  new Array(2, 'F'),
-  new Array(3, 'G'),
-  new Array(2, 'H'),
-  new Array(9, 'I'),
-  new Array(1, 'J'),
-  new Array(1, 'K'),
-  new Array(4, 'L'),
-  new Array(2, 'M'),
-  new Array(6, 'N'),
-  new Array(8, 'O'),
-  new Array(2, 'P'),
-  new Array(1, 'Q'),
-  new Array(6, 'R'),
-  new Array(4, 'S'),
-  new Array(6, 'T'),
-  new Array(4, 'U'),
-  new Array(2, 'V'),
-  new Array(2, 'W'),
-  new Array(1, 'X'),
-  new Array(2, 'Y'),
-  new Array(1, 'Z'),
-]
+const Adagrams = {
+  drawLetters: function() {
+    const lettersInHand = []
+    const letterPool = { 
+      A: 9,
+      B: 2,
+      C: 2,
+      D: 4,
+      E: 12,
+      F: 2,
+      G: 3,
+      H: 2,
+      I: 9,
+      J: 1,
+      K: 1,
+      L: 4,
+      M: 2,
+      N: 6,
+      O: 8,
+      P: 2,
+      Q: 1,
+      R: 6,
+      S: 4,
+      T: 6,
+      U: 4,
+      V: 2,
+      W: 2,
+      X: 1,
+      Y: 2,
+      Z: 1
+    }
 
-const createPool = (letterPool) => {
-  const letterPoolToDrawFrom = [];
-  letterPool.forEach((letters) => {
-    letters.forEach((letter) => {
-      letterPoolToDrawFrom.push(letter)
-    });
-  });
-  return letterPoolToDrawFrom
-  };
 
 const Adagrams = {
   drawLetters() {
