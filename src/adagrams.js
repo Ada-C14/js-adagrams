@@ -31,16 +31,15 @@ const Adagrams = {
   
     const inputLetterArr = input.toUpperCase().split('');
 
-    let notInHand = false
-    inputLetterArr.forEach((letter) => {
-      const index = lettersInHandClone.indexOf(letter);
-      if(index !== -1) {
-        lettersInHandClone.splice(index, 1);
+    for (let char of inputLetterArr) {
+      if (lettersInHand.includes(char)) {
+        let index = lettersInHand.indexOf(char);
+        lettersInHand.splice(index, 1)
       } else {
-        notInHand = true;
-      };
-    });
-    return !notInHand
+        return false
+      }
+    }
+    return true;
   },
 
   // wave 3
