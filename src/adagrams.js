@@ -122,9 +122,31 @@ const Adagrams = {
 
   // Wave 4 
 
-  highestScoreForm(words) {
+  highestScoreFrom(words) {
+    let topScore = 0
+    let topWord = ""
 
-  }
+    for (let word of words) {
+        let score = Adagrams.scoreWord(word);
+        if (score > topScore) {
+            topWord = word
+            topScore = score
+        } else if ((word.length == 10) && (score == topScore) && (topWord.length < 10)) {
+            topWord = word
+            topScore = score
+        } else if ((score == topScore) && (word.length < topWord.length) && (topWord.length != 10)) {
+            topWord = word
+            topScore = score
+        }
+    }
+
+    let winner = {
+        word: topWord,
+        score: topScore
+    };
+
+    return winner;
+},
 }
 
 
