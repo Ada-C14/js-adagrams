@@ -57,7 +57,7 @@ const Adagrams = {
     let hand = {};
 
     for (const letter of lettersInHand) {
-      hand[letter] ? hand[letter]++ : hand[letter] = 1
+      (hand[letter]) ? hand[letter]++ : hand[letter] = 1
     }
     
     for (const letter of input.toUpperCase()) {
