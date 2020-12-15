@@ -39,6 +39,18 @@ const Adagrams = {
       }
     }
     
+    // Fisher-Yates shuffle algorithm
+    // for (let i = letterPool.length - 1; i > 0; i--) {
+      // .random generates a random number between 0 and less than 1
+      // i + 1 allows possibility of element to remain at its index
+    //   const randIndex = Math.floor(Math.random() * (i + 1))
+    //   const temp = letterPool[randIndex]
+    //   letterPool[randIndex] = letterPool[i]
+    //   letterPool[i] = temp
+    // } 
+
+    // return letterPool.slice(0, 10);
+
     return _.sampleSize(letterPool, 10);
   },
   usesAvailableLetters(input, lettersInHand) {
