@@ -63,7 +63,12 @@ const Adagrams = {
       score += 8;
     }
     return score;
-  }
+  },
+  //Wave 4
+
+  // highestScoreFrom(words)
+ 
+
 }
 
 // Do not remove this line or your tests will break!
