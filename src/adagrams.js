@@ -32,10 +32,6 @@ const letterPool = {
 const Adagrams = {
     // wave 1
 
-    // createArray is taking in all they letter:frequency pairs, and the frequency times it is pushing that letter into the lettersInPool array
-    // shuffleArray is using JS Math & a loop to say array.length times, find a random position, then swap the last index with the random index. This is what will shuffle our cards. 
-    // drawLetters is saying, 10 times, lets pull the last index/item from the shuffled array above.
-    
   createArray() {
     const lettersInPool = []
     for (const [letter, frequency] of Object.entries(letterPool)) {
@@ -66,20 +62,15 @@ const Adagrams = {
 
   // Wave 2
 
-  // First I am using a conditional to check that the input is not greater than the lettersInHand
-  // Then I am returning false if lettersInHand does not include letter
-  // Last I am returning true if the input word is avail in right quantities from lettersInHand 
+  usesAvailableLetters(input, lettersInHand) {
+    let lettersInHandCopy = [...lettersInHand];
 
-  usesAvailibleLetters(input, lettersInHand) {
-    if (input.length > lettersInHand.length) {
-      return false;
-    }
-
-    for (let i of input) {
-      if (!lettersInHand.includes(i)) {
+    for (const i of input) {
+      if (!lettersInHandCopy.includes(i)) {
         return false;
+      } else {
+        lettersInHandCopy.splice(lettersInHandCopy.indexOf(i), 1);
       }
-      lettersInHand.splice(lettersInHand.indexOf(i), 1);
     }
     return true;
   }
