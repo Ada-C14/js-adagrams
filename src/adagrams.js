@@ -62,7 +62,28 @@ const Adagrams = {
       lettersInHand.push(letters.pop());
     }
     return lettersInHand
+  },
+
+  // Wave 2
+
+  // First I am using a conditional to check that the input is not greater than the lettersInHand
+  // Then I am returning false if lettersInHand does not include letter
+  // Last I am returning true if the input word is avail in right quantities from lettersInHand 
+
+  usesAvailibleLetters(input, lettersInHand) {
+    if (input.length > lettersInHand.length) {
+      return false;
+    }
+
+    for (let i of input) {
+      if (!lettersInHand.includes(i)) {
+        return false;
+      }
+      lettersInHand.splice(lettersInHand.indexOf(i), 1);
+    }
+    return true;
   }
+
 };
 
 // Do not remove this line or your tests will break!
