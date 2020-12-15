@@ -73,6 +73,12 @@ const Adagrams = {
       }
     }
     return true;
+  },
+
+  // Wave 3
+
+  scoreWord(word) {
+    // code here
   }
 
 };
