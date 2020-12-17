@@ -106,7 +106,7 @@ class Adagrams {
   }
 
   static highestScoreFrom(words) {
-    let highestScore = { word: "", score: 0 };
+    const highestScore = { word: "", score: 0 };
     
     words.forEach(word => {
       const wordValue = this.scoreWord(word);
